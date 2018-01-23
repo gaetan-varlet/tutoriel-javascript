@@ -96,7 +96,7 @@ On écrit **break** à la fin de chaque case pour casser le switch et éviter d�
 ----
 
 ## Les ternaires
-Très rapide et écrire mais peu lisible. Elles renvoient une valeur.
+Très rapide à écrire mais peu lisible. Elles renvoient une valeur.
 ```javascript
 endMessage = adult ? '18+' : '-18';
 ```
