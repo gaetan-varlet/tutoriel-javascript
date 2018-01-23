@@ -85,7 +85,7 @@ En HTML4 ou en XHTML 1.x, il faut utiliser des **commentaires d’encadrement** 
 
 ### Le JavaScript en externe
 Il est conseillé d’écrire le code JavaScript dans un fichier externe portant l’extension **.js**. Ce fichier est ensuite appelé depuis la page Web au moyen de l’élément script et de son attribut **src** qui contient l’URL du fichier.
-Voici un exemple avec un fichier hello.js qui se situe dans le même réertoire de la page Web.
+Voici un exemple avec un fichier hello.js qui se situe dans le même répertoire de la page Web.
 ```html
 <!DOCTYPE html>
 <html>
