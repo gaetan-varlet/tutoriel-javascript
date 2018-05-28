@@ -80,7 +80,7 @@ Une utilisation intéressante des fonctions anonymes est l’isolement d’une p
 })();
 // Code externe
 ```
-On distingue une fonction anonyme, puis deux paires de parenthèses, la première encadrant la fonction et une deuxième pare suivant la première.
+On distingue une fonction anonyme, puis deux paires de parenthèses, la première encadrant la fonction et une deuxième paire suivant la première.
 Lorsqu’une fonction est déclarée, elle n’exécute pas immédiatement le code qu’elle contient, elle attend d’être appelée. Or nous souhaitons exécuter ce code immédiatement, la solution est donc d’utiliser ce couple de parenthèses.
 Le premier couple de parenthèses permet de dire “je désigne cette fonction” pour que l’on puisse ensuite indiquer avec le deuxième couple que l’on souhaite l’exécuter.
 

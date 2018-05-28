@@ -8,7 +8,7 @@ Le JavaScript est un langage de programmation de scripts orienté objet
 Un langage de programmation permet d’écrire du code source qui sera analysé par l’ordinateur. Il existe  trois manières d’utiliser du code source :
 - **langage compilé :** le code source est donné à un programme appelé compilateur qui va lire le code source et le convertir dans un langage que l’ordinateur sera capable d’interpréter : le langage binaire. Les langages comme le C ou le C++ sont des langages dits compilés
 - **langage précompilé :** le code source est partiellement compilé, dans un langage plus simple à lire par l’ordinateur mais ce n’est pas encore du binaire. Ce code intermédiaire devra être lu par une machine virtuelle qui exécutera ce code. Les langages comme Java ou C# sont dits précompilés
-- **langage interprété :** pas de compilation, le code source reste tel quel. Pour exécuter le code, on doit le fournir à un interpréteur et lira le code et réalisera les actions. Pour obtenir des gains de performances, on peut le le compiler à la volée pendant son exécution, ce que font aujourd’hui la plupart des interpréteurs JavaScript
+- **langage interprété :** pas de compilation, le code source reste tel quel. Pour exécuter le code, on doit le fournir à un interpréteur qui lira le code et réalisera les actions. Pour obtenir des gains de performances, on peut le le compiler à la volée pendant son exécution, ce que font aujourd’hui la plupart des interpréteurs JavaScript
 
 Les scripts sont majoritairement interprétés, ce qui est le cas de JavaScript qui est un langage interprété. Il y a un interpréteur JavaScript dans le navigateur Web, qui est différent selon le navigateur : Chakra dans Internet Explorer, SpiderMonkey dans Firefox, V8 dans Chrome.
 
