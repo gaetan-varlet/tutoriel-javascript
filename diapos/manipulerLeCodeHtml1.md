@@ -97,6 +97,113 @@ Une `<div>` est un objet `HTTMLDivElement`, sous-objet `HTMLElement`, lui-même 
 
 ## Editer les éléments HTML
 
+### Les attributs
+
+L'objet `Element` fourni deux méthodes `getAttribute()` et `setAttribute()` permettant de récupérer et d'éditer un attribut. Exemple :
+```html
+<body>
+    <a id="myLink" href="http://www.un_lien_quelconque.com">Un lien modifié dynamiquement</a>
+
+    <script>
+        var link = document.getElementById('myLink');
+        var href = link.getAttribute('href'); // On récupère l'attribut « href »
+
+        alert(href); // affiche http://www.un_lien_quelconque.com
+
+        link.setAttribute('href', 'http://www.google.com'); // On édite l'attribut « href »
+    </script>
+</body>
+```
+
+On récupère l'élément `myLink` et on lit son attribut `href`. on modifie ensuite son attribut `href`. Le lien pointe maintenant sur `http://www.google.com`.
+
+Pour les éléments courants commme `<a>`, il est possible d'accéder et de modifier un attribut via une propriété. Même exemple que précédemment :
+```html
+<body>
+    <a id="myLink" href="http://www.un_lien_quelconque.com">Un lien modifié dynamiquement</a>
+
+    <script>
+        var link = document.getElementById('myLink');
+        var href = link.href;
+
+        alert(href);
+
+        link.href = 'http://www.siteduzero.com';
+    </script>
+</body>
+```
+
+### La classe
+
+Pour modifier l'attribut `class` d'un élément HTML, on ne peut pas utiliser le mt clé `class` car il est réservé en JavaScript. Il faut donc utiliser `className`. Dans l'exemple suivant, on applique à l'élément `myColoredDiv` la classe *blue*, cet élément sera donc écrit en blanc sur fond bleu.
+```html
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Le titre de la page</title>
+    <style>
+        .blue {
+            background: blue;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="myColoredDiv">
+        <p>Un peu de texte <a>et un lien</a></p>
+    </div>
+
+    <script>
+        document.getElementById('myColoredDiv').className = 'blue';
+    </script>
+</body>
+</html>
+```
+
+### Le contenu : innerHTML
+
+`ìnnerHTML` permet de récupérer le code HTML enfant d'un élément sous forme de texte. Si les balises sont présentes, `innerHTML` les retournera sous forme de texte. Exemple :
+```html
+<body>
+    <div id="myDiv">
+        <p>Un peu de texte <a>et un lien</a></p>
+    </div>
+
+    <script>
+        var div = document.getElementById('myDiv');
+
+        alert(div.innerHTML); // affiche : <p>Un peu de texte <a>et un lien</a></p>
+    </script>
+</body>
+```
+
+Il est aussi possible d'ajouter ou d'éditer du HTML
+```javascript
+document.getElementById('myDiv').innerHTML = '<blockquote>Je mets une citation à la place du paragraphe</blockquote>';
+document.getElementById('myDiv').innerHTML += ' et <strong>une portion mise en emphase</strong>.';
+```
+Il ne faut pas l'utiliser dans une boucle car `innerHTML` ralentit l'exécution du code. Il vaut mieux la concaténer dans une variable et ensuite ajouter le tout via `innerHTML`.
+
 ---
 
 ## innerText et textContent
+
+`innerText` pour IE et `textContent` pour les autres navigateurs sont des propriétés analogues à `innerHTML`, qui permettent de récupérer le contenu d'un élément sous forme de texte mais sans les balises.
+- `innerText` a été introduite dans IE, mais jamais standardisée et n'est pas suportée par tous les navigateurs
+- `textContent` est la version standardisée d'`innerText`. Elle est reconnue par tous les navigateurs à l'exception des versions antérieures à IE9.
+
+```html
+<body>
+    <div id="myDiv">
+        <p>Un peu de texte <a>et un lien</a></p>
+    </div>
+
+    <script>
+        var div = document.getElementById('myDiv');
+
+        alert(div.innerText); // affiche : Un peu de texte et un lien
+    </script>
+</body>
+```
