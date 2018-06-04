@@ -16,3 +16,4 @@ Modeler vos pages web
 - [Manipuler le code HTML (partie 1/2)](diapos/manipulerLeCodeHtml1.md)
 - [Manipuler le code HTML (partie 2/2)](diapos/manipulerLeCodeHtml2.md)
 - [Les événements](diapos/lesEvenements.md)
+- [Les formulaires](diapos/lesFormulaires.md)
