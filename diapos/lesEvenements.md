@@ -193,3 +193,5 @@ element.addEventListener('click', function(e) { // L'argument « e » va récup�
 ---
 
 ## Résoudre les problèmes d'héritage des événements
+
+Parfois, un événement appliqué sur un parent se propage à ses enfants. Cet héritage des événements peut provoquer des comportements inattendus. C'est le cas des événements `mouseover`, `mouseout`, `mousemove`, `click`... Pour régler cela, il faut utiliser la propriété `relatedTarget` pour détecter quel est l'élément vers lequel le curseur se dirige ou de quel élément il provient.
