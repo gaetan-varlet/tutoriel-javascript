@@ -65,6 +65,23 @@ myArray.shift(); // Retire « Sébastien »
 myArray.pop(); // Retire « Guillaume »
 ```
 
+### Opérations diverses sur les tableaux
+
+La méthode `indexOf()` renvoie le premier indice pour lequel on trouve un élément donné dans un tableau. Si l'élément cherché n'est pas présent, la méthode renverra -1.
+```javascript
+    var beasts = ['ant', 'bison', 'camel', 'duck', 'bison'];
+    console.log(beasts.indexOf('bison')); // expected output: 1
+    console.log(beasts.indexOf('bison', 2)); // start from index 2, expected output: 4
+    console.log(beasts.indexOf('giraffe')); // expected output: -1
+```
+
+La méthode `slice()` renvoie un objet tableau contenant une copie d'une portion du tableau d'origine. La portion est définie par un indice de début et un indice de fin exclue optionnel.
+```javascript
+var animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+console.log(animals.slice(2)); // expected output: Array ["camel", "duck", "elephant"]
+console.log(animals.slice(2, 4)); // expected output: Array ["camel", "duck"]
+```
+
 ### Chaînes de caractères et tableaux
 Les chaînes de caractères possèdent une méthode `split()` qui permet de les découper en un tableau, en fonction d’un séparateur.
 Par exemple ici, la chaîne va être coupée à chaque fois qu’il y a un espace, et chaque élément est placé dans un tableau.
@@ -117,6 +134,24 @@ var myObject = {
     sister: 'Laurence',
     brother: 'Ludovic'
 };
+```
+
+### Les constructeurs
+
+Ils permettent de créer un moule pour créer plusieurs objets à partir de ce moule
+```javascript
+function Dog(name, color, age){
+    this.name = name;
+    this.color = color;
+    this.age = age
+    this.aboie = function(){
+        console.log("wouf wouf "+this.name);
+    }
+}
+
+var monChien = new Dog("Rex", "noir", 6);
+console.log(monChien); // affiche le chien
+monChien.aboie(); // affiche : wouf wouf Rex
 ```
 
 ### Accès aux items

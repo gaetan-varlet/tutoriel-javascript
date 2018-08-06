@@ -47,16 +47,29 @@ var text = prompt('Tapez quelque chose :');
 ```
 
 ### Convertir une chaîne de caractères en nombre
-Si on essaie de faire l’addition de deux chiffres saisis par l’utilisateur, ils vont être concaténé (par exemple 3 + 6 va donner 36 et non pas 9) car ils sont considérés comme une chaîne de caractères. Il faut donc convertir les variables en nombre avec la fonction `parseInt()`.
+Si on essaie de faire l’addition de deux chiffres saisis par l’utilisateur, ils vont être concaténé (par exemple 3 + 6 va donner 36 et non pas 9) car ils sont considérés comme une chaîne de caractères. Il faut donc convertir les variables en nombre avec la fonction `parseInt()` pour les nombres entiers et `parseFloat()` pour les nombres décimaux. Si on utilise `parseInt()` sur un nombre décimal, il sera tronqué.
 ```javascript
 var text = '1337', number;
 number = parseInt(text);
+
+var text = '1337.54', number;
+number = parseFloat(text);
 ```
 
 ### Convertir un nombre en chaîne de caractères
-L’ajout d’une chaîne de caractère vide entre les deux nombres les convertis en caractères. Nous verrons une solution moins archaïque plus tard.
+L’ajout d’une chaîne de caractère vide entre les deux nombres les convertis en caractères.
 ```javascript
 var text, number1 = 4, number2 = 2;
 text = number1 + '' + number2;
 alert(text); // Affiche : « 42 »
+```
+
+Une façon de faire plus propre est d'utiliser la méthode `toString()`
+```javascript
+var number=1337.65, text;
+text = number.toString();
+console.log(number) // 1337.65
+console.log(typeof number) // number
+console.log(text) // 1337.65
+console.log(typeof text) // string
 ```
