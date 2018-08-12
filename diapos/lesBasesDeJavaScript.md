@@ -456,11 +456,14 @@ La boucle `for` est très utilisée en JavaScript, bien plus que la boucle `whil
 
 ## Concevoir des fonctions
 ```javascript
+// déclaration d'une fonction
 function myFunction(arguments) {
     // Le code que la fonction va devoir exécuter
 }
+
+myFunction(); // exécution de la fonction
 ```
-L’utilité basique des fonctions est d’éviter la répétition de code.
+L’utilité basique des fonctions est d’éviter la répétition de code. Le code écrit dans une fonction ne s'exécute pas immédiatement, sinon l'intérêt serait nul. Pour cela il faut appeler la fonction afin de l'exécuter.
 
 ----
 
