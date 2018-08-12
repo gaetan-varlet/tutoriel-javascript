@@ -3,6 +3,7 @@
 **Sommaire**
 
 [Les bases du JavaScript](diapos/lesBasesDeJavaScript.md)
+- Introduction au JavaScript
 - Premiers pas en JavaScript
 - Les variables
 - Les conditions
