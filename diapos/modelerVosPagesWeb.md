@@ -16,7 +16,7 @@ C'est un objet glabal qui représente la fenêtre du navigateur. C'est à partir
 - `alert()` n'est pas une fonction mais une méthode de l'objet `window`
 - l'objet `window` est dit implicite, c'est-à-dire qu'il n'y a pas besoin de la spécifier. `window.alert('Hello World')` est équivalent à `alert('Hello World')`. En général, on ne le marque pas sauf si cela est nécessaire
 - en revanche `isNan()` ou `parseInt` ne dépendent pas d'un objet, ce sont des **fonctions globales**. Il n'y en a pas beaucoup
-- lorsqu'on déclare une variable dans le contexte global du scipt, cette variable devient une propriété de l'objet `window`
+- lorsqu'on déclare une variable dans le contexte global du script, cette variable devient une propriété de l'objet `window`
 - toute variable non déclarée (utilisée sans écrire le mot-clé `var`) devient une propriété de `window`, quelque soit l'endroit où on se situe. Ecrire `text = 'toto'` revient donc à écrire `window.text = 'toto'`. Il est conseillé de toujours déclarer une variable avec `var`. Pour déclarer une variable globale dans une fonction, on pourra spécifier explicitement l'objet `window`
 
 ### Le document
