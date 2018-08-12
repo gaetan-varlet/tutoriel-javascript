@@ -2,18 +2,17 @@
 
 **Sommaire**
 
-Les bases du JavaScript
-- [Introduction au JavaScript](diapos/introduction.md)
-- [Premiers pas en JavaScript](diapos/premiersPas.md)
-- [Les variables](diapos/lesVariables.md)
-- [Les conditions](diapos/lesConditions.md)
-- [Les boucles](diapos/lesBoucles.md)
-- [Les fonctions](diapos/lesFonctions.md)
-- [Les objets et les tableaux](diapos/lesObjetsEtLesTableaux.md)
-- [Déboguer votre code (1/3)](diapos/deboguer1sur3.md)
+[Les bases du JavaScript](diapos/lesBasesDeJavaScript.md)
+- Premiers pas en JavaScript
+- Les variables
+- Les conditions
+- Les boucles
+- Les fonctions
+- Les objets et les tableaux
+- Déboguer votre code (1/3)
 
-Modeler vos pages web
-- [Manipuler le code HTML (partie 1/2)](diapos/manipulerLeCodeHtml1.md)
-- [Manipuler le code HTML (partie 2/2)](diapos/manipulerLeCodeHtml2.md)
-- [Les événements](diapos/lesEvenements.md)
-- [Les formulaires](diapos/lesFormulaires.md)
+[Modeler vos pages web](diapos/modelerVosPagesWeb.md)
+- Manipuler le code HTML (partie 1/2)
+- Manipuler le code HTML (partie 2/2)
+- Les événements
+- Les formulaires
