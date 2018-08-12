@@ -602,7 +602,7 @@ alert(myArray[1]); // Affiche : « Clarisse »
 ## Opérations sur les tableaux
 
 ### Ajouter et supprimer des items
-La méthode `push()` permet d’ajouter un ou plusieurs items à un tableau, en peut recevoir un nombre illimité de paramètres qui représente un ou des items à ajouter à la fin du tableau.
+La méthode `push()` permet d’ajouter un ou plusieurs items à un tableau, il peut recevoir un nombre illimité de paramètres qui représente un ou des items à ajouter à la fin du tableau, et retourne la nouvelle taille du tableau.
 ```javascript
 var myArray = ['Sébastien', 'Laurence'];
 myArray.push('Pauline', 'Guillaume'); // Ajoute « Pauline » et « Guillaume » à la fin du tableau
