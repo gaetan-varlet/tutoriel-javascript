@@ -1,3 +1,8 @@
+# Les bases de JavaScript
+
+----
+----
+
 # Introduction
 
 ----
@@ -186,6 +191,25 @@ Si l’instruction typeof renvoie undefined, c’est que soit votre variable est
 
 ## Les opérateurs arithmétiques
 L’addition `+`, la soustraction `-`, la multiplication `*`, la division `/` et le modulo `%` qui est le reste d’une division.
+```js
+var a = 5
+// la valeur est affichée puis incrémentée
+console.log(a++) // 5
+console.log(a) // 6
+
+var b = 5
+// la valeur est incrémentée puis affichée
+console.log(++b) // 6
+console.log(b) // 6
+
+var  c = 1
+c += 2
+console.log(c) // 3
+c *= 4
+console.log(c) // 12
+c /= 2
+console.log(c) // 6
+```
 
 ----
 
