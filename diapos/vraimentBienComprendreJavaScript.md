@@ -143,3 +143,126 @@ let b = 5
 ----
 
 ## Contexte d'exécution
+
+Un contexte d'exécution est un contexte dans lequel un certain bout de code est exécuté. Cela concerne les infos sur les variables qu'il va définir, auquel il va pouvoir accéder... A chaque fois qu'une **fonction est exécutée**, un nouveau contexte d'exécution est créé. Pour le code qui n'est pas dans une fonction, il appartient au contexte d'exécution global.
+Un contexte d'exécution est composé de 3 choses :
+1. **l'objet des variables** : fonctions et variables qui sont définies dans ce bout de code
+2. **la chaîne des scopes** : variables auquel peut accéder ce bout de code
+3. **le this** : l'objet associé à ce bout de code
+
+----
+
+## L'objet des variables
+
+L'objet des variables, ou *Variable Objet (VO)*, est créé et initialisé pendant la phase de création du contexte d'exécution.  
+Il contient :
+- les arguments de la fonction
+- les déclarations de fonctions avec le hoisting
+- les déclarations de variables avec le hoisting (les variables déclarées avec *var*)
+
+----
+
+## La chaîne des scopes
+
+Le scope veut dire portée en français. Cela permet de savoir à quel endroit du code il est possible d'accéder à quelle variable.  
+Le code qui n'appartient à aucune fonction appartient au scope global. A chaque fois qu'une fonction est exécutée, un scope local est créé, on parle de **scope de fonction**. Pour les variables créées avec **let** et **const**, un **scope de bloc** est créé (cf ci-après).  
+Une règle de base sur les scopes est qu'une fonction enfant peut accéder au scope de ses parents, c'est-à-dire à son objet des variables ainsi qu'à l'objet des variables de ses parents.
+
+Si on déclare une variable dans une fonction alors qu'une variable avec le même nom existe déjà dans un scope supérieur, une nouvelle variable est définie, dans un espace mémoire différent, et c'est celle du scope local qui est utilisée.
+
+Lorsqu'on cherche une variable, on cherche d'abord la variable dans le scope local et si elle n'existe pas, on remonte la chaîne des scopes jusqu'à trouver notre variable.
+
+----
+
+## Le scope de bloc (ES6)
+
+Chaque fonction crée un nouvdau scope. Jusqu'à l'arrivée d'ES6, il n'y avait que le scope de fonction. Lorsqu'on déclare des variables avec **let** et **const**, les variables ne respectent pas les scopes de fonction mais les scopes de bloc. Un bloc est tout ce qui est entre accolades.  
+Par exemple, le code suivant ne fonctionne pas alors que ça aurait fonctionné avec le mot clé *var*.
+```js
+if(true){
+	let a = 5;
+}
+console.log(a) // a is not defined
+```
+L'exemple suivant fonctionne car la variable est définie dans le même scope qu'on souhaite l'afficher
+```js
+let a
+if(true){
+	a = 5;
+}
+console.log(a) // affiche 5
+```
+
+Il faut éviter d'utiliser le mot clé **var** et privilégier **const** et **let** pour éviter les mauvais surprises. Par exemple :
+```js
+var i = 62
+for(i = 0 ; i < 10 ; i++){
+	console.log(i)
+}
+console.log(i)
+// affiche 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 et 10
+
+let i = 62
+for(let i = 0 ; i < 10 ; i++){
+	console.log(i)
+}
+console.log(i)
+// affiche 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 et 62
+```
+
+----
+----
+
+# Les fonctions
+
+----
+
+## Fonction Première Classe
+
+Les fonctions sont des objets de première classe, c'est-à-dire que ce sont des objets comme les autres.
+
+- une fonction peut prendre une fonction en argument
+```js
+function addTwo(numberToAdd){
+	return numberToAdd + 2
+}
+function myFunction(argFunction, number){
+	const x = argFunction(number)
+	console.log(x)
+}
+myFunction(addTwo, 5)
+// affiche 7
+```
+- une fonction peut retourner une autre fonction
+```js
+function myFunction(){
+	return function(number){
+		return number * 2
+	}
+}
+console.log(myFunction) // affiche la déclaration de myFonction
+console.log(myFunction()) // affiche la déclaration de la fonction anonyme : ƒunction(number){return number * 2}
+console.log(myFunction()(3)) // affiche 6
+```
+- on peut assigner une fonction à une variable
+```js
+const returnedFunction = function(){
+	return 5+2
+}
+console.log(returnedFunction()) // affiche 7
+```
+
+```js
+ function myFunction(){
+	return 5+2
+}
+const returnedFunction = myFunction()
+console.log(returnedFunction) // affiche 7
+```
+
+----
+
+## Les closures
+
+
+
