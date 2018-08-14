@@ -155,7 +155,7 @@ window.onload = function(){ // lorsque la fenêtre va s'afficher
         }
         this.isOnSnake = function(snakeToCheck){
             var isOnSnake = false
-            for(var i =0 ; i > snakeToCheck.body.length ; i++){
+            for(var i =0 ; i < snakeToCheck.body.length ; i++){
                 if(this.position[0] === snakeToCheck.body[i][0] && this.position[1] === snakeToCheck.body[i][1]){
                     isOnSnake = true
                 }
@@ -227,6 +227,5 @@ window.onload = function(){ // lorsque la fenêtre va s'afficher
         }
         snakee.setDirection(newDirection)
     }
-
 
 }
