@@ -21,7 +21,7 @@ window.onload = function(){ // lorsque la fenêtre va s'afficher
         canvas.width = canvasWidth
         canvas.height = canvasHeight
         canvas.style.border="30px solid grey"
-        canvas.style.margin = "50px auto"
+        canvas.style.margin = "100px auto"
         canvas.style.display = "block"
         canvas.style.backgroundColor = "#ddd"
         document.body.appendChild(canvas) // permet d'accrocher le canvas à la page HTML
