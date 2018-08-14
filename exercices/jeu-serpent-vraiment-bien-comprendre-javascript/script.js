@@ -1,21 +1,23 @@
 window.onload = function(){ // lorsque la fenêtre va s'afficher
 
-    var canvasWidth = 900
-    var canvasHeight = 600
-    var blockSize = 30
-    var ctx
-    var delay = 100 // temps exprimé milliseconde
-    var snakee
-    var applee
-    var widthInBlocks = canvasWidth/blockSize
-    var heightInBlocks = canvasHeight/blockSize
-    var score
-    var timeout
+    const canvasWidth = 900
+    const canvasHeight = 600
+    const blockSize = 30
+    const canvas = document.createElement('canvas') // élément HTML5 qui permet de dessiner sur la page
+    const ctx = canvas.getContext('2d') // pour dessiner dans le Canvas, on a besoin du contexte
+    const delay = 100 // temps exprimé milliseconde
+    let snakee
+    let applee
+    const widthInBlocks = canvasWidth/blockSize
+    const heightInBlocks = canvasHeight/blockSize
+    const centreX = canvasWidth / 2
+    const centreY = canvasHeight / 2
+    let score
+    let timeout
 
     init()
 
     function init(){
-        var canvas = document.createElement('canvas') // élément HTML5 qui permet de dessiner sur la page
         canvas.width = canvasWidth
         canvas.height = canvasHeight
         canvas.style.border="30px solid grey"
@@ -23,11 +25,7 @@ window.onload = function(){ // lorsque la fenêtre va s'afficher
         canvas.style.display = "block"
         canvas.style.backgroundColor = "#ddd"
         document.body.appendChild(canvas) // permet d'accrocher le canvas à la page HTML
-        ctx = canvas.getContext('2d') // pour dessiner dans le Canvas, on a besoin du contexte
-        snakee = new Snake([[6,4], [5,4], [4,4]], "right") // la tête du serpent est défini en premier
-        applee = new Apple([10,10])
-        score = 0
-        refreshCanvas()
+        launch()
    }
 
     function refreshCanvas(){
@@ -58,14 +56,14 @@ window.onload = function(){ // lorsque la fenêtre va s'afficher
         this.draw = function(){
             ctx.save() // sauvegarde du contexte dans son état actuel avant de le modifier
             ctx.fillStyle="#ff0000"
-            for(var i=0 ; i < this.body.length ; i++){
+            for(let i=0 ; i < this.body.length ; i++){
                 drawBlock(ctx, this.body[i]) // pour chaque bloc du corps du serpent, on le dessine
             }
             ctx.restore() // permet de remettre le contexte comme il était avant
 
         }
         this.advance = function(){
-            var nextPosition = this.body[0].slice()
+            const nextPosition = this.body[0].slice() // on peut laisser un const car on change la valeur dans l'objet Array mais on ne change pas d'objet Array
             if(this.direction === "left"){
                 nextPosition[0] -= 1
             } else if(this.direction === "right"){
@@ -86,7 +84,7 @@ window.onload = function(){ // lorsque la fenêtre va s'afficher
             }
         }
         this.setDirection = function(newDirection){
-            var allowedDirection
+            let allowedDirection
             if(this.direction === "left" || this.direction === "right"){
                 allowedDirection = ["up", "down"]
             } else if(this.direction === "up" || this.direction === "down"){
@@ -100,24 +98,24 @@ window.onload = function(){ // lorsque la fenêtre va s'afficher
             }
         }
         this.checkCollision = function(){
-            var wallCollision = false
-            var snakeCollision = false
-            var head = this.body[0]
-            var rest = this.body.slice(1)
-            var snakeX = head[0]
-            var snakeY = head[1]
-            var minX = 0
-            var minY = 0
-            var maxX = widthInBlocks -1
-            var maxY = heightInBlocks -1
-            var isNotBetweenHorizontalWalls = snakeX < minX || snakeX > maxX
-            var isNotBetweenVerticalWalls = snakeY < minY || snakeY > maxY
+            let wallCollision = false
+            let snakeCollision = false
+            const head = this.body[0]
+            const rest = this.body.slice(1)
+            const snakeX = head[0]
+            const snakeY = head[1]
+            const minX = 0
+            const minY = 0
+            const maxX = widthInBlocks -1
+            const maxY = heightInBlocks -1
+            const isNotBetweenHorizontalWalls = snakeX < minX || snakeX > maxX
+            const isNotBetweenVerticalWalls = snakeY < minY || snakeY > maxY
 
             if(isNotBetweenHorizontalWalls || isNotBetweenVerticalWalls){
                 wallCollision = true
             }
 
-            for(var i = 0; i < rest.length ; i++){
+            for(let i = 0; i < rest.length ; i++){
                 if(snakeX === rest[i][0] && snakeY === rest[i][1] ){
                     snakeCollision = true
                 }
@@ -126,7 +124,7 @@ window.onload = function(){ // lorsque la fenêtre va s'afficher
             return wallCollision || snakeCollision // retourne true si un des deux est true
         }
         this.isEatingApple = function(appleToEat){
-            var head = this.body[0]
+            const head = this.body[0]
             if(head[0] === appleToEat.position[0] && head[1] === appleToEat.position[1]){
                 return true
             } else {
@@ -138,24 +136,24 @@ window.onload = function(){ // lorsque la fenêtre va s'afficher
     function Apple(position){
         this.position = position
         this.draw = function(){
+            const radius = blockSize / 2
+            const x = this.position[0] * blockSize + radius
+            const y = this.position[1] * blockSize + radius
             ctx.save()
             ctx.fillStyle = "#33cc33"
             ctx.beginPath()
-            var radius = blockSize/2
-            var x = this.position[0]*blockSize + radius
-            var y = this.position[1]*blockSize + radius
             ctx.arc(x, y, radius, 0, Math.PI*2, true)
             ctx.fill()
             ctx.restore()
         }
         this.setNewPosition = function(){
-            var newX = Math.round(Math.random() * (widthInBlocks - 1))
-            var newY = Math.round(Math.random() * (heightInBlocks - 1))
+            const newX = Math.round(Math.random() * (widthInBlocks - 1))
+            const newY = Math.round(Math.random() * (heightInBlocks - 1))
             this.position = [newX, newY]
         }
         this.isOnSnake = function(snakeToCheck){
-            var isOnSnake = false
-            for(var i =0 ; i > snakeToCheck.body.length ; i++){
+            let isOnSnake = false
+            for(let i =0 ; i < snakeToCheck.body.length ; i++){
                 if(this.position[0] === snakeToCheck.body[i][0] && this.position[1] === snakeToCheck.body[i][1]){
                     isOnSnake = true
                 }
@@ -165,8 +163,8 @@ window.onload = function(){ // lorsque la fenêtre va s'afficher
     }
 
     function drawBlock(ctx, position){
-        var x = position[0] * blockSize
-        var y = position[1] * blockSize
+        const x = position[0] * blockSize
+        const y = position[1] * blockSize
         ctx.fillRect(x, y, blockSize, blockSize)
     }
 
@@ -178,8 +176,6 @@ window.onload = function(){ // lorsque la fenêtre va s'afficher
         ctx.textBaseline = "middle"
         ctx.strokeStyle = "white"
         ctx.lineWidth = 5
-        var centreX = canvasWidth / 2
-        var centreY = canvasHeight / 2
         ctx.strokeText("Game Over", centreX, centreY - 180)
         ctx.fillText("Game Over", centreX, centreY - 180)
         ctx.font = "bold 30px sans-serif"
@@ -188,7 +184,7 @@ window.onload = function(){ // lorsque la fenêtre va s'afficher
         ctx.restore()
     }
 
-    function restart(){
+    function launch(){
         snakee = new Snake([[6,4], [5,4], [4,4]], "right") // la tête du serpent est défini en premier
         applee = new Apple([10,10])
         score = 0
@@ -202,15 +198,13 @@ window.onload = function(){ // lorsque la fenêtre va s'afficher
         ctx.fillStyle = "grey"
         ctx.textAlign = "center"
         ctx.textBaseline = "middle"
-        var centreX = canvasWidth / 2
-        var centreY = canvasHeight / 2
         ctx.fillText(score.toString(), centreX, centreY)
         ctx.restore()
     }
 
     document.onkeydown = function handleKeyDown(e){
-        var newDirection
-        var key = e.keyCode
+        let newDirection
+        const key = e.keyCode
         if(key === 37){
             newDirection = "left"
         } else if(key === 38){
@@ -220,13 +214,12 @@ window.onload = function(){ // lorsque la fenêtre va s'afficher
         } else if(key === 40){
             newDirection = "down"
         } else if(key === 32){ // touche espace
-            restart()
+            launch()
             return
         } else {
             return
         }
         snakee.setDirection(newDirection)
     }
-
 
 }
