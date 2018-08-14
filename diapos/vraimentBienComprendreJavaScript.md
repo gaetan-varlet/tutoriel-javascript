@@ -154,7 +154,7 @@ Un contexte d'exécution est composé de 3 choses :
 
 ## L'objet des variables
 
-L'objet des variables, ou *Variable Objet (VO)*, est créé et initialisé pendant la phase de création du contexte d'exécution.  
+L'objet des variables, ou *Variable Objet (VO)*, est créé et initialisé pendant la phase de création du contexte d'exécution.
 Il contient :
 - les arguments de la fonction
 - les déclarations de fonctions avec le hoisting
@@ -164,8 +164,8 @@ Il contient :
 
 ## La chaîne des scopes
 
-Le scope veut dire portée en français. Cela permet de savoir à quel endroit du code il est possible d'accéder à quelle variable.  
-Le code qui n'appartient à aucune fonction appartient au scope global. A chaque fois qu'une fonction est exécutée, un scope local est créé, on parle de **scope de fonction**. Pour les variables créées avec **let** et **const**, un **scope de bloc** est créé (cf ci-après).  
+Le scope veut dire portée en français. Cela permet de savoir à quel endroit du code il est possible d'accéder à quelle variable.
+Le code qui n'appartient à aucune fonction appartient au scope global. A chaque fois qu'une fonction est exécutée, un scope local est créé, on parle de **scope de fonction**. Pour les variables créées avec **let** et **const**, un **scope de bloc** est créé (cf ci-après).
 Une règle de base sur les scopes est qu'une fonction enfant peut accéder au scope de ses parents, c'est-à-dire à son objet des variables ainsi qu'à l'objet des variables de ses parents.
 
 Si on déclare une variable dans une fonction alors qu'une variable avec le même nom existe déjà dans un scope supérieur, une nouvelle variable est définie, dans un espace mémoire différent, et c'est celle du scope local qui est utilisée.
@@ -176,7 +176,7 @@ Lorsqu'on cherche une variable, on cherche d'abord la variable dans le scope loc
 
 ## Le scope de bloc (ES6)
 
-Chaque fonction crée un nouvdau scope. Jusqu'à l'arrivée d'ES6, il n'y avait que le scope de fonction. Lorsqu'on déclare des variables avec **let** et **const**, les variables ne respectent pas les scopes de fonction mais les scopes de bloc. Un bloc est tout ce qui est entre accolades.  
+Chaque fonction crée un nouvdau scope. Jusqu'à l'arrivée d'ES6, il n'y avait que le scope de fonction. Lorsqu'on déclare des variables avec **let** et **const**, les variables ne respectent pas les scopes de fonction mais les scopes de bloc. Un bloc est tout ce qui est entre accolades.
 Par exemple, le code suivant ne fonctionne pas alors que ça aurait fonctionné avec le mot clé *var*.
 ```js
 if(true){
