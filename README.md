@@ -18,6 +18,23 @@
 - Les fonctions
 - Les objets
 
+[Développement moderne Javascript et ES6, ES7](diapos/developpementModerneJavascript.md)
+- Nouveautés ES6
+- Classes ES6
+- Modules ES6
+- Nouveautés ES7
+- Développement moderne Javascript
+- Npm
+- Webpack
+- Babel
+
+[Javascript débarque dans le navigateur](diapos/javascriptDebarqueDansLeNavigateur.md)
+- Introduction
+- Le DOM
+- Les événements
+- Les requêtes HTTP Ajax
+- Objets et fonctions utiles Javascript
+
 [Modeler vos pages web](diapos/modelerVosPagesWeb.md)
 - Manipuler le code HTML (partie 1/2)
 - Manipuler le code HTML (partie 2/2)

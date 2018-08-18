@@ -193,7 +193,7 @@ if(true){
 console.log(a) // affiche 5
 ```
 
-Il faut éviter d'utiliser le mot clé **var** et privilégier **const** et **let** pour éviter les mauvais surprises. Par exemple :
+Il faut éviter d'utiliser le mot clé **var** et privilégier **const** et **let** pour éviter les mauvaises surprises. Par exemple :
 ```js
 var i = 62
 for(i = 0 ; i < 10 ; i++){
@@ -264,5 +264,25 @@ console.log(returnedFunction) // affiche 7
 
 ## Les closures
 
+Une closure, est une fermeture. C'est une fonction qui a enfermé avec elle des variables qui lui sont externes, provenant d'un scope parent.
 
+```js
+function multiplyBy(number){
+	const closedVariable = number
+	return function(anotherNumber){
+		return closedVariable * anotherNumber
+	}
+}
+const multiplyByFive = multiplyBy(5)
+const multiplyByThree = multiplyBy(3)
+
+console.log(multiplyByFive) // function(anotherNumber){return closedVariable * anotherNumber}
+console.log(multiplyByFive(2)) // 10
+console.log(multiplyByThree(2)) // 6
+```
+Dans cet exemple, mutilyByFive utilise la variable closedVariable lors de son exécution avec lesparamètre 2, alors que closedVariable fait parti du contexte d'exécution de multiplyBy(5) qui a disparu après l'exécution de la fonction, donc closedVariable devrait avoir disparu, mais il est toujours disponible dans multiplyByFive, c'est ce qu'on appelle une closure car la fonction a capturé une variable d'un scope parent. C'est la même chose pour multiplyByThree.
+
+----
+
+## Méfiez-vous des scopes
 
