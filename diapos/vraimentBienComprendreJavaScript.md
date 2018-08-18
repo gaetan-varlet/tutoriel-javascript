@@ -286,3 +286,87 @@ Dans cet exemple, mutilyByFive utilise la variable closedVariable lors de son ex
 
 ## Méfiez-vous des scopes
 
+Il faut protéger ses variables pour éviter qu'elles soient "piratées" par un autre script. Exemple avec une page HTML qui charge 3 scripts :
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="script1.js"></script>
+	<script src="script2.js"></script>
+    <script src="script3.js"></script>
+</head>
+```
+
+```js
+// script1.js
+var myPassword = "12345"
+function setPassword(newPassword){
+	myPassword = newPassword
+}
+function getPassword(){
+	return myPassword
+}
+
+// script2.js
+var myPassword = "000"
+
+// script3.js
+console.log(getPassword()) // affiche 000 alors qu'on voulait 12345
+```
+Dans le script 3, on veut récupérer myPassword de script 1 mais elle a été écrasé par myPassword du script 2 car les variables ont le même nom et elles sont toutes les 2 dans le scope global.
+
+Il faut éviter au maximum de rattacher les variables au scope global. Il faut définir ce qu'on souhaite rendre privé (uniquement utilisable dans le script courant) et ce qu'on veut rendre public, c'est-à-dire rendre accessible aux autres scripts. Pour cela on va utiliser les IIFEs
+
+----
+
+## IIFEs
+
+Les fonctions immédiatement exécutées se nomment des **Immediatly-Invoked Function Expression**, abrégées IIFE. L'idée est déclarer la fonction et de l'exécuter en même temps. En utilisant une IIFE, tout le code exécuté dedans sera privé et non accessible de l'extérieur.
+```js
+// fonction classique
+function myFunction(){
+	// code de la fonction
+}
+
+// IIFE
+(function(){
+	// code de la fonction
+})()
+```
+
+Pour revenir à notre exemple précédent où lon veut rendre public `getPassword()` et rendre privé `myPassword` et `setPassword`, on peut utiliser les IIFEs et les closures pour résoudre ce problème.
+
+```js
+const getPassword = (function(){
+	var myPassword = "12345"
+	function setPassword(newPassword){
+		myPassword = newPassword
+	}
+	return function(){
+		return myPassword
+	}
+})()
+```
+Cet exemple permet de rendre accessible la fonction getPassword uniquement de ce script. Cependant, cela permet uniquement d'exposer une variable ou une fonction. Il est possible de rendre public plusieurs éléments public en retournant un objet :
+```js
+const script1 = (function(){ var myPassword = "12345"
+	function setPassword(newPassword){
+		myPassword = newPassword
+	}
+	function getPassword(){
+		return myPassword
+	}
+	return {
+		getPassword: getPassword,
+		setPassword: setPassword,
+	}
+})()
+
+// appel dans le script 3
+console.log(script1.getPassword())
+```
+
+----
+
+## Le mot clé THIS
+
