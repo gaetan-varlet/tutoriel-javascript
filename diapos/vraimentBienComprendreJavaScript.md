@@ -402,6 +402,9 @@ function allo(){
 }
 
 console.log(this) // on retrouve a et allo() dans Window
+
+var myName = "Louis"
+console.log(window.myName === this.myName && window.myName === myName) // affiche true
 ```
 
 Si on oublie le mot clé `var` pour déclarer une variable, elle est automatiquement rattaché à l'objet global, même si elle est déclarée dans une fonction.
@@ -440,6 +443,36 @@ second() // affiche l'objet louis
 
 louis.present() // affiche l'objet louis
 louis.present.bind(window)() // affiche l'objet Window car on a changé la valeur de this en mettant Window à la place de louis
+```
+
+Voici quelques autres exemples
+```js
+var name = "Louis"
+
+function present(){
+    console.log(this.name)
+}
+
+const kev = {
+    name: "Kévin",
+    present: present
+}
+
+const thib = {
+    name: "Thibaut",
+    present: present.bind(this)
+}
+
+const presentKev = kev.present
+const presentKevBind = kev.present.bind(kev)
+const presentKevBind2 = kev.present.bind(this)
+
+present() // affiche Louis : comme ce n'est pas un objet qui exécute la fonction, c'est l'objet global Window qui l'exécute. Le this est donc associé à Window, on cherche donc à logguer un window.name et on a déclaré la variable name dans le scope global, qui est donc attaché à l'objet Window, donc window.name = "John"
+kev.present() // affiche Kévin : present est exécuté en tant que méthode de l'objet kev donc le this est kev
+presentKev() // affiche Louis : presentKev est égal à une méthode d'un objet mais il est exécuté en tant que fonction et n'est pas associé à un objet, le this est donc Window
+presentKevBind() // affiche Kévin : comme la méthode précédente sauf que le this a été bindé avec l'objet kev
+presentKevBind2() // affiche Louis comme pour presentKev
+thib.present() // affiche Louis : la méthode present est bindé avec this dans l'objet franck et le this correspond à Window à ce moment là
 ```
 
 `bind` permet aussi de fixer la valeur des arguments que va prendre la nouvelle fonction que l'on crée.
