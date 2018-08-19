@@ -1,4 +1,4 @@
-window.onload = function(){ // lorsque la fenêtre va s'afficher
+window.onload = () => { // lorsque la fenêtre va s'afficher
 
     const canvasWidth = 900
     const canvasHeight = 600
@@ -15,9 +15,8 @@ window.onload = function(){ // lorsque la fenêtre va s'afficher
     let score
     let timeout
 
-    init()
 
-    function init(){
+    const init = () => {
         canvas.width = canvasWidth
         canvas.height = canvasHeight
         canvas.style.border="30px solid grey"
@@ -26,9 +25,9 @@ window.onload = function(){ // lorsque la fenêtre va s'afficher
         canvas.style.backgroundColor = "#ddd"
         document.body.appendChild(canvas) // permet d'accrocher le canvas à la page HTML
         launch()
-   }
+    }
 
-    function refreshCanvas(){
+    const refreshCanvas = () => {
         snakee.advance()
         if(snakee.checkCollision()){
             gameOver()
@@ -47,6 +46,46 @@ window.onload = function(){ // lorsque la fenêtre va s'afficher
             applee.draw()
             timeout = setTimeout(refreshCanvas, delay) // exécute une fonction ou un code donné après la fin du délai indiqué
         }
+    }
+
+    const drawBlock = (ctx, position) => {
+        const x = position[0] * blockSize
+        const y = position[1] * blockSize
+        ctx.fillRect(x, y, blockSize, blockSize)
+    }
+
+    const gameOver = () => {
+        ctx.save()
+        ctx.font = "bold 70px sans-serif"
+        ctx.fillStyle = "black"
+        ctx.textAlign = "center"
+        ctx.textBaseline = "middle"
+        ctx.strokeStyle = "white"
+        ctx.lineWidth = 5
+        ctx.strokeText("Game Over", centreX, centreY - 180)
+        ctx.fillText("Game Over", centreX, centreY - 180)
+        ctx.font = "bold 30px sans-serif"
+        ctx.strokeText("Appuyer sur la touche espace pour rejouer", centreX, centreY - 120)
+        ctx.fillText("Appuyer sur la touche espace pour rejouer", centreX, centreY - 120)
+        ctx.restore()
+    }
+
+    const launch = () => {
+        snakee = new Snake([[6,4], [5,4], [4,4]], "right") // la tête du serpent est défini en premier
+        applee = new Apple([10,10])
+        score = 0
+        clearTimeout(timeout)
+        refreshCanvas()
+    }
+
+    const drawScore = () => {
+        ctx.save()
+        ctx.font = "bold 200px sans-serif"
+        ctx.fillStyle = "grey"
+        ctx.textAlign = "center"
+        ctx.textBaseline = "middle"
+        ctx.fillText(score.toString(), centreX, centreY)
+        ctx.restore()
     }
 
     function Snake(body, direction){
@@ -162,47 +201,7 @@ window.onload = function(){ // lorsque la fenêtre va s'afficher
         }
     }
 
-    function drawBlock(ctx, position){
-        const x = position[0] * blockSize
-        const y = position[1] * blockSize
-        ctx.fillRect(x, y, blockSize, blockSize)
-    }
-
-    function gameOver(){
-        ctx.save()
-        ctx.font = "bold 70px sans-serif"
-        ctx.fillStyle = "black"
-        ctx.textAlign = "center"
-        ctx.textBaseline = "middle"
-        ctx.strokeStyle = "white"
-        ctx.lineWidth = 5
-        ctx.strokeText("Game Over", centreX, centreY - 180)
-        ctx.fillText("Game Over", centreX, centreY - 180)
-        ctx.font = "bold 30px sans-serif"
-        ctx.strokeText("Appuyer sur la touche espace pour rejouer", centreX, centreY - 120)
-        ctx.fillText("Appuyer sur la touche espace pour rejouer", centreX, centreY - 120)
-        ctx.restore()
-    }
-
-    function launch(){
-        snakee = new Snake([[6,4], [5,4], [4,4]], "right") // la tête du serpent est défini en premier
-        applee = new Apple([10,10])
-        score = 0
-        clearTimeout(timeout)
-        refreshCanvas()
-    }
-
-    function drawScore(){
-        ctx.save()
-        ctx.font = "bold 200px sans-serif"
-        ctx.fillStyle = "grey"
-        ctx.textAlign = "center"
-        ctx.textBaseline = "middle"
-        ctx.fillText(score.toString(), centreX, centreY)
-        ctx.restore()
-    }
-
-    document.onkeydown = function handleKeyDown(e){
+    document.onkeydown = (e) => {
         let newDirection
         const key = e.keyCode
         if(key === 37){
@@ -221,5 +220,7 @@ window.onload = function(){ // lorsque la fenêtre va s'afficher
         }
         snakee.setDirection(newDirection)
     }
+
+    init()
 
 }

@@ -370,3 +370,185 @@ console.log(script1.getPassword())
 
 ## Le mot clé THIS
 
+A chaque contexte d'exécution est associé un objet. `this` permet d'accéder à cet objet.
+```js
+console.log(this) // donne Window qui est l'objet global dans le navigateur. JavaScript exécuté dans un autre environnement comme un serveur aurait donné un autre objet global.
+```
+
+Le `this` est l'objet qui a exécuté la méthode, sinon ce sera l'objet global
+```js
+function first(){
+    console.log(this)
+}
+
+first() // Window
+
+const louis = {
+    name: "Louis",
+    present: first
+}
+louis.present() // {name: "Louis", present: ƒ}
+```
+
+----
+
+## Choses bizarres
+
+Les déclarations de variables avec `var` et les déclarations de fonctions dans le contexte d'exécution global sont stockées dans l'objet global Window. Ce n'est pas le cas pour les variables déclarées avec `let` et `const`.
+```js
+var a = 5
+
+function allo(){
+}
+
+console.log(this) // on retrouve a et allo() dans Window
+```
+
+Si on oublie le mot clé `var` pour déclarer une variable, elle est automatiquement rattaché à l'objet global, même si elle est déclarée dans une fonction.
+```js
+function allo(){
+    b = 9
+}
+allo()
+console.log(this) // on retrouve b dans l'objet Window
+```
+
+Pour éviter cela, on peut utiliser le mode strict en ajoutant la commande `'use strict'` en haut du fichier javascript et ce qui aura pour effet dans le script précédent de renvoyer une erreur en disant que b n'est pas défini.
+
+----
+
+## Bind, Call et Apply
+
+Ces méthodes vont permettre de contrôler la valeur du `this`.
+
+`bind` est une méthode qui permet de changer la valeur du this en appliquant le this d'un autre objet.
+```js
+function first(){
+    console.log(this)
+}
+first() // affiche l'objet global Window
+
+const louis = {
+    name: "Louis",
+    present: function(){
+        console.log(this)
+    }
+}
+
+const second = first.bind(louis) // fixe le this de louis sur la fonction second
+second() // affiche l'objet louis
+
+louis.present() // affiche l'objet louis
+louis.present.bind(window)() // affiche l'objet Window car on a changé la valeur de this en mettant Window à la place de louis
+```
+
+`bind` permet aussi de fixer la valeur des arguments que va prendre la nouvelle fonction que l'on crée.
+```js
+function multiply(number1, number2){
+    return number1 * number2
+}
+
+// on fixe la valeur du premier argument de multiply à 2.
+// multiplyByTwo prend donc un seul argument qui correspond au number2 de multiply
+const multiplyByTwo = multiply.bind(this, 2)
+
+console.log(multiplyByTwo(3)) // affiche 6
+```
+
+Les méthodes `call` et `apply` ne créent pas une nouvelle fonction qu'il faut ensuite exécuter comme `bind`, elles l'exécutent directement.
+```js
+function multiply(number1, number2){
+    console.log(this)
+    console.log(number1 * number2)
+}
+
+const louis = {
+    name: "Louis"
+}
+
+multiply.bind(louis, 2, 3)() // affiche louis et 6
+// call exécute directement multiplly
+multiply.call(louis, 2, 3) // affiche Window et 6 comme bind
+// apply prend les arguments de la fonction dans un tableau
+multiply.apply(louis, [2, 3]) // affiche Window et 6 comme bind
+```
+
+----
+
+## Les fonctions fléchées (Arrow Functions)
+
+Les fonctions fléchées ont 2 particularitées :
+- la syntaxe est plus rapide
+- elles vont fixer la valeur du this automatiquement
+
+La syntaxe :
+```js
+const myFunction = arg => arg * 5
+console.log(myFunction(3)) // affiche 15
+
+const myFunction2 = () => 4 * 5
+console.log(myFunction2()) // affiche 20
+
+const myFunction3 = (nombre1, nombre2) => nombre1 * nombre2
+console.log(myFunction3(3, 4)) // affiche 12
+```
+
+On peut utiliser des accolades si la fonction fait davantage que retourner une valeur, comme par exemple exécuter du code avant.
+```js
+const myFunction3 = (nombre1, nombre2) => {
+    const nombreCalcule = nombre1 * nombre1    
+    return nombreCalcule * nombre2
+}
+console.log(myFunction3(3, 4)) // affiche 36 (3 * 3 * 4)
+```
+
+Fonctionne aussi sur les objets
+```js
+louis = {
+	name: "Louis",
+    // syntaxe classique	
+    present: function(friend){
+		return "Tu connais "+friend+" ?"
+	}, // nouvelle syntaxe
+    presentArrow: friend => "Tu connais "+friend+" ?"
+}
+
+console.log(louis.present("Kévin"))
+console.log(louis.presentArrow("Thibaut"))
+```
+
+Les fonctions anonymes fixent la valeur du this automatiquement.
+
+Dans l'exemple ci-dessous, le this de *presentClassic* est l'objet louis car c'est l'objet louis qui a exécuté la méthode. Pour *presentArrow*, son this est Windows. Une fonction fléchée capture le this du scope parent où elle a était déclarée. Il faut donc regarder à quoi correspond le this de l'endroit où elle a été déclarée. Cela revient au même que l'exécution d'une fonction classique où on aurait bindé le this.
+
+```js
+function classicFunction(){  
+    console.log(this)
+}
+
+const classicFunctionBind = classicFunction.bind(this)
+
+const arrowFunction = () => {  
+    console.log(this)
+}
+const louis = {
+    name: "Louis",
+    presentClassic: classicFunction,
+    presentClassicBind: classicFunctionBind,
+    presentArrow: arrowFunction,
+}
+
+louis.presentClassic() // affiche louis
+louis.presentClassicBind() // affiche Window
+louis.presentArrow() // affiche Window
+```
+
+----
+----
+
+# Les objets
+
+----
+
+## Fonctions constructeur
+
