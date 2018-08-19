@@ -468,11 +468,11 @@ const presentKevBind = kev.present.bind(kev)
 const presentKevBind2 = kev.present.bind(this)
 
 present() // affiche Louis : comme ce n'est pas un objet qui exécute la fonction, c'est l'objet global Window qui l'exécute. Le this est donc associé à Window, on cherche donc à logguer un window.name et on a déclaré la variable name dans le scope global, qui est donc attaché à l'objet Window, donc window.name = "John"
-kev.present() // affiche Kévin : present est exécuté en tant que méthode de l'objet kev donc le this est kev
-presentKev() // affiche Louis : presentKev est égal à une méthode d'un objet mais il est exécuté en tant que fonction et n'est pas associé à un objet, le this est donc Window
+kev.present() // affiche Kévin : present est exécutée en tant que méthode de l'objet kev donc le this est kev
+presentKev() // affiche Louis : presentKev est égale à une méthode d'un objet mais elle est exécutée en tant que fonction et n'est pas associée à un objet, le this est donc Window
 presentKevBind() // affiche Kévin : comme la méthode précédente sauf que le this a été bindé avec l'objet kev
-presentKevBind2() // affiche Louis comme pour presentKev
-thib.present() // affiche Louis : la méthode present est bindé avec this dans l'objet franck et le this correspond à Window à ce moment là
+presentKevBind2() // affiche Louis comme pour presentKev en bindant le this qui correspond à Window, donc ça ne change rien de faire le bind dans ce cas
+thib.present() // affiche Louis : la méthode present est bindée avec this dans l'objet franck et le this correspond à Window à ce moment là
 ```
 
 `bind` permet aussi de fixer la valeur des arguments que va prendre la nouvelle fonction que l'on crée.
