@@ -88,20 +88,24 @@ window.onload = () => { // lorsque la fenêtre va s'afficher
         ctx.restore()
     }
 
-    function Snake(body, direction){
-        this.body = body
-        this.direction = direction
-        this.ateApple = false
-        this.draw = function(){
+    class Snake{
+
+        constructor(body, direction){
+            this.body = body
+            this.direction = direction
+            this.ateApple = false
+        }
+
+        draw(){
             ctx.save() // sauvegarde du contexte dans son état actuel avant de le modifier
             ctx.fillStyle="#ff0000"
             for(let i=0 ; i < this.body.length ; i++){
                 drawBlock(ctx, this.body[i]) // pour chaque bloc du corps du serpent, on le dessine
             }
             ctx.restore() // permet de remettre le contexte comme il était avant
-
         }
-        this.advance = function(){
+
+        advance(){
             const nextPosition = this.body[0].slice() // on peut laisser un const car on change la valeur dans l'objet Array mais on ne change pas d'objet Array
             if(this.direction === "left"){
                 nextPosition[0] -= 1
@@ -122,7 +126,8 @@ window.onload = () => { // lorsque la fenêtre va s'afficher
                 this.ateApple = false
             }
         }
-        this.setDirection = function(newDirection){
+
+        setDirection(newDirection){
             let allowedDirection
             if(this.direction === "left" || this.direction === "right"){
                 allowedDirection = ["up", "down"]
@@ -136,7 +141,8 @@ window.onload = () => { // lorsque la fenêtre va s'afficher
                 this.direction = newDirection
             }
         }
-        this.checkCollision = function(){
+
+        checkCollision(){
             let wallCollision = false
             let snakeCollision = false
             const head = this.body[0]
@@ -162,7 +168,8 @@ window.onload = () => { // lorsque la fenêtre va s'afficher
 
             return wallCollision || snakeCollision // retourne true si un des deux est true
         }
-        this.isEatingApple = function(appleToEat){
+
+        isEatingApple(appleToEat){
             const head = this.body[0]
             if(head[0] === appleToEat.position[0] && head[1] === appleToEat.position[1]){
                 return true
@@ -172,9 +179,13 @@ window.onload = () => { // lorsque la fenêtre va s'afficher
         }
     }
 
-    function Apple(position){
-        this.position = position
-        this.draw = function(){
+    class Apple{
+
+        constructor(position){
+            this.position = position
+        }
+
+        draw(){
             const radius = blockSize / 2
             const x = this.position[0] * blockSize + radius
             const y = this.position[1] * blockSize + radius
@@ -185,12 +196,14 @@ window.onload = () => { // lorsque la fenêtre va s'afficher
             ctx.fill()
             ctx.restore()
         }
-        this.setNewPosition = function(){
+
+        setNewPosition(){
             const newX = Math.round(Math.random() * (widthInBlocks - 1))
             const newY = Math.round(Math.random() * (heightInBlocks - 1))
             this.position = [newX, newY]
         }
-        this.isOnSnake = function(snakeToCheck){
+
+        isOnSnake(snakeToCheck){
             let isOnSnake = false
             for(let i =0 ; i < snakeToCheck.body.length ; i++){
                 if(this.position[0] === snakeToCheck.body[i][0] && this.position[1] === snakeToCheck.body[i][1]){
