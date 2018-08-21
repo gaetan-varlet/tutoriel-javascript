@@ -754,9 +754,14 @@ Il n’est pas possible d’utiliser une boucle *for* car elle incrémente une v
 La boucle **for in** ne sert qu’à une chose : parcourir un objet.
 Le fonctionnement est quasiment le même que pour un tableau, excepté qu’il suffit de fournir une “variable clé” qui reçoit un identifiant (au lieu d’un index) et de spécifier l’objet à parcourir :
 ```javascript
-for (var id in family) { // On stocke l'identifiant dans « id » pour parcourir l'objet « family »
-    alert(family[id]);		
+const louis = {
+    prenom: "Louis",
+    nom: "Varlet"
 }
+for(let id in louis){
+    console.log(louis[id])
+}
+// affiche : "Louis" sur une première ligne et "Varlet" sur une deuxième ligne
 ```
 
 ### Utilisation des objets littéraux

@@ -633,7 +633,7 @@ console.log(louis.present === thibaut.present) // affiche true
 
 Dans l'exemple précédent sans utiliser les prototypes, si on regarde ce que contient l'objet *Person*, il y a les attributs *name* et *age*, la fonction *present*, et l'objet `__proto__`, qui contient lui-même le constructeur de *Person*. En déclarant la fonction dans le prototype, la fonction *present* n'est plus dans l'objet *Person* mais dans l'objet `__proto__`.
 
-`__proto__` correspond au prototype de la personne et il est accessible à toutes les instances créée avec la fonction constructeur *Person*.
+`__proto__` correspond au prototype de la personne et il est accessible à toutes les instances créées avec la fonction constructeur *Person*.
 ```js
 console.log(louis.__proto__ === Person.prototype) // affiche true
 console.log(louis.__proto__ === thibaut.__proto__) // affiche true
@@ -661,7 +661,7 @@ console.log(louis.hasOwnProperty("color")) // affiche false
 
 ## La chaîne des constructeurs
 
-Les objets ont accès aux méthodes déclarées dans la fonction constructeur, dans le prototype, et aux nméthodes des prototypes parents, notamment d'*Object*. Si une méthode à le même nom dans la fonction constructeur et dans le prototype, c'est celle dans la fonction constructeur qui sera exécutée car il y a un ordre de préférence. C'est ce qu'on appelle la **chaîne des prototypes** :
+Les objets ont accès aux méthodes déclarées dans la fonction constructeur, dans le prototype, et aux méthodes des prototypes parents, notamment d'*Object*. Si une méthode à le même nom dans la fonction constructeur et dans le prototype, c'est celle dans la fonction constructeur qui sera exécutée car il y a un ordre de préférence. C'est ce qu'on appelle la **chaîne des prototypes** :
 - la méthode est d'abord recherchée sur notre objet lui-même
 - si rien n'est trouvé, elle est cherchée sur le prototype de notre objet
 - si rien n'est encore trouvé, elle est cherchée sur le prototype de l'objet parent, par exemple *Object*
