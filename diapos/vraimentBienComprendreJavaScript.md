@@ -550,7 +550,7 @@ console.log(louis.present("Kévin"))
 console.log(louis.presentArrow("Thibaut"))
 ```
 
-Les fonctions anonymes fixent la valeur du this automatiquement.
+Les fonctions fléchées fixent la valeur du this automatiquement.
 
 Dans l'exemple ci-dessous, le this de *presentClassic* est l'objet louis car c'est l'objet louis qui a exécuté la méthode. Pour *presentArrow*, son this est Windows. Une fonction fléchée capture le this du scope parent où elle a était déclarée. Il faut donc regarder à quoi correspond le this de l'endroit où elle a été déclarée. Cela revient au même que l'exécution d'une fonction classique où on aurait bindé le this.
 
@@ -583,5 +583,141 @@ louis.presentArrow() // affiche Window
 
 ----
 
-## Fonctions constructeur
+## Fonction constructeur
 
+Une fonction constructeur est un moule. En exécutant cette fonction, on crée des instances basées sur ce moule.
+```js
+function Person(name, age){
+	this.name = name
+	this.age = age
+	this.present = () => {console.log("Hello my name is "+this.name)}
+}
+
+let louis = new Person("Louis", 0)
+let thibaut = new Person("Thibaut", 23)
+
+louis.present() // Hello my name is Louis
+thibaut.present() // Hello my name is Thibaut
+
+console.log(louis) // affiche l'objet louis
+console.log(thibaut) // affiche l'objet thibaut
+
+console.log(louis.present === thibaut.present) // affiche false
+```
+
+`present` de louis et `present` de thibaut sont 2 méthodes différentes qui font la même chose, donc elles sont stockées deux fois en mémoire alors qu'on aurait pu les stocker qu'une fois. On va pouvoir faire cela avec les prototypes.
+
+----
+
+## Les prototypes
+
+On va stocker la fonction dans le prototype de Person, comme ça elle sera unique. Il faut utiliser une fonction classique au lieu d'une fonction fléchée, car une fonction fléchée capturerait le this de l'endroit où elle est déclarée, c'est-à-dire l'objet global.
+
+```js
+function Person(name, age){
+	this.name = name
+	this.age = age
+	//this.present = () => {console.log("Hello my name is "+this.name)}
+}
+
+Person.prototype.present = function(){
+ console.log("Hello my name is "+this.name)
+}
+
+let louis = new Person("Louis", 0)
+let thibaut = new Person("Thibaut", 23)
+
+louis.present() // Hello my name is Louis
+console.log(louis.present === thibaut.present) // affiche true
+```
+
+Dans l'exemple précédent sans utiliser les prototypes, si on regarde ce que contient l'objet *Person*, il y a les attributs *name* et *age*, la fonction *present*, et l'objet `__proto__`, qui contient lui-même le constructeur de *Person*. En déclarant la fonction dans le prototype, la fonction *present* n'est plus dans l'objet *Person* mais dans l'objet `__proto__`.
+
+`__proto__` correspond au prototype de la personne et il est accessible à toutes les instances créée avec la fonction constructeur *Person*.
+```js
+console.log(louis.__proto__ === Person.prototype) // affiche true
+console.log(louis.__proto__ === thibaut.__proto__) // affiche true
+```
+
+----
+
+## Tout est un objet
+
+Si on rentre dans l'objet `__proto__` de *Person*, il y a un autre `__proto__` qui est celui d'*Object*. *Object* est l'objet le plus haut, il n'y a rien au dessus. Pratiquement tout en Javascript descend d'*Object*, comme par exemple les *Array* (tableaux), les *String*, les *Number*, les fonctions.
+
+Exemple en partant du code de l'exemple précédent :
+```js
+const myObject = {}
+console.log(louis.__proto__.__proto__ === myObject.__proto__) // affiche true
+```
+
+Cela permet d'utiliser les méthodes des objets parents, comme par exemple la méthode *hasOwnProperty* qui renvoi un booléen pour savoir si une propriétée passée en paramètre existe dans l'objet.
+```js
+console.log(louis.hasOwnProperty("name")) // affiche true
+console.log(louis.hasOwnProperty("color")) // affiche false
+```
+
+----
+
+## La chaîne des constructeurs
+
+Les objets ont accès aux méthodes déclarées dans la fonction constructeur, dans le prototype, et aux nméthodes des prototypes parents, notamment d'*Object*. Si une méthode à le même nom dans la fonction constructeur et dans le prototype, c'est celle dans la fonction constructeur qui sera exécutée car il y a un ordre de préférence. C'est ce qu'on appelle la **chaîne des prototypes** :
+- la méthode est d'abord recherchée sur notre objet lui-même
+- si rien n'est trouvé, elle est cherchée sur le prototype de notre objet
+- si rien n'est encore trouvé, elle est cherchée sur le prototype de l'objet parent, par exemple *Object*
+
+```js
+function Person(name, age){
+	this.name = name
+	this.age = age
+}
+
+let louis = new Person("Louis", 0)
+
+console.log(louis.hasOwnProperty("name")) // affiche true. C'est la méthode d'Object qui a été exécutée
+
+Person.prototype.hasOwnProperty = function(text){
+ return(text)
+}
+
+console.log(louis.hasOwnProperty("name")) // affiche name. C'est la méthode redéfinie dans le prototype de Person qui a été exécutée
+```
+
+----
+
+## Les classes (ES6)
+
+Avec l'arrivée d'ES6, pour construire un objet, au lieu de faire une fonction constructeur et ajouter des méthodes sur le prototype, on peut créer des classes.
+
+En ES5 :
+```js
+function Person(name, age){
+	this.name = name
+	this.age = age
+}
+
+Person.prototype.present = function(){
+ console.log("Hello my name is " + this.name)
+}
+
+let louis = new Person("Louis", 0)
+louis.present() // affiche : Hello my name is Louis
+```
+
+En ES6 avec les classes :
+```js
+class Person {
+    constructor(name, age){
+        this.name = name
+	    this.age = age
+    }
+
+    present(){
+        console.log("Hello my name is " + this.name)
+    }
+}
+let louis = new Person("Louis", 0)
+louis.present() // affiche : Hello my name is Louis
+```
+
+Pour créer un objet avec les classes, c'est comme avant avec le mot clé `new`. Le changement est uniquement syntaxique pour simplifier l'écriture du code. L'objet créé est exactement le même que si on l'avait créé avec la fonction constructeur et en déclarant les méthodes dans le prototype.
