@@ -416,4 +416,110 @@ console.log(myArray.upperCase()) // affiche : ["LOUIS", "KÉVIN", "THIBAUT"]
 
 ----
 
-## 
+## Méthodes Statiques
+
+On peut aussi utiliser les classes pour regrouper les fonctions qui concernent un même sujet.
+
+Par exemple, on peut faire une classe *Mathematiques* :
+```js
+class Mathematique{
+    addition(number1, number2){
+        return number1 + number2
+    }
+    multiplication(number1, number2){
+        return number1 * number2
+    }
+}
+
+const myMath = new Mathematique()
+console.log(myMath.addition(2,3)) // affiche 5
+console.log(myMath.multiplication(2,3)) // affiche 6
+```
+
+C'est inutile dans ce cas de créer une instance de classe pour utiliser les méthodes, car rien n'est lié à une méthode spécifique. Pour faire cela, on va déclarer nos méthodes `static` et on pourra utiliser les méthodes sans instancier la classe.
+```js
+class Mathematique{
+    static addition(number1, number2){
+        return number1 + number2
+    }
+    static multiplication(number1, number2){
+        return number1 * number2
+    }
+}
+
+console.log(Mathematique.addition(2,3))
+console.log(Mathematique.multiplication(2,3))
+```
+
+----
+
+## Get et Set
+
+De base, rien n'empêche d'accéder et de modifier les propriétés de nos objets :
+```js
+class Person{
+    constructor(name){
+        this.name = name
+    }
+}
+
+let louis = new Person("Louis")
+console.log(louis.name) // affiche : Louis
+
+louis.name = "Loulou" // modifie le nom de l'objet louis
+console.log(louis.name) // affiche : Loulou
+```
+
+Pour éviter cela, on peut utiliser *get* et *set* pour contrôler l'accès aux propriétés de nos objets, choisir ce qu'on renvoit et dans quelle condition la propriété peut être modifiée :
+```js
+class Person{
+    constructor(name){
+        this._name = name // par convention, on met un _ devant les propriétés que l'on veut rendre "semi privé"
+    }
+    get name(){
+        return `bébé ${this._name}`
+    }
+    set name(value){
+        if(value.length > 2){
+            this._name = value
+        }
+    }
+}
+
+let louis = new Person("Louis")
+console.log(louis.name) // affiche : bébé Louis
+louis.name = "Lo"
+console.log(louis.name) // affiche : bébé Louis, la modification n'a pas eu lieu car la taille du nom soumis n'est pas supérieur à 2
+louis.name = "Loulou"
+console.log(louis.name) // affiche : bébé Loulou
+
+// On peut toujours accéder à la propriété _name et la modifier directement
+console.log(louis._name) // affiche : Loulou
+louis._name = "az"
+console.log(louis._name) // affiche : az
+console.log(louis.name) // affiche : bébé az
+```
+
+----
+----
+
+# Les modules (ES6)
+ 
+ ----
+
+ ## Modules
+
+
+ ----
+
+ ## Import et Export
+
+
+ ----
+ ----
+
+ # Les nouveautés ES7
+
+ ----
+
+ ##

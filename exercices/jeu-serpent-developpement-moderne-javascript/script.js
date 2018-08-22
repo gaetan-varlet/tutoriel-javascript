@@ -1,90 +1,63 @@
 window.onload = () => { // lorsque la fenêtre va s'afficher
 
-    const canvasWidth = 900
-    const canvasHeight = 600
-    const blockSize = 30
-    const canvas = document.createElement('canvas') // élément HTML5 qui permet de dessiner sur la page
-    const ctx = canvas.getContext('2d') // pour dessiner dans le Canvas, on a besoin du contexte
-    const delay = 100 // temps exprimé milliseconde
-    let snakee
-    let applee
-    const widthInBlocks = canvasWidth/blockSize
-    const heightInBlocks = canvasHeight/blockSize
-    const centreX = canvasWidth / 2
-    const centreY = canvasHeight / 2
-    let score
-    let timeout
+    class Game{
 
-
-    const init = () => {
-        canvas.width = canvasWidth
-        canvas.height = canvasHeight
-        canvas.style.border="30px solid grey"
-        canvas.style.margin = "30px auto 10px auto"
-        canvas.style.display = "block"
-        canvas.style.backgroundColor = "#ddd"
-        document.body.appendChild(canvas) // permet d'accrocher le canvas à la page HTML
-        launch()
-    }
-
-    const refreshCanvas = () => {
-        snakee.advance()
-        if(snakee.checkCollision()){
-            gameOver()
-        } else {
-            if(snakee.isEatingApple(applee)){
-                score++
-                snakee.ateApple = true
-                do {
-                    applee.setNewPosition()
-                } while(applee.isOnSnake(snakee))
-            }
-            // permet d'effacer le canvas avant de le recréer juste après à sa nouvelle position
-            ctx.clearRect(0, 0, canvasWidth, canvasHeight)
-            drawScore()
-            snakee.draw()
-            applee.draw()
-            timeout = setTimeout(refreshCanvas, delay) // exécute une fonction ou un code donné après la fin du délai indiqué
+        constructor(canvasWidth = 900, canvasHeight = 600){
+            this.canvasWidth = canvasWidth
+            this.canvasHeight = canvasHeight
+            this.blockSize = 30
+            this.canvas = document.createElement('canvas') // élément HTML5 qui permet de dessiner sur la page
+            this.ctx = this.canvas.getContext('2d') // pour dessiner dans le Canvas, on a besoin du contexte
+            this.delay = 100 // temps exprimé milliseconde
+            this.widthInBlocks = this.canvasWidth/this.blockSize
+            this.heightInBlocks = this.canvasHeight/this.blockSize
+            this.centreX = this.canvasWidth / 2
+            this.centreY = this.canvasHeight / 2
+            this.snakee
+            this.applee
+            this.score
+            this.timeout
         }
-    }
 
-    const drawBlock = (ctx, position) => {
-        const [x,y] = position
-        ctx.fillRect(x * blockSize, y * blockSize, blockSize, blockSize)
-    }
+        init(){
+            this.canvas.width = this.canvasWidth
+            this.canvas.height = this.canvasHeight
+            this.canvas.style.border="30px solid grey"
+            this.canvas.style.margin = "30px auto 10px auto"
+            this.canvas.style.display = "block"
+            this.canvas.style.backgroundColor = "#ddd"
+            document.body.appendChild(this.canvas) // permet d'accrocher le canvas à la page HTML
+            this.launch()
+        }
 
-    const gameOver = () => {
-        ctx.save()
-        ctx.font = "bold 70px sans-serif"
-        ctx.fillStyle = "black"
-        ctx.textAlign = "center"
-        ctx.textBaseline = "middle"
-        ctx.strokeStyle = "white"
-        ctx.lineWidth = 5
-        ctx.strokeText("Game Over", centreX, centreY - 180)
-        ctx.fillText("Game Over", centreX, centreY - 180)
-        ctx.font = "bold 30px sans-serif"
-        ctx.strokeText("Appuyer sur la touche espace pour rejouer", centreX, centreY - 120)
-        ctx.fillText("Appuyer sur la touche espace pour rejouer", centreX, centreY - 120)
-        ctx.restore()
-    }
+        refreshCanvas(){
+            this.snakee.advance()
+            if(this.snakee.checkCollision(this.widthInBlocks, this.heightInBlocks)){
+                Drawing.gameOver(this.ctx, this.centreX, this.centreY)
+            } else {
+                if(this.snakee.isEatingApple(this.applee)){
+                    this.score++
+                    this.snakee.ateApple = true
+                    do {
+                        this.applee.setNewPosition(this.widthInBlocks, this.heightInBlocks)
+                    } while(this.applee.isOnSnake(this.snakee))
+                }
+                // permet d'effacer le canvas avant de le recréer juste après à sa nouvelle position
+                this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
+                Drawing.drawScore(this.ctx, this.centreX, this.centreY, this.score)
+                Drawing.drawSnake(this.ctx, this.blockSize, this.snakee)
+                Drawing.drawApple(this.ctx, this.blockSize, this.applee)
+                this.timeout = setTimeout(this.refreshCanvas.bind(this), this.delay) // exécute une fonction ou un code donné après la fin du délai indiqué
+            }
+        }
 
-    const launch = () => {
-        snakee = new Snake("right", [6,4], [5,4], [4,4]) // la tête du serpent est défini en premier
-        applee = new Apple()
-        score = 0
-        clearTimeout(timeout)
-        refreshCanvas()
-    }
-
-    const drawScore = () => {
-        ctx.save()
-        ctx.font = "bold 200px sans-serif"
-        ctx.fillStyle = "grey"
-        ctx.textAlign = "center"
-        ctx.textBaseline = "middle"
-        ctx.fillText(score.toString(), centreX, centreY)
-        ctx.restore()
+        launch(){
+            this.snakee = new Snake("right", [6,4], [5,4], [4,4]) // la tête du serpent est défini en premier
+            this.applee = new Apple()
+            this.score = 0
+            clearTimeout(this.timeout)
+            this.refreshCanvas()
+        }
     }
 
     class Snake{
@@ -93,15 +66,6 @@ window.onload = () => { // lorsque la fenêtre va s'afficher
             this.body = body
             this.direction = direction
             this.ateApple = false
-        }
-
-        draw(){
-            ctx.save() // sauvegarde du contexte dans son état actuel avant de le modifier
-            ctx.fillStyle="#ff0000"
-            for(let block of this.body){
-                drawBlock(ctx, block) // pour chaque bloc du corps du serpent, on le dessine
-            }
-            ctx.restore() // permet de remettre le contexte comme il était avant
         }
 
         advance(){
@@ -141,7 +105,7 @@ window.onload = () => { // lorsque la fenêtre va s'afficher
             }
         }
 
-        checkCollision(){
+        checkCollision(widthInBlocks, heightInBlocks){
             let wallCollision = false
             let snakeCollision = false
             // fait la même chose que les 2 lignes en commentaires en dessous
@@ -185,19 +149,7 @@ window.onload = () => { // lorsque la fenêtre va s'afficher
             this.position = position
         }
 
-        draw(){
-            const radius = blockSize / 2
-            const x = this.position[0] * blockSize + radius
-            const y = this.position[1] * blockSize + radius
-            ctx.save()
-            ctx.fillStyle = "#33cc33"
-            ctx.beginPath()
-            ctx.arc(x, y, radius, 0, Math.PI*2, true)
-            ctx.fill()
-            ctx.restore()
-        }
-
-        setNewPosition(){
+        setNewPosition(widthInBlocks, heightInBlocks){
             const newX = Math.round(Math.random() * (widthInBlocks - 1))
             const newY = Math.round(Math.random() * (heightInBlocks - 1))
             this.position = [newX, newY]
@@ -214,6 +166,64 @@ window.onload = () => { // lorsque la fenêtre va s'afficher
         }
     }
 
+    class Drawing{
+
+        static gameOver(ctx, centreX, centreY){
+            ctx.save()
+            ctx.font = "bold 70px sans-serif"
+            ctx.fillStyle = "black"
+            ctx.textAlign = "center"
+            ctx.textBaseline = "middle"
+            ctx.strokeStyle = "white"
+            ctx.lineWidth = 5
+            ctx.strokeText("Game Over", centreX, centreY - 180)
+            ctx.fillText("Game Over", centreX, centreY - 180)
+            ctx.font = "bold 30px sans-serif"
+            ctx.strokeText("Appuyer sur la touche espace pour rejouer", centreX, centreY - 120)
+            ctx.fillText("Appuyer sur la touche espace pour rejouer", centreX, centreY - 120)
+            ctx.restore()
+        }
+
+        static drawScore(ctx, centreX, centreY, score){
+            ctx.save()
+            ctx.font = "bold 200px sans-serif"
+            ctx.fillStyle = "grey"
+            ctx.textAlign = "center"
+            ctx.textBaseline = "middle"
+            ctx.fillText(score.toString(), centreX, centreY)
+            ctx.restore()
+        }
+
+        static drawSnake(ctx, blockSize, snake){
+            ctx.save() // sauvegarde du contexte dans son état actuel avant de le modifier
+            ctx.fillStyle="#ff0000"
+            for(let block of snake.body){
+                this.drawBlock(ctx, block, blockSize) // pour chaque bloc du corps du serpent, on le dessine
+            }
+            ctx.restore() // permet de remettre le contexte comme il était avant
+        }
+
+        static drawApple(ctx, blockSize, apple){
+            const radius = blockSize / 2
+            const x = apple.position[0] * blockSize + radius
+            const y = apple.position[1] * blockSize + radius
+            ctx.save()
+            ctx.fillStyle = "#33cc33"
+            ctx.beginPath()
+            ctx.arc(x, y, radius, 0, Math.PI*2, true)
+            ctx.fill()
+            ctx.restore()
+        }
+
+        static drawBlock(ctx, position, blockSize){
+            const [x,y] = position
+            ctx.fillRect(x * blockSize, y * blockSize, blockSize, blockSize)
+        }
+    }
+
+    let myGame = new Game()
+    myGame.init()
+
     document.onkeydown = (e) => {
         let newDirection
         const key = e.keyCode
@@ -226,14 +236,12 @@ window.onload = () => { // lorsque la fenêtre va s'afficher
         } else if(key === 40){
             newDirection = "down"
         } else if(key === 32){ // touche espace
-            launch()
+            myGame.launch()
             return
         } else {
             return
         }
-        snakee.setDirection(newDirection)
+        myGame.snakee.setDirection(newDirection)
     }
-
-    init()
 
 }
