@@ -738,4 +738,39 @@ On peut désinstaller la bibliothèque avec la commande `npm uninstall jquery`, 
 
 ## Le fichier package.json
 
-Généralement on a beaucoup de dépendances, ce qui deviendrait lourd à gérer avec les commandes vues ici. Avec le fichier *package.json*, on va pouvoir noter toutes les dépendances ainsi que leur version. Cela permettra aussi de reproduire le projet sur un autre poste sans y inclure toutes les dépendances mais uniquement ce fichier.
+Généralement on a beaucoup de dépendances, ce qui deviendrait lourd à gérer avec les commandes vues ici. Avec le fichier **package.json**, on va pouvoir noter toutes les dépendances ainsi que leur version. Cela permettra aussi de reproduire le projet sur un autre poste sans y inclure toutes les dépendances mais uniquement ce fichier. En lançant la commande `npm install`, toutes les dépendances inscrites dans le fichier *package.json* seront installées dans la version spécifié.
+
+Ce fichier est un fichier de configuration, il sert également à d'autres choses. Pour le créer, il faut exécuter la commande `npm init`.
+
+Lorsqu'on installe ou désinstalle une dépendance, elle n'est pas renseignée dans le fichier *package.json*. Pour que ce soit le cas il faut ajouter `--save`, par exemple `npm install jquery --save` et jquery sera inscrit dans les dépendances avec son numéro de version.
+
+Il y a deux types de dépendances :
+- les dépendances classiques dont notre code a besoin, comme par exemple *jquery*. Elles sont rensiegnées donc *dependencies*
+- les dépendances de développement qui correspond aux outils de développement, par exemple *webpack* que l'on verra au prochain chapitre. Elles sont rensiegnées donc *devDependencies*. Pour cela, il faut utiliser la commande `--save-dev`, par exemple `npm install --save-dev webpack`
+
+En installant *webpack*, il y a maintenant plein de dépendances dans *node_modules* car *webpack* a besoin d'autres dépendances qui ont été installé également.
+
+----
+----
+
+# Webpack
+
+----
+
+## Qu'est-ce que Webpack
+
+Il est principalement utilisé comme *module bundler*, c'est-à-dire qu'il va prendre tous nos fichiers pour faire un seul gros fichier. Ce fichier pourra être inclus dans le fichier HTML, ce qui permet d'utiliser les modules ES6 directement avec webpack tout en étant compatible avec les navigateurs anciens. Quand le système de modules d'ES6 sera généralisé, on pourra donc se passer de cette fonctionnalité de webpack.
+
+Il faut créer un fichier de configuration *webpack.config.js*
+```js
+module.exports = {
+    entry: "./script2.js", // dit à webpack le point d'entrée de notre projet
+    output: {
+        filename: "bundle.js" // dit à webpack le nom du fichier produit
+    }
+}
+```
+
+----
+
+## Exécuter Webpack
