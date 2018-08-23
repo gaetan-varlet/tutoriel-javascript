@@ -875,3 +875,66 @@ module.exports = {
     </body>
 </html>
 ```
+
+----
+----
+
+# Babel
+
+----
+
+## Qu'est-ce que Babel
+
+Babel est un transpileur qui va traduire notre code ES6-ES7 en ES5 équivalent, ce qui nous permettra d'être compatible avec les anciennes versions des navigateurs.
+
+----
+
+## Babel loader
+
+C'est une fonctionnalité de webpack qui va permettre de transpiler le code en ES5 au moment de la création du fichier *bundle.js*.
+
+Il faut commencer par installer les dépendances nécessaires `npm install --save-dev babel-loader babel-core babel-preset-env`. Il faut ensuite mettre à jour le fichier de configuration de webpack en ajoutant une partie.
+```js
+// webpack.config.js
+module: {
+    rules: [
+        {
+            // on teste si c'est un fichier JS
+            test: /\.js$/,
+            // on ne traite pas les fichiers dans node_modules
+            exclude: /node_modules/,
+            use: {
+                loader: "babel-loader",
+                options: {
+                    presets: ["env"]
+                }
+            }
+        }
+    ]
+}
+```
+
+----
+
+## Babel polyfill
+
+ES6-ES7 n'apportent pas que de la nouvelle syntaxe mais aussi de nouveaux éléments. Quand on utilise un nouvel élément ES6, on ne peut pas le traduire en ES5, ce qui peut poser des problèmes de compatibilité avec les anciens navigateurs. Dans ce cas, on peut utiliser un **polyfill**, qui est un bout de code qui contient ces nouveaux éléments, ce qui permet d'ajouter les éléments manquants au navigateur.
+
+On va utiliser Babel polyfill. Il faut commencer par l'installer avec la commande `npm install --save babel-polyfill`. Il faut ensuite mettre à jour le fichier de configuration de webpack en ajoutant *babel-polyfill* dans les fichiers en entrée. Il faut aussi importer *babel-polyfill* dans le fichier d'entrée JavaScript.
+
+```js
+// webpack.config.js
+module.exports = {
+    watch: true,
+    entry: ["babel-polyfill", "./src/script.js"], // dit à webpack le point d'entrée de notre projet
+    output: {
+        path: path.resolve(__dirname, "dist"),
+        filename: "bundle.js" // dit à webpack le nom du fichier produit
+    }
+
+// script.js
+import "babel-polyfill"
+import {myLog} from "./external.js"
+
+myLog("Hello !")
+```
