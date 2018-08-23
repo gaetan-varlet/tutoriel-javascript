@@ -721,15 +721,21 @@ Avec Npm, il est possible de télécharger la bibliohèque très facilement, en 
     </head>
     <body>
         <script src="./node_modules/jquery/dist/jquery.js"></script>
-        <script src="index.js"></script>
+        <script type="module" src="script.js"></script>
     </body>
 </html>
 ```
 ```js
-// index.js
+// script.js
+import {myLog} from "./external.js"
+myLog("Hello !")
+
 jQuery(document).ready(function(){
     console.log("jQuery est prêt !");
   });
+
+// external.js
+export const myLog = message => console.log(`** My Log ** : ${message}`)
 ```
 
 On peut désinstaller la bibliothèque avec la commande `npm uninstall jquery`, ce qui supprime le dossier *jquery* du dossier *node_modules*. On peut mettre à jour la version de *jquery* avec la commande `npm update jquery`.
@@ -746,7 +752,7 @@ Lorsqu'on installe ou désinstalle une dépendance, elle n'est pas renseignée d
 
 Il y a deux types de dépendances :
 - les dépendances classiques dont notre code a besoin, comme par exemple *jquery*. Elles sont rensiegnées donc *dependencies*
-- les dépendances de développement qui correspond aux outils de développement, par exemple *webpack* que l'on verra au prochain chapitre. Elles sont rensiegnées donc *devDependencies*. Pour cela, il faut utiliser la commande `--save-dev`, par exemple `npm install --save-dev webpack`
+- les dépendances de développement qui correspond aux outils de développement, par exemple *webpack* que l'on verra au prochain chapitre. Elles sont rensiegnées donc *devDependencies*. Pour cela, il faut utiliser la commande `--save-dev`, par exemple `npm install --save-dev webpack webpack-cli`
 
 En installant *webpack*, il y a maintenant plein de dépendances dans *node_modules* car *webpack* a besoin d'autres dépendances qui ont été installé également.
 
@@ -759,18 +765,113 @@ En installant *webpack*, il y a maintenant plein de dépendances dans *node_modu
 
 ## Qu'est-ce que Webpack
 
-Il est principalement utilisé comme *module bundler*, c'est-à-dire qu'il va prendre tous nos fichiers pour faire un seul gros fichier. Ce fichier pourra être inclus dans le fichier HTML, ce qui permet d'utiliser les modules ES6 directement avec webpack tout en étant compatible avec les navigateurs anciens. Quand le système de modules d'ES6 sera généralisé, on pourra donc se passer de cette fonctionnalité de webpack.
+Il est principalement utilisé comme *module bundler*, c'est-à-dire qu'il va prendre tous nos fichiers pour faire un seul gros fichier. Ce fichier pourra être inclus dans le fichier HTML, ce qui permet d'utiliser les modules ES6 directement avec webpack tout en étant compatible avec les navigateurs anciens.
 
 Il faut créer un fichier de configuration *webpack.config.js*
 ```js
 module.exports = {
-    entry: "./script2.js", // dit à webpack le point d'entrée de notre projet
+    entry: "./script.js", // dit à webpack le point d'entrée de notre projet
     output: {
         filename: "bundle.js" // dit à webpack le nom du fichier produit
     }
 }
 ```
 
+Il faut ensuite indiquer dans le fichier HTML que le fichier de script à utiliser est celui créé par webpack. On peut aussi enlever la dépendance jquery du fichier HTML et l'importer dans le script où on l'utilise, webpack l'embarquera dans le fichier *bundle.js* qu'il va générer dans un dossier *dist* (pour distribution).
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>NPM</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <script src="./dist/bundle.js"></script>
+    </body>
+</html>
+```
+```js
+// script.js
+import {myLog} from "./external.js"
+import jQuery from "jquery"
+
+myLog("Hello !")
+
+jQuery(document).ready(function(){
+    console.log("jQuery est prêt !");
+});
+
+// external.js
+export const myLog = message => console.log(`** My Log ** : ${message}`)
+```
 ----
 
 ## Exécuter Webpack
+
+On va lancer l'exécutable de webpack. Dans le dossier *.bin* de node_modules, il y a tous les exécutables. Pour lancer webpack, on va exécuter la commande `node_modules/.bin/webpack`. Le fichier *bundle.js a été créé en enpaquetant nos fichiers javscript. On peut lancer notre page HTML et ça fonctionne comme avant san utiliser les modules.
+
+Pour éviter de lancer la commande `node_modules/.bin/webpack` à chaque fois, on va créer une tâche dans le fichier *package.json* que l'on pourra exécuter à la place de cette commande. Pour excécuter la tâche, on lancera la commande `npm run build`
+```js
+// package.json
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack" // ajout de la tâche build qui crée notre fichier bundle.js
+  }
+  ```
+
+  On peut faire mieux en disant à webpack d'observer notre code et de recompiler le code pour recréer *bundle.js* quand il observe des modifications sans relancer la commande de build. Pour cela, on va ajouter une propriété dans le fichier de configuration de webpack. Lorsqu'on fait une modification et que l'on sauvegarde, il n'y a plus qu'à rafraîchir la page HTML pour voir le changement.
+  ```js
+  // webpack.config.js
+module.exports = {
+    watch: true, // ajout de cette proriété pour que webpack observe notre code et recompile lorsqu'il y a des changements
+    entry: "./script.js",
+    output: {
+        filename: "bundle.js"
+    }
+}
+```
+
+----
+
+## Serveur local Webpack
+
+Pour éviter d'avoir à recharger la page HTML à chaque modification du code JavaScript, on va mettre en place un serveur de développement local. On va installer un nouveau paquet avec la commande `npm install --save-dev webpack-dev-server`.
+On va exécuter la commande `node_modules/.bin/webpack-dev-server` qui compile notre code et le met à disposition à l'adresse **localhost:8080**. En faisant des modifications dans le code et que l'on enregistre, la page est relancé automatiquement. On peut créer une tâche dans les scripts dans le fichier *package.json* : `"start": "webpack-dev-server --open"`. `--open` permet de lancer la page HTML dans le navigateur avec la commannde `npm run start`.
+
+----
+
+## Architecture des fichiers
+
+Pour le moment, tous les fichiers sont mis à la racine du projet. On va réorganiser tout ça
+- un dossier **src** qui contient le code de développement, les fichiers sources JavaScript
+- un dossier **dist** qui contient le code de distribution que voit le public, le fichier index.html et le fichier bundle.js
+
+Il faut mettre à jour le fichier de configuration de webpack pour que ça fonctionne bien
+```js
+// webpack.config.js
+const path = require("path") // permet de créer des chemins absolus à partir des chemins relatifs car webpack attend à certains endroits des chemins absolus
+module.exports = {
+    watch: true,
+    entry: "./src/script.js", // dit à webpack le point d'entrée de notre projet
+    output: {
+        path: path.resolve(__dirname, "dist"),
+        filename: "bundle.js" // dit à webpack le nom du fichier produit
+    },
+    devServer: {
+        contentBase: path.resolve(__dirname, "dist"), // dit au serveur de nous servir ce qu'il y a dans le dossier dist au lieu de la racine du projet
+        open: true // lance le navigateur automatiquement au lancement du serveur, ce qui évite de mettre --open dans la tâche
+    }
+}
+
+// index.html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>NPM</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <script src="bundle.js"></script>
+    </body>
+</html>
+```
