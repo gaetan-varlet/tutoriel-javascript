@@ -509,11 +509,123 @@ console.log(louis.name) // affiche : bébé az
 
  ## Modules
 
+ Sur des gros projets, il faut organiser le code JavaScript en plusieurs fichiers. Pour charger les différents fichiers JavaScript, on peut les charger chacun un tag `<script src="script.js"></script>` dans la page html.
+ 
+ ```js
+ // script1.js
+const myLog = message => console.log(`** My Log ** : ${message}`)
 
- ----
+// script2.js
+myLog("Hello !")
+
+// index.html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Modules JavaScript</title>
+    </head>
+    <body>
+        <script src="script1.js"></script>
+        <script src="script2.js"></script>
+    </body>
+</html>
+// affiche dans la console : ** My Log ** : Hello ! 
+```
+ 
+ Cette solution n'est pas idéale pour plusieurs raisons :
+ - à chaque tag `script`, une nouvelle requête est faite au serveur pour récupérer le fichier
+ - il faut faire attention à l'ordre des fichiers en mettant d'abord les fichiers avec du code qui sert dans les fichiers suivant, sinon ça ne fonctionnera pas
+ - tous les fichiers partagent le même scope global, on s'expose donc aux accidents de variables si par exemple des variables ont le même nom dans différents fichiers ce qui fait que des variables vont s'écraser
+
+ Pour répondre à ces problèmes, ES6 a amené **les modules**. Chaque module peut exporter certaines de ces fonctionnalités et importer des fonctionnalités d'autres modules. La problème est que la plupart des navigateurs ne supportent pas encore les modules ES6. Avec Chrome, il faut au moins la version 60 et aller dans l'url `chrome://flags/` et activer `Experimental Web Platform features`. Avec Firefox en version 61 (et peut-être les versions plus anciennes ?), les modules sont pris en charge nativement.
+
+ Dans le script 1, il faut exporter la fonction avec le mot clé `export` et dans le script 2, il faut l'importer. Dans le fichier html, on laisse qu'un seul script JavaScript, notre fichier point d'entrée script2.js et on ajoute le type module dans la balise script. Le résultat sera le même.
+
+  ```js
+ // script1.js
+export const myLog = message => console.log(`** My Log ** : ${message}`)
+
+// script2.js
+import {myLog} from "./script1.js"
+myLog("Hello !")
+
+// index.html
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Modules JavaScript</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <script type="module" src="script2.js"></script>
+    </body>
+</html>
+```
+
+----
 
  ## Import et Export
 
+ Avec les modules, l'import et l'export se fait par référence, c'est-à-dire qu'on ne crée pas une nouvelle variable mais on importe la variable de l'autre module.
+
+Pour exporter plusieurs choses d'un même module, on fait deux exports et on fait les deux imports sur une seule ligne
+  ```js
+ // script1.js
+export const myLog = message => console.log(`** My Log ** : ${message}`)
+export let myVariable = "Coucou !"
+
+// script2.js
+import {myLog, myVariable} from "./script1.js"
+myLog(myVariable)
+```
+
+On peut aussi faire l'export à la fin du fichier au lieu de le faire au moment de la déclaration.
+  ```js
+ // script1.js
+const myLog = message => console.log(`** My Log ** : ${message}`)
+let myVariable = "Coucou !"
+export {myLog, myVariable}
+```
+
+Une variante de l'export et l'`export default`. Il ne peut y en avoir qu'un par fichier. Lorsqu'on l'importe, on ne met pas les accolades et on lui donne le nom qu'on veut car lorsqu'on ne met pas les accolades, c'est forcément lque ça correspond à l'export default.
+```js
+ // script1.js
+const myLog = message => console.log(`** My Log ** : ${message}`)
+let myVariable = "Coucou !"
+let myVariable2 = "Important"
+export {myLog, myVariable}
+export default myVariable2
+
+// script2.js
+import {myLog, myVariable} from "./script1.js"
+import myVariable2 from "./script1.js"
+myLog(myVariable)
+myLog(myVariable2)
+```
+
+Exemple en renommant la variable de l'export default dans l'import :
+```js
+// script2.js
+import toto, {myLog, myVariable} from "./script1.js"
+myLog(myVariable)
+myLog(toto) // correspond à l'export default de myVariable2
+```
+
+On peut aussi utiliser des alias pour renommer les export classiques :
+```js
+// script2.js
+import toto, {myLog as myLogImported, myVariable} from "./script1.js"
+myLogImported(myVariable)
+myLogImported(toto)
+```
+
+Lorsqu'il y a plusieurs éléments à importer, on peut utiliser l'étoile pour tout importer.
+```js
+// script2.js
+import * as external from "./script1.js"
+external.myLog(external.myVariable)
+```
 
  ----
  ----
