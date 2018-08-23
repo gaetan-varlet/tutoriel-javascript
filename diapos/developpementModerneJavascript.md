@@ -634,4 +634,108 @@ external.myLog(external.myVariable)
 
  ----
 
- ##
+ ## Array.prototype.includes
+
+Lorsqu'on veut vérifier la présence d'un élément dans un tableau, il faut utiliser la méthode `indexOf()` qui renvoie la position de l'élément dans le tableau, ou -1 si l'élément est absent.
+
+```js
+const fruits = ["pomme", "banane", "orange"]
+
+console.log(fruits.indexOf("banane")) // affiche 1
+console.log(fruits.indexOf("melon")) // affiche -1
+
+const monFruit = "banane"
+if(fruits.indexOf(monFruit)>-1){
+    console.log(`${monFruit} est dans le tableau`)
+} else {
+    console.log(`${monFruit} n'est pas dans le tableau`)
+}
+```
+
+En ES7, on peut utiliser la méthode `includes()` qui renvoie *true* ou *false* si l'élément est présent ou non dans le tableau.
+
+```js
+const fruits = ["pomme", "banane", "orange"]
+
+console.log(fruits.includes("banane")) // affiche true
+console.log(fruits.includes("melon")) // affiche false
+
+const monFruit = "banane"
+if(fruits.includes(monFruit)){
+    console.log(`${monFruit} est dans le tableau`)
+} else {
+    console.log(`${monFruit} n'est pas dans le tableau`)
+}
+```
+
+----
+
+## L'opérateur d'exponentiation (opérateur de puissance)
+
+l'ES7 amène un nouvel opérateur qui est la puissance qui se note avec deux étoiles sous la forme `x ** y` pour x puissance y. Avant l'ES7, il fallait utiliser l'objet Math.
+
+```js
+const calcul = Math.pow(2,3) // 2*2*2
+console.log(calcul) // affiche : 8
+
+const newCalcul = 2 ** 3
+console.log(newCalcul) // affiche : 8
+```
+
+On peut aussi utiliser ce nouvel opérateur comme les opérateurs classiques.
+
+```js
+let myVar = 2
+myVar **= 3 // équivaut à myVar = myVar ** 3
+console.log(myVar) // affiche 8
+```
+
+----
+----
+
+# Développement moderne JavaScript
+
+Tous les navigateurs ne supportent pas encore ces nouveautés. Il existe des outils qui permettent de coder en ES6 et ES7 et que le code soit supporté par tous les navigateurs.
+
+----
+----
+
+# Npm
+
+----
+
+## Les bases de Npm
+
+Npm pour *Node Package Manager* va nous permettre de gérer nos paquets JavaScript. Pour l'utiliser, il faut télécharger **Node.js**
+Pour vérifier qu'il est bien installé et vérifier la version, tpaer la commande `node -v` puis `npm -v`.
+
+Jusqu'à présent, pour utiliser une bibliothèque externe comme JQuery, il faut télécharger la bibliothèque et l'ajouter dans le fichier HTML.
+
+Avec Npm, il est possible de télécharger la bibliohèque très facilement, en faisant `npm install jquery`. Un dossier *node_modules* est créé avec un sous-dossier *jquery*. Il faut ensuite l'ajouter au fichier HTML en pointant dans le sous-dossier *dist* (pour distribution) et on peut utiliser *jquery* dans le projet.
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>NPM</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <script src="./node_modules/jquery/dist/jquery.js"></script>
+        <script src="index.js"></script>
+    </body>
+</html>
+```
+```js
+// index.js
+jQuery(document).ready(function(){
+    console.log("jQuery est prêt !");
+  });
+```
+
+On peut désinstaller la bibliothèque avec la commande `npm uninstall jquery`, ce qui supprime le dossier *jquery* du dossier *node_modules*. On peut mettre à jour la version de *jquery* avec la commande `npm update jquery`.
+
+----
+
+## Le fichier package.json
+
+Généralement on a beaucoup de dépendances, ce qui deviendrait lourd à gérer avec les commandes vues ici. Avec le fichier *package.json*, on va pouvoir noter toutes les dépendances ainsi que leur version. Cela permettra aussi de reproduire le projet sur un autre poste sans y inclure toutes les dépendances mais uniquement ce fichier.
