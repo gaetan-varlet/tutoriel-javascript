@@ -35,6 +35,10 @@
 - Les requêtes HTTP Ajax
 - Objets et fonctions utiles Javascript
 
+[Les bibliothèques et frameworks JavaScript](diapos/frameworksJavascript.md)
+- Découverte des principaux frameworks JavaScript
+- jQuery
+
 [Modeler vos pages web](diapos/modelerVosPagesWeb.md)
 - Manipuler le code HTML (partie 1/2)
 - Manipuler le code HTML (partie 2/2)
