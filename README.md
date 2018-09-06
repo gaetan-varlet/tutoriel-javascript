@@ -28,12 +28,21 @@
 - Webpack
 - Babel
 
+[Objets et fonctions utiles Javascript](diapos/objetsEtFonctionsUtilesJavascript.md)
+- L'Objet Math
+- L'Objet Date
+- Expressions Régulières
+- SetTimeout et SetInterval
+- Opérateur Ternaire
+- Fonctions de String
+- Fonctions de Array
+
+
 [Javascript débarque dans le navigateur](diapos/javascriptDebarqueDansLeNavigateur.md)
 - Introduction
 - Le DOM
 - Les événements
 - Les requêtes HTTP Ajax
-- Objets et fonctions utiles Javascript
 
 [Les bibliothèques et frameworks JavaScript](diapos/frameworksJavascript.md)
 - Découverte des principaux frameworks JavaScript
