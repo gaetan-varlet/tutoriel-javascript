@@ -107,3 +107,41 @@ console.log(tempsEcoule2) // affiche 10
 
 ## Expressions Régulières
 
+Les expressions régulières sont des motifs utilisés pour correspondre à certaines combinaisons de caractères au sein de chaînes de caractères. En JavaScript, les expressions régulières sont également des objets. Ces motifs sont utilisés avec les méthodes `exec` et `test` de la classe **RegExp**, et avec les méthodes `match`, `replace`, `search` et `split` de **String**.
+
+Il est possible de construire une expression régulière de deux façons :
+```js
+const re1 = /ab+c/ // avec un littéral d'expression régulière, compilé lors du chargement du script. Plus performant si l'expression reste constante
+const re2 = new RegExp("ab+c") // avec le constructeur de l'objet RegExp, compilé lors de l'exécution
+
+console.log(re1) // affiche /ab+c/
+console.log(re2) // affiche /ab+c/
+```
+
+Exemples d'utilisation des méthodes :
+```js
+const monTemplate = /ab/
+console.log(monTemplate) // affiche /ab/
+
+// méthodes de RegExp
+console.log(monTemplate.exec("abc")) // affiche un tableau avec l'index à l'endroit ou commence le template dans la chaîne
+console.log(monTemplate.exec("qsd")) // affiche null
+
+console.log(monTemplate.test("abc")) // true
+console.log(monTemplate.test("qsd")) // false
+
+
+// méthodes de String
+console.log("abc".match(monTemplate)) // affiche un tableau comme la méthode exec()
+console.log("qsd".match(monTemplate)) // affiche null
+
+// search() renvoie un entier qui correspond à l'indice de la première correspondance trouvée dans la chaîne. Si rien n'est trouvé, la méthode renvoie -1
+console.log("abc".search(monTemplate)) // affiche 0
+console.log("qsd".search(monTemplate)) // affiche -1
+
+console.log("abc".replace(monTemplate, "ZZZ")) // affiche ZZZc
+
+console.log("Bonjourabjeabm'appelleabGaëtan".split(monTemplate)) // affiche  ["Bonjour", "je", "m'appelle", "Gaëtan"]
+```
+
+Les expressions régulières sont souvent utilisés dans les formulaires pour vérifier la validité des données saisies par l'utilisateur
