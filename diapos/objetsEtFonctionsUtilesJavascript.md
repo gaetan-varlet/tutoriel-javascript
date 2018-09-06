@@ -297,3 +297,20 @@ const paragraphes = document.querySelectorAll("p") // récupère tous les paragr
 // on peut le convertir en vrai tableau pour le manipuler comme un tableau
 const paragraphesArray = Array.from(paragraphes)
 ```
+
+----
+
+## L'Objet JSON
+
+L’objet JSON contient des méthodes pour interpréter du JSON (JavaScript Object Notation) et convertir des valeurs en JSON.
+
+La méthode `JSON.parse()` parse une chaîne de caractères JSON et construit la valeur JavaScript ou l'objet décrit par cette chaîne.  
+La méthode `JSON.stringify()` convertit une valeur JavaScript en chaîne JSON.
+
+```js
+var json = '{"result":true, "count":42}'
+obj = JSON.parse(json)
+console.log(obj.count) // expected output: 42
+
+console.log(JSON.stringify({ x: 5, y: 6 })) // expected output: "{"x":5,"y":6}"
+```

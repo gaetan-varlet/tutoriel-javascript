@@ -61,3 +61,75 @@ console.log(document.body) // affiche le body
     <script src="script.js"></script>
 </body>
 ```
+
+----
+----
+
+# Requêtes HTTP - Ajax
+
+----
+
+## Qu'est-ce qu'une requête HTTP ?
+
+Ajax est un raccourci pour Asynchronous JavaScript + XML (JavaScript  asynchrone plus XML).
+
+Ajax permet d'échanger avec le serveur via des requêtes HTTP sans rafraîchir toute la page mais uniquement certains élément de la page. Ces requêtes fonctionnent de manière asynchrones, c'est-à-dire que l'on traitera la réponse quand elle arrive sans attendre qu'elle arrive, ce qui permet de continuer à exécuter la suite du code.
+
+## Requêtes HTTP avec XMLHttpRequest
+
+`XMLHttpRequest` est l'objet qui permet de faire des requêtes Ajax. C'est l'objet de base qui sert à faire des requêtes HTTP. D'autres objets se basent dessus.
+
+Lors d'une requête HTTP, son état va varier, et nous pouvons récupérer chaque changement de cet état, avec l'événement `onreadystatechange`. L'état varie de 0 à 4. La requête est terminée à l'état 4.
+
+Exemple avec l'API Jsonplaceholder sur l'URL `/posts` en GET :
+```js
+const req = new XMLHttpRequest()
+const method = 'GET'
+const url = 'https://jsonplaceholder.typicode.com/posts'
+
+req.onreadystatechange = function(event){
+    if(this.readyState === XMLHttpRequest.DONE){// on aurait pu écrire 4 à la place, c'est pareil
+        if(this.status === 200){
+            console.log(
+                JSON.parse(this.responseText)
+            )
+        } else {
+            console.log("Statut Erreur : "+this.status)
+        }
+    }
+}
+
+req.open(method, url)
+req.send()
+```
+Exemple d'une requête en POST :
+```js
+const req = new XMLHttpRequest()
+const method = 'POST'
+const url = 'https://jsonplaceholder.typicode.com/posts'
+
+const data = {
+    body: "la la la",
+    title: "mon titre",
+    userId: 1
+}
+
+req.onreadystatechange = function(event){
+    if(this.readyState === XMLHttpRequest.DONE){// on aurait pu écrire 4 à la place, c'est pareil
+        if(this.status === 201){
+            console.log(
+                JSON.parse(this.responseText)
+            )
+        } else {
+            console.log("Statut Erreur : "+this.status)
+        }
+    }
+}
+
+req.open(method, url)
+req.send(data)
+```
+
+La méthode `open()` prend en argument la méthode HTTP puis l'url à appeler. Il y a ensuite des arguments optionels : `XMLHttpRequest.open(method, url, async, user, password)`
+- `async` : à *true* par défaut. On peut le mettre à *false* pour faire des requêtes synchrones, ce qui est déconseillé
+- `user` et `password` sont *null* par défaut et servent à l'authentification
