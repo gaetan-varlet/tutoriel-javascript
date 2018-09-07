@@ -277,7 +277,15 @@ console.log(gaetan.substring(1,3)) // affiche aë
 
 ## Fonctions de Array
 
-regarder la 1ere partie pour compléter
+L'objet global Array est utilisé pour créer des tableaux. On peut créer un tableau avec le constructeur Array, et aussi la syntaxe crochets. La propriété `length` retourne la longueur de la chaîne. On accéde à un élément d'un tableau en indiquant son indice entre crochets.
+```js
+const myArray = [1, 2, 3, 4, 5]
+const myArray2 = new Array(1, 2, 3, 4, 5)
+
+console.log(myArray.length) // affiche 5
+console.log(myArray[0]) // affiche 1, le premier élément du tableau
+console.log(myArray[myArray.length-1]) // affiche 5, le dernier élément du tableau
+```
 
 ```js
 const myArray = [1, 2, 3, 4, 5]
@@ -285,25 +293,136 @@ const myArray = [1, 2, 3, 4, 5]
 myArray.push(6) // ajoute l'élément en paramètre à la fin du tableau
 myArray.pop() // enlève le dernier élément du tableau et le retourne
 myArray.shift() // enlève le premier élément du tableau et le retourne
- // ajoute l'élément en paramètre au début du tableau
-
+myArray.unshift(0) // ajoute l'élément en paramètre au début du tableau
 console.log(myArray)
+```
 
-myArray.forEach(element => {
-    console.log(element)
-}) // permet de passer sur chaque élément du tableau mais ne modifie pas le tableau
+
+- `isArray()` permet de déterminer si l'objet passé en argument est un objet Array
+- `reverse()` permet d'inverser l'ordre des éléments du tableau. La méthode **modifie le tableau courant** et renvoie une référence à ce tableau
+- `sort()` trie les éléments d'un tableau, dans ce même tableau, et renvoie le tableau
+- `splice()` modifie le contenu d'un tableau en retirant des éléments et/ou en ajoutant de nouveaux éléments
+```js
+const mesPoissons  = ["scalaire", "clown", "mandarin", "chirurgien"]
+
+// supprime 0 élément à partir de l'index 2, et insère "tambour"
+enleves = mesPoissons.splice(2, 0, "tambour")
+// mesPoissons est ["scalaire", "clown", "tambour", "mandarin", "chirurgien"]
+// enleves est [], aucun élément supprimé
+
+// supprime 1 élément à partir de l'index 3
+enleves = mesPoissons.splice(3, 1)
+// mesPoissons est ["scalaire", "clown", "tambour", "chirurgien"]
+// enleves est ["mandarin"]
+
+// supprime 1 élément à partir de l'index 2, et insère "trompette"
+enleves = mesPoissons.splice(2, 1, "trompette")
+// mesPoissons est ["scalaire", "clown", "trompette", "chirurgien"]
+// enleves est ["tambour"]
+```
+
+- `concat(array2)` est utilisée afin de fusionner un ou plusieurs tableaux en les concaténant. Cette méthode ne modifie pas les tableaux existants, elle renvoie un nouveau tableau qui est le résultat de l'opération
+- `includes(élémentRecherché)` permet de déterminer si un tableau contient un élément et renvoie true si c'est le cas, false sinon
+- `indexOf(élémentRecherché)` renvoie le premier indice pour lequel on trouve un élément donné dans un tableau. Si l'élément cherché n'est pas présent dans le tableau, la méthode renverra -1
+- `join(séparateur)` réunit tous les éléments d'un tableau dans une chaine de caractères et renvoie cette nouvelle chaîne de caractères
+- `lastIndexOf(élémentRecherché)` permet de renvoyer le dernier indice pour lequel une valeur donnée est présente dans un tableau. Si la valeur recherchée n'est pas présente, le résultat sera -1
+`slice()` renvoie un objet tableau contenant une copie d'une portion du tableau d'origine. La portion est définie par un indice de début et un indice de fin exclu optionnel
+```js
+var animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+console.log(animals.slice()); // expected output: Array ['ant', 'bison', 'camel', 'duck', 'elephant']
+console.log(animals.slice(2)); // expected output: Array ['camel', 'duck', 'elephant']
+console.log(animals.slice(2, 4)); // expected output: Array ['camel', 'duck']
+```
+- `toString()` renvoie une chaine de caractères représentant le tableau spécifié et ses éléments
+```js
+const mesPoissons  = ["scalaire", "clown", "mandarin", "chirurgien"]
+console.log(mesPoissons.toString()) // scalaire,clown,mandarin,chirurgien
+```
+
+**Les méthodes d'itération**
+
+La méthode `every()` permet de tester si tous les éléments d'un tableau vérifient une condition donnée par une fonction en argument :
+```js
+function isBelowThreshold(currentValue) {
+  return currentValue < 40;
+}
+
+var array1 = [1, 30, 39, 29, 10, 13];
+
+console.log(array1.every(isBelowThreshold));
+// expected output: true
+```
+
+La méthode `forEach()` permet d'exécuter une fonction donnée sur chaque élément du tableau.  
+La méthode `map()` crée un nouveau tableau avec les résultats de l'appel d'une fonction fournie sur chaque élément du tableau appelant.  
+La méthode `filter()` crée et retourne un nouveau tableau contenant tous les éléments du tableau d'origine qui remplissent une condition déterminée par la fonction callback.
+
+```js
+const myArray = [1, 2, 3, 4, 5]
+myArray.forEach((element, index, array) => {
+    console.log(element+" "+index+" "+array)
+})
+// a 0 a,b,c,d,e
+// b 1 a,b,c,d,e ...
 
 const myArray2 = myArray.map(element => {
     return element * 2
-}) // permet de faire des actions sur chaque élément d'un tableau et de retourner un nouveau tableau
-console.log(myArray2)
+})
+console.log(myArray2) // [2, 4, 6, 8, 10]
 
 const myArray3 = myArray.filter(element => {
     return element >= 3
-}) // permet de filtrer les éléments qui respecte la condition
-console.log(myArray3)
+})
+console.log(myArray3) // [3, 4, 5]
 ```
 
+La méthode `every()` permet de tester si tous les éléments d'un tableau vérifient une condition donnée par une fonction en argument.
+```js
+function isBelowThreshold(currentValue) {
+  return currentValue < 40;
+}
+
+var array1 = [1, 30, 39, 29, 10, 13];
+
+console.log(array1.every(isBelowThreshold));
+// expected output: true
+```
+
+La méthode some() teste si au moins un élément du tableau passe le test implémenté par la fonction fournie.
+```js
+var array = [1, 2, 3, 4, 5];
+
+var even = function(element) {
+  // checks whether an element is even
+  return element % 2 === 0;
+};
+
+console.log(array.some(even));
+// expected output: true
+```
+
+La méthode `reduce()` applique une fonction qui est un « accumulateur » et qui traite chaque valeur d'une liste (de la gauche vers la droite) afin de la réduire à une seule valeur.
+```js
+const array1 = [1, 2, 3, 4];
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
+
+// 1 + 2 + 3 + 4
+console.log(array1.reduce(reducer));
+// expected output: 10
+```
+
+Parcourir un tableau avec une boucle for :
+```js
+const fruits = ["Pomme", "Melon", "Fraise"]
+
+for(let fruit of fruits){
+  console.log(fruit)
+}
+// affiche Pomme, puis Melon, puis Fraise
+```
+
+
+La méthode `from()` permet de créer une nouvelle instance d'Array à partir d'un objet itérable ou semblable à un tableau
 ```js
 const paragraphes = document.querySelectorAll("p") // récupère tous les paragraphes
 // paragraphes est une NodeList, qui ressemble à un tableau
