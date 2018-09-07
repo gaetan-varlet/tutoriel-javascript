@@ -233,22 +233,22 @@ L'objet global String est un constructeur de chaînes de caractères.
 La propriété `length` retourne la longueur de la chaîne.
 
 Quelques méthodes utiles :
-- `charAt()` renvoie le caractère à la position spécifiée
-- `concat()` combine le texte de deux chaînes et renvoie une nouvelle chaîne
-- `endsWith()` défini si une chaîne de caractère se termine par une chaîne de caractères spécifique
-- `indexOf()` renvoie la position, au sein de l'objet String appelant, de la première occurrence de la valeur spécifiée, ou -1 si celle-ci n'est pas trouvée
-- `lastIndexOf()` renvoie la position, au sein de l'objet String appelant, de la dernière occurrence de la valeur spécifiée, ou -1 si celle-ci n'est pas trouvée
+- `charAt(index)` renvoie une nouvelle chaîne contenant le caractère à la position indiquée en argument
+- `concat(string2,...stringN)` combine le texte de plusieurs chaînes avec la chaîne appelante et renvoie la nouvelle chaîne ainsi formée
+- `endsWith(chaîneRecherchée)` renvoie un booléen indiquant si la chaine de caractères se termine par la chaine de caractères fournie en argument
+- `indexOf(valeurRecherchée)` renvoie l'indice de la première occurence de la valeur cherchée au sein de la chaîne courante. Elle renvoie -1 si la valeur cherchée n'est pas trouvée
+- `lastIndexOf(valeurRecherchée)` envoie l'indice, dans la chaîne courante, de la dernière occurence de la valeur donnée en argument. Si cette sous-chaîne n'est pas trouvée, la méthode renvoie -1
 - `replace()` rechercher une correspondance entre une expression régulière et une chaîne, et remplace la sous-chaîne correspondante par une nouvelle chaîne
 - `search(regexp)` renvoie l'indice de la première correspondance pour l'expression régulière au sein de la chaine de caractères, sinon, la méthode renvoie -1
-- `slice()` etrait une section d'une chaîne et renvoie une nouvelle chaîne
-- `split()` sépare un objet String en un tableau de chaînes en séparant la chaîne en plusieurs sous-chaînes
-- `startsWith()` détermine si une chaîne commence avec les caractères d'une autre chaîne
-- `substring()` renvoie les caractères d'une chaîne entre deux positions dans celle-ci
-- `toLowerCase()` renvoie la valeur de la chaîne appelante convertie en minuscules
-- `toString()` renvoie une chaîne représentant l'objet spécifié
-- `toUpperCase()` renvoie la valeur de la chaîne appelante convertie en minuscules
-- `trim()` retire les blancs en début et en fin de chaîne
-- `valueOf()` renvoie la valeur de la chaîne appelante convertie en minuscules
+- `slice(indiceDebut[, indiceFin])` extrait une section d'une chaine de caractères et la retourne comme une nouvelle chaine de caractères
+- `split(séparateur)` permet de diviser une chaîne de caractères à partir d'un séparateur pour fournir un tableau de sous-chaînes
+- `startsWith(chaîneRecherchée)` renvoie un booléen indiquant si la chaine de caractères commence par la deuxième chaine de caractères fournie en argument
+- `substring(indiceA[, indiceB])` retourne une sous-chaîne de la chaîne courante, entre un indice de début et un indice de fin
+- `toLowerCase()` retourne la chaîne de caractères courante en minuscules
+- `toString()` renvoie une chaine de caractères représentant l'objet renseigné
+- `toUpperCase()` retourne la valeur de la chaîne courante, convertie en majuscules
+- `trim()` permet de retirer les blancs en début et fin de chaîne
+- `valueOf()` renvoie la valeur primitive de l'objet String
 
 Exemples :
 ```js
