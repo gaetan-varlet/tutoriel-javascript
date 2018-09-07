@@ -228,7 +228,21 @@ console.log(nomLePlusLong2) // affiche Gaëtan
 
 ## Fonctions de String
 
-L'objet global String est un constructeur de chaînes de caractères.
+L'objet global String est un constructeur de chaînes de caractères. Les objets String sont créés en appelant le constructeur `new String()`.  La fonction globale `String()` peut également être appelée sans l'opérateur new pour créer une chaîne primitive. Les objets String peuvent être convertis en chaînes primitives à l'aide de `String.valueOf()` :
+```js
+// création d'une chaîne primitve
+const chainePrimitive = "toto";
+// création d'un objet String
+const objetString = new String(chainePrimitive);
+
+console.log(typeof chainePrimitive); // affiche "string"
+console.log(typeof objetString);  // affiche "object"
+
+console.log(typeof objetString.valueOf());  // affiche "string"
+```
+
+Étant donné que JavaScript effectue automatiquement les conversions entre chaînes primitives et objets String, toute méthode de l'objet String peut être appelée sur une chaîne primitive.
+
 
 La propriété `length` retourne la longueur de la chaîne.
 
