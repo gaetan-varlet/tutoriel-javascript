@@ -2,15 +2,15 @@
 
 **Sommaire**
 
-[Les bases du JavaScript](diapos/lesBasesDeJavaScript.md)
-- Introduction au JavaScript
-- Premiers pas en JavaScript
+[Les bases de JavaScript](diapos/lesBasesDeJavaScript.md)
+- Introduction
+- Déboguer votre code
+- Premiers pas
 - Les variables
 - Les conditions
 - Les boucles
 - Les fonctions
 - Les objets et les tableaux
-- Déboguer votre code (1/3)
 
 [Vraiment bien comprendre JavaScript](diapos/vraimentBienComprendreJavaScript.md)
 - Les variables
@@ -33,7 +33,6 @@
 - L'Objet Date
 - Expressions Régulières
 - SetTimeout et SetInterval
-- Opérateur Ternaire
 - Fonctions de String
 - Fonctions de Array
 - L'Objet JSON
@@ -48,6 +47,7 @@
 [Les bibliothèques et frameworks JavaScript](diapos/frameworksJavascript.md)
 - Découverte des principaux frameworks JavaScript
 - jQuery
+
 
 [Modeler vos pages web](diapos/modelerVosPagesWeb.md)
 - Manipuler le code HTML (partie 1/2)

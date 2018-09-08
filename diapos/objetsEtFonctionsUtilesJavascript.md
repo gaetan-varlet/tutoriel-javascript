@@ -203,29 +203,6 @@ setTimeout(function(){
 
 ----
 
-## Opérateur Ternaire
-
-C'est une syntaxe simplifiée pour faire un `if else` : `condition ? valeurSiTrue : valeurSiFalse`
-
-Exemple :
-```js
-const gaetan = "Gaëtan"
-const louis = "Louis"
-let nomLePlusLong;
-
-if(gaetan.length > louis.length){
-    nomLePlusLong = gaetan
-} else {
-    nomLePlusLong = louis
-}
-console.log(nomLePlusLong) // affiche Gaëtan
-
-const nomLePlusLong2 = gaetan.length > louis.length ? gaetan : louis
-console.log(nomLePlusLong2) // affiche Gaëtan
-```
-
-----
-
 ## Fonctions de String
 
 L'objet global String est un constructeur de chaînes de caractères. Les objets String sont créés en appelant le constructeur `new String()`.  La fonction globale `String()` peut également être appelée sans l'opérateur new pour créer une chaîne primitive. Les objets String peuvent être convertis en chaînes primitives à l'aide de `String.valueOf()` :
@@ -277,13 +254,15 @@ console.log(gaetan.substring(1,3)) // affiche aë
 
 ## Fonctions de Array
 
-L'objet global Array est utilisé pour créer des tableaux. On peut créer un tableau avec le constructeur Array, et aussi la syntaxe crochets. La propriété `length` retourne la longueur de la chaîne. On accéde à un élément d'un tableau en indiquant son indice entre crochets.
+L'objet global Array est utilisé pour créer des tableaux. On peut créer un tableau avec le constructeur Array, et aussi la syntaxe crochets. La propriété `length` retourne la longueur de la chaîne. Un tableau contient plusieurs valeurs appelées **item**. Chaque item est accessible au moyen d’un indice dont la numérotation commence à 0. On accéde à un élément d'un tableau en indiquant son indice entre crochets et on peut modifier la valeur d'un éléménet de cette manière.
 ```js
 const myArray = [1, 2, 3, 4, 5]
 const myArray2 = new Array(1, 2, 3, 4, 5)
 
 console.log(myArray.length) // affiche 5
 console.log(myArray[0]) // affiche 1, le premier élément du tableau
+myArray[0]=8 // modifie la valeur du premier élément du tableau
+console.log(myArray[0]) // affiche 8, le premier élément du tableau
 console.log(myArray[myArray.length-1]) // affiche 5, le dernier élément du tableau
 ```
 
@@ -324,6 +303,12 @@ enleves = mesPoissons.splice(2, 1, "trompette")
 - `concat(array2)` est utilisée afin de fusionner un ou plusieurs tableaux en les concaténant. Cette méthode ne modifie pas les tableaux existants, elle renvoie un nouveau tableau qui est le résultat de l'opération
 - `includes(élémentRecherché)` permet de déterminer si un tableau contient un élément et renvoie true si c'est le cas, false sinon
 - `indexOf(élémentRecherché)` renvoie le premier indice pour lequel on trouve un élément donné dans un tableau. Si l'élément cherché n'est pas présent dans le tableau, la méthode renverra -1
+```js
+    var beasts = ['ant', 'bison', 'camel', 'duck', 'bison'];
+    console.log(beasts.indexOf('bison')); // expected output: 1
+    console.log(beasts.indexOf('bison', 2)); // start from index 2, expected output: 4
+    console.log(beasts.indexOf('giraffe')); // expected output: -1
+```
 - `join(séparateur)` réunit tous les éléments d'un tableau dans une chaine de caractères et renvoie cette nouvelle chaîne de caractères
 - `lastIndexOf(élémentRecherché)` permet de renvoyer le dernier indice pour lequel une valeur donnée est présente dans un tableau. Si la valeur recherchée n'est pas présente, le résultat sera -1
 `slice()` renvoie un objet tableau contenant une copie d'une portion du tableau d'origine. La portion est définie par un indice de début et un indice de fin exclu optionnel
