@@ -38,18 +38,18 @@
 - L'Objet JSON
 
 
-[Javascript débarque dans le navigateur](diapos/javascriptDebarqueDansLeNavigateur.md)
+[Javascript débarque dans le navigateur (DOING)](diapos/javascriptDebarqueDansLeNavigateur.md)
 - Introduction
 - Le DOM
 - Les événements
 - Les requêtes HTTP Ajax
 
-[Les bibliothèques et frameworks JavaScript](diapos/frameworksJavascript.md)
+[Les bibliothèques et frameworks JavaScript (TODO)](diapos/frameworksJavascript.md)
 - Découverte des principaux frameworks JavaScript
 - jQuery
 
 
-[Modeler vos pages web](diapos/modelerVosPagesWeb.md)
+[Modeler vos pages web (RECUP DES CHOSES PUIS SUPPRIMER)](diapos/modelerVosPagesWeb.md)
 - Manipuler le code HTML (partie 1/2)
 - Manipuler le code HTML (partie 2/2)
 - Les événements
