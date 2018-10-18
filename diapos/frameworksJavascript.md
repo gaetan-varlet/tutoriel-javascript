@@ -1,11 +1,6 @@
 # Les bibliothèques et frameworks JavaScript
 
 ----
-----
-
-# Découverte des principaux frameworks JavaScript
-
-----
 
 ## Qu'est-ce qu'un framework et quelle est la différence entre une bibliothèque et un framework ?
 
@@ -46,7 +41,3 @@ Une bibliothèque et un framework ont tous les deux pour but de faciliter le dé
 ## Découverte de MEAN et de Meteor (?)
 
 
-----
-----
-
-# jQuery

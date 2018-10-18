@@ -46,7 +46,6 @@
 
 [Les bibliothèques et frameworks JavaScript (TODO)](diapos/frameworksJavascript.md)
 - Découverte des principaux frameworks JavaScript
-- jQuery
 
 
 [Modeler vos pages web (RECUP DES CHOSES PUIS SUPPRIMER)](diapos/modelerVosPagesWeb.md)
