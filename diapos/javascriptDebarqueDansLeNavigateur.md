@@ -357,7 +357,44 @@ planifierTache('7h40', 'Petit-déjeuner')
 planifierTache('8h00', 'Douche')
 ```
 
+----
+----
 
+# Les événements Javascript
+
+----
+
+## Qu'est-ce qu'un événement ?
+
+Les événements permettent de déclencher une fonction selon qu'une action s'est produite ou non, par exemple faire apparaître une fenêtre `alert()` au survol d'une zone d'un élément. Ils sont de différentes natures, par exemple :
+- cliquer sur un élément
+- appuyer sur une touche du clavier
+- lorsque le navigateur a fini de charger la page Web
+
+Un événement est basé sur l'interface `Event`, avec par exemple les classes `MouseEvent`et `KeyboardEvent` pour les événements liés à la souris et au clavier.
+
+----
+
+## On-Event Handler
+
+----
+
+## Event Listener
+
+----
+
+## Propagation des événements
+
+----
+
+## Propriétés de l'objet Event
+
+----
+
+## Méthodes de l'objet Event
+
+
+----
 ----
 
 # Requêtes HTTP - Ajax

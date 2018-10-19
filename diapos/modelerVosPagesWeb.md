@@ -168,7 +168,7 @@ link.parentNode.removeChild(link);
 
 ## Que sont les événements
 
-Les événements permettent de déclencher uen fonction selon qu'une action s'est produite ou non, par exemple faire apparaître une fenêtre `alert()` au survol d'une zone d'un élément.
+Les événements permettent de déclencher une fonction selon qu'une action s'est produite ou non, par exemple faire apparaître une fenêtre `alert()` au survol d'une zone d'un élément.
 
 ### Liste des événements
 - `click`: cliquer (appuyer puis relâcher) sur l'élément
