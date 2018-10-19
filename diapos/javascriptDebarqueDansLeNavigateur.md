@@ -9,12 +9,17 @@
 
 ## L'objet Window
 
-Lorsque JavaScript est exécuté dans le navigateur, l'objet global est Window. Il possède des propriétés et des méthodes. On peut y accéder directement sans mettre le mot *window* car c'est l'objet global.
+Lorsque JavaScript est exécuté dans le navigateur, l'objet global est Window. Il représente la fenêtre du navigateur. Il possède des propriétés et des méthodes. On peut y accéder directement sans mettre le mot *window* car c'est l'objet global (il est dit implicite).
 ```js
 // affiche la largeur du navigateur
 console.log(window.innerWidth)
 console.log(innerWidth)
 ```
+
+- `alert()` n'est pas une fonction mais une méthode de l'objet window. `window.alert('Hello World')` est équivalent à `alert('Hello World')`
+- en revanche isNan() ou parseInt ne dépendent pas d'un objet, ce sont des fonctions globales. Il n'y en a pas beaucoup
+- lorsqu'on déclare une variable dans le contexte global du script, cette variable devient une propriété de l'objet window
+toute variable non déclarée (utilisée sans écrire le mot-clé var) devient une propriété de window, quelque soit l'endroit où on se situe. Ecrire text = 'toto' revient donc à écrire window.text = 'toto'. Il est conseillé de toujours déclarer une variable avec var. Pour déclarer une variable globale dans une fonction, on pourra spécifier explicitement l'objet window
 
 ----
 
@@ -31,10 +36,9 @@ location.replace("URL") // permet de change d'URL
 
 ## L'objet Document : le DOM
 
-C'est une propriété de l'objet Window. C'est la représentation de notre page HTML. Avec JavaScript, on va manipuler le DOM.
-On peut voir les propriétés de l'objet document avec la commande `console.log(window)` et le contenu de l'objet document avec la commande `console.log(window.document)`.
+C'est une propriété de l'objet Window. C'est la représentation de notre page HTML, plus précisemment la la balise `<html>`. Avec JavaScript, on va manipuler le DOM. On peut voir les propriétés de l'objet document avec la commande `console.log(window)` et le contenu de l'objet document avec la commande `console.log(window.document)`.
 
-Le document a des propriétés que l'on peut modifier, par exemple le titre de la page :
+Le document a des propriétés que l'on peut modifier, ajouter, déplacer, supprimer. Par exemple le titre de la page :
 ```js
 console.log(document.title) // affiche : JavaScript (titre présent dans la page HTML)
 document.title = "Mon nouveau titre"
@@ -43,10 +47,48 @@ console.log(document.title) // affiche :  Mon nouveau titre
 console.log(document.body) // affiche le body
 ```
 
+### Petit historique
+
+Le DOM est une interface de programmation pour les documents XML et HTML, qui permet via le JavaScript d'accéder au code XML et/ou HTML d'un document. On peut modifier, ajouter, déplacer, supprimer des éléments HTML (une paire de balises HTML)
+
+Au début du JavaScript, le DOM n'était pas unifié, c'est-à-dire que deux navigateurs possédaient un DOM différent, donc la manière d'accéder à un élément HTML différait d'un navigateur à l'autre. Il fallait donc coder différemment en fonction du navigateur. Le W3C a publié une nouvelle spécification DOM-1, pour DOM Level 1 qui définit le DOM et comment sont schématisés les documents HTML et XML, sous forme d'un arbre, ou d'une hiérarchie. L'élément <html> contient 2 éléments enfants : <head> et <body>, etc... Ensuite, la spécification DOM-2 a été publié avec l'introduction de la méthode getElementById() qui permet de récupérer un élément en connaissant son ID.
+
+### La structure DOM
+
+Le DOM pose comme concept que la page Web est une hiérarchie d'éléments. On peut schématiser une page web comme ceci :
+
+![Schéma d'une page web simple](images/pageWebSimple.png)
+
+Voici le code source correspondant :
+```html
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Le titre de la page</title>
+</head>
+
+<body>
+  <div>
+    <p>Du texte <a>et un lien</a></p>
+  </div>
+</body>
+</html>
+```
+
+L'élément `<html>` contient deux éléments, appelés **enfants** : `<head>` et `<body>`. Pour ces deux enfants, `<html>` est l'élément **parent**. Chaque élément est appelé **noeud** (*node* en anglais). `<title>` contient un élément enfant `#text` qui contient du texte. Le texte présent dans une page Web est vu par le DOM comme on noeud de type `#text`.
+
 ----
 ----
 
 # JavaScript et le DOM
+
+----
+
+## L'héritage des propriétés et des méthodes
+
+Les éléments HTML sont vus par JavaScript comme des objets possédant des propriétés et des méthodes. Tous ne possèdent pas les mêmes propriétés et méthodes. Certaines sont communes car tous les éléments HTML sont d'un même type : Node.
+Une <div> est un objet HTTMLDivElement, sous-objet HTMLElement, lui-même sous-objet d'Element, lui-même sous-objet de Node. Les méthodes et propriétés de Node peuvent être utilisées depuis ses sous-objets grâce à l'héritage.
 
 ----
 
@@ -85,12 +127,47 @@ console.log(document.body.children[0].children[1]) // affiche <p>Mon paragraphe 
 console.log(document.body.children[0].children) // affiche l'HTML Collection avec ses 2 enfants. On peut cliquer sur chaque enfant pour voir ses attributs et méthodes
 ```
 
-`textContent` retourne la string de l'élément HTML et permet aussi de modifier le contenu de l'élément
+### Le contenu : innerHTML
+
+`innerHTML` permet de récupérer le code HTML enfant d'un élément sous forme de texte. Si les balises sont présentes, `innerHTML` les retournera sous forme de texte. Exemple :
+```html
+<body>
+    <div id="myDiv">
+        <p>Un peu de texte <a>et un lien</a></p>
+    </div>
+
+    <script>
+        const div = document.getElementById('myDiv')
+        console.log(div.innerHTML) // affiche : <p>Un peu de texte <a>et un lien</a></p>
+    </script>
+</body>
+```
+
+Autre exemple où l'on va modifier le contenu du paragraphe :
+```js
+console.log(document.body.children[0].children[0].innerHTML) // affiche Un peu de texte <a>et un lien</a>
+document.body.children[0].children[0].innerHTML = "<strong>Nouveau Texte</strong>"
+console.log(document.body.children[0].children[0].innerHTML) // affiche Nouveau Texte (en gras car les les balises strong sont interprétées par le navigateur pour mettre le texte en gras)
+```
+
+Il est aussi possible d'ajouter ou d'éditer du HTML
+```js
+document.getElementById('myDiv').innerHTML = '<blockquote>Je mets une citation à la place du paragraphe</blockquote>'
+document.getElementById('myDiv').innerHTML += ' et <strong>une portion mise en emphase</strong>.'
+```
+Il ne faut pas l'utiliser dans une boucle car `innerHTML` ralentit l'exécution du code. Il vaut mieux la concaténer dans une variable et ensuite ajouter le tout via `innerHTML`.
+
+
+### innerText et textContent
+
+`innerText` pour IE et `textContent` pour les autres navigateurs sont des propriétés analogues à `innerHTML`, qui permettent de récupérer le contenu d'un élément **sous forme de texte mais sans les balises**, et permet aussi de modifier le contenu de l'élément.
+- `innerText` a été introduite dans IE, mais jamais standardisée et n'est pas suportée par tous les navigateurs
+- `textContent` est la version standardisée d'`innerText`. Elle est reconnue par tous les navigateurs à l'exception des versions antérieures à IE9.
 
 ```js
-console.log(document.body.children[0].children[1].textContent) // affiche Mon paragraphe 2
-document.body.children[0].children[1].textContent = "Nouveau Texte"
-console.log(document.body.children[0].children[1].textContent) // affiche Nouveau Texte
+console.log(document.body.children[0].children[0].textContent) // affiche Un peu de texte et un lien
+document.body.children[0].children[0].textContent = "<strong>Nouveau Texte</strong>" // les balises ne sont pas interprétés par le navigateur mais écrites comme du texte affiché dans le navigateur
+console.log(document.body.children[0].children[0].textContent) // affiche <strong>Nouveau Texte</strong>
 ```
 
 ----
@@ -130,6 +207,8 @@ console.log(document.body.children[0].classList) // affiche ["super", "toto"]
 document.body.children[0].classList.toggle("toto")
 console.log(document.body.children[0].classList) // affiche ["super"]
 ```
+
+On peut aussi utiliser `className` pour appliquer une classe CSS à un élément : `document.getElementById('p1').className = 'bleu'`
 
 ----
 
@@ -237,6 +316,46 @@ bleu.remove() // permet aussi de supprimer l'élément bleu mais n'est pas suppo
 
 ## Créer des éléments
 
+Pour créer un élément, on va utiliser la méthode `createElement()` que l'on va ensuite insérer dans le DOM avec la méthode `appendChild()`
+
+```css
+/* creation d'une classe CSS jaune que l'on va appliquer sur un élément que l'on va créer en JS */
+.jaune {
+    width: 300px;
+    height: 100px;
+    color: white;
+    font-size: 40px;
+    text-align: center;
+    background-color: yellow
+}
+```
+
+```js
+const jaune = document.createElement("div") //création d'un élément div
+jaune.classList.add("jaune") // applicaiton de la classe jaune sur la div
+jaune.textContent = "Jaune" // ajout du texte Jaune dans la div
+document.body.appendChild(jaune) // insertion de l'élément jaune en tant qu'enfant du body
+```
+
+Exemple de création d'une fonction qui crée des éléments que l'on va appeler plusieurs fois pour remplir une liste
+
+```html
+<body>
+    <ul></ul>
+    <script src="script.js"></script>
+</body>
+```
+```js
+function planifierTache(heure, tache){
+    const nouvelleTache = document.createElement("li")
+    nouvelleTache.innerHTML = `<h3>${heure}</h3><p>${tache}</p>` // innerHTML permet de dire le code HTML que l'on veut mettre à l'intérieur d'un élément HTML
+    document.querySelector("ul").appendChild(nouvelleTache)
+}
+
+planifierTache('7h30', 'Réveil')
+planifierTache('7h40', 'Petit-déjeuner')
+planifierTache('8h00', 'Douche')
+```
 
 
 ----
