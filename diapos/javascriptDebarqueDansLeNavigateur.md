@@ -332,7 +332,7 @@ Pour créer un élément, on va utiliser la méthode `createElement()` que l'on 
 
 ```js
 const jaune = document.createElement("div") //création d'un élément div
-jaune.classList.add("jaune") // applicaiton de la classe jaune sur la div
+jaune.classList.add("jaune") // application de la classe jaune sur la div
 jaune.textContent = "Jaune" // ajout du texte Jaune dans la div
 document.body.appendChild(jaune) // insertion de l'élément jaune en tant qu'enfant du body
 ```
@@ -376,6 +376,56 @@ Un événement est basé sur l'interface `Event`, avec par exemple les classes `
 ----
 
 ## On-Event Handler
+
+```html
+<body>
+    <div class="rouge">Rouge</div>
+    <div class="vert">Vert</div>
+    <div class="bleu">Bleu</div>
+    <script src="index.js"></script>
+</body>
+```
+
+```js
+console.log(rouge) // affiche <div class="rouge">Rouge</div>
+console.log(rouge.parentElement.children) // affiche la collection HTML des éléménts enfants du parent, dont rouge, pour lesquels on peut voir les propriétés et méthodes
+```
+
+Les propriétés qui commencent par `on` sont liés aux événements. Elles sont appelées **On-Event Handler**, que l'on peut traduire par **gestionnaire d'événements**. Par exemple, la propriété `onload` gère l'événement `load`.
+
+L'événement **load** se produit quand la page a fini de se charger :
+```js
+window.onload = function(){
+    console.log("la page est chargée")
+}
+console.log("après le onload") // s'affiche AVANT "la page est chargée"
+```
+
+On peut aussi déclarer une fonction et l'appeler sur la propriété onload :
+```js
+function windowReady(){
+    console.log("la page est chargée")
+}
+
+window.onload = windowReady()
+```
+
+Ce qu'on peut faire, c'est encapsulé tout le code JS dans un `windows.onload` pour s'assurer que tous les éléments que l'on manipule sont chargés :
+```js
+window.onload = function(){
+    const rouge = document.querySelector(".rouge")
+    const vert = document.querySelector(".vert")
+    const bleu = document.querySelector(".bleu")
+}
+```
+
+Exemple de l'événment clic, déclenché à chaque clic sur l'élément rouge :
+```js
+rouge.onclick = function(){
+    console.log("clic sur la div rouge !")
+}
+```
+
 
 ----
 
