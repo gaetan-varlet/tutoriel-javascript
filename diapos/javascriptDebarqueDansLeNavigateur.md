@@ -410,7 +410,7 @@ function windowReady(){
 window.onload = windowReady()
 ```
 
-Ce qu'on peut faire, c'est encapsulé tout le code JS dans un `windows.onload` pour s'assurer que tous les éléments que l'on manipule sont chargés :
+On peut encapsuler tout le code JS dans un `windows.onload` pour s'assurer que tous les éléments que l'on manipule sont chargés :
 ```js
 window.onload = function(){
     const rouge = document.querySelector(".rouge")
@@ -419,21 +419,114 @@ window.onload = function(){
 }
 ```
 
-Exemple de l'événment clic, déclenché à chaque clic sur l'élément rouge :
+Exemple de l'événement clic, déclenché à chaque clic sur l'élément rouge :
 ```js
-rouge.onclick = function(){
+rouge.onclick = function(event){
     console.log("clic sur la div rouge !")
+    console.log(event)
 }
 ```
+On peut récupérer l'événement en le passant en argument de la fonction en lui donnant le nom que l'on veut car le fait de mettre un argument à la fonction nous donne forcément l'événement.
 
+On peut écrire les Event Handler directement dans le code HTML, ce qui n'est pas conseillé :
+```html
+<div class="vert" onclick="console.log('toto')">Vert</div>
+```
+
+On ne peut pas définir plusieurs fois le même event handler sur le même élément. Auquel cas, seul le dernier event handler va fonctionner car c'est une propriété à laquelle on attache une fonction, donc la dernière a écrasée les précédentes.
+```js
+rouge.onclick = function(event){
+    console.log("clic sur la div rouge !")
+    console.log(event)
+}
+
+rouge.onclick = function(){
+    console.log("deuxième message") // seul ce message va s'afficher
+}
+```
 
 ----
 
 ## Event Listener
 
+Un **Event Listener**, ou **écouteur d'événement** en français, est une autre façon d'interagir avec les événements.
+
+Il faut utiliser la méthode `addEventListener()` qui prend en argument le nom de l'événementet la fonction a exécuter :
+```js
+rouge.addEventListener("click", function(event){
+    console.log("clic sur la div rouge !")
+    console.log(event)
+})
+
+function afficherMessage(){
+    console.log("deuxième message")
+}
+
+rouge.addEventListener("click", afficherMessage)
+```
+
+On peut ajouter plusieurs event listener sur le même événement et sur le même élément, ils seront tous exécutés. On peut aussi déclarer une fonction en externe et l'appeler dans le listener **sans l'exécuter**, juste en marquant son nom. La fonction anonyme en argument n'était pas éexécutée non plus, le listeneur le fait quand l'événement a lieu.
+
+On peut aussi supprimer un event listener avec `removeEventListener()`. Dans l'exemple suivant, quand on clique sur vert, on enlève le deuxième event listener de rouge, et quand on clique ensuite sur rouge, il n'y a plus que le premier qui s'exécute :
+```js
+vert.addEventListener("click", function(){
+    rouge.removeEventListener("click", afficherMessage)
+})
+```
+
 ----
 
 ## Propagation des événements
+
+```html
+<div id="parent">
+    <div id="enfant"></div>
+</div>
+<script src="index.js"></script>
+```
+
+```css
+#parent {
+    width: 300px;
+    height: 300px;
+    background-color: red;
+}
+
+#enfant {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+}
+```
+
+```js
+const parent = document.querySelector("#parent")
+const enfant = document.querySelector("#enfant")
+
+parent.addEventListener("click", parentFonction)
+enfant.addEventListener("click", enfantFonction)
+
+
+function enfantFonction(){
+    console.log("clic sur l'enfant")
+}
+
+function parentFonction(){
+    console.log("clic sur le parent")
+}
+```
+
+Dans cet exemple, il y a une div bleu enfant contenu dans une div rouge rouge. Lorsqu'on clique sur la div parent, `clic sur le parent` s'écrit dans la log, et lorsqu'on clique sur la div enfant, `clic sur l'enfant` puis `clic sur le parent` s'affichent car l'enfant est contenu dans le parent.
+
+Les événements sont faits de deix phases :
+- phase de **capture** : part des parents et va vers les enfants
+- phase de **bouillonnement** (**event bubbling**) : part de l'enfant et va vers les parents
+
+Par défaut, addEventListener s'exécute pendant la phase de bouillenement (les événements débutent par les enfants et remontent vers les parents). Pour qu'elle s'exécute pendant la phase de capture, il faut ajouter un troième argument `true` à la méthode `addEventListener`. Dans l"exemple suivant, lorsqu'on clique sur la div enfant, `clic sur parent` s'affiche donc avant `clic sur enfant` :
+```js
+parent.addEventListener("click", parentFonction, true)
+enfant.addEventListener("click", enfantFonction, true)
+```
 
 ----
 
@@ -453,7 +546,7 @@ rouge.onclick = function(){
 
 ## Qu'est-ce qu'une requête HTTP ?
 
-Ajax est un raccourci pour Asynchronous JavaScript + XML (JavaScript  asynchrone plus XML).
+Ajax est un raccourci pour **Asynchronous JavaScript and XML** (XML et JavaScript asynchrones).
 
 Ajax permet d'échanger avec le serveur via des requêtes HTTP sans rafraîchir toute la page mais uniquement certains élément de la page. Ces requêtes fonctionnent de manière asynchrones, c'est-à-dire que l'on traitera la réponse quand elle arrive sans attendre qu'elle arrive, ce qui permet de continuer à exécuter la suite du code.
 
