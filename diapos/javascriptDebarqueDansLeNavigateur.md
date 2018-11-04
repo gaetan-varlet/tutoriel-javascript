@@ -532,10 +532,31 @@ enfant.addEventListener("click", enfantFonction, true)
 
 ## Propriétés de l'objet Event
 
+Certaines propriétés sont communes à tous les événements, d'autres sont spécifiques à certains événement comme les événements souris, ou les événements claviers :
+```js
+function parentFonction(event){
+    console.log("clic sur le parent")
+    console.log(event)
+    console.log(event.type) // affiche : click, correspond au type de l'événement
+    console.log(event.target) // affiche la div parent, correspond à l'élément qui a débuté l'événement
+    console.log(event.currentTarget)
+
+    console.log(event.clientX) // affiche où l'on se place sur l'axe horizontale, propriété spécifique au MouseEvent
+    
+}
+```
+
 ----
 
 ## Méthodes de l'objet Event
 
+La méthode `stopPropagation()` permet de stopper la propagation d'un événement. Dans l'exemple suivant, en cliquant sur l'enfant, on ne verra que le clic sur l'enfant mais pas le clic sur le parent. L'événement a été stoppé et n'a donc pas atteint la div parent.
+```js
+function enfantFonction(event){
+    console.log("clic sur l'enfant")
+    event.stopPropagation()
+}
+```
 
 ----
 ----
