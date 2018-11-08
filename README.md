@@ -44,7 +44,7 @@
 - Les événements
 - Les requêtes HTTP Ajax
 
-[Les bibliothèques et frameworks JavaScript](diapos/frameworksJavascript.md)
+[Les bibliothèques et frameworks JavaScript (TODO)](diapos/frameworksJavascript.md)
 - Découverte des principaux frameworks JavaScript
 
 
