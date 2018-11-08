@@ -38,7 +38,7 @@
 - L'Objet JSON
 
 
-[Javascript débarque dans le navigateur (DOING)](diapos/javascriptDebarqueDansLeNavigateur.md)
+[Javascript débarque dans le navigateur](diapos/javascriptDebarqueDansLeNavigateur.md)
 - Introduction
 - Le DOM
 - Les événements
