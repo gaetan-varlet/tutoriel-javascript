@@ -558,6 +558,28 @@ function enfantFonction(event){
 }
 ```
 
+La méthode `preventDefault()` permet de ne pas traiter l'événement avec son action par défaut. Dans l'exemple suivant, lors de la soumission du formulaire, on écrit un message dans la log. Par défaut, la soumission d'un formulaire rafraîchit la page, le message dans la log disparaît donc aussitôt qu'il est apparu. Pour ne pas rafraîchir la page, on peut utiliser la méthode `preventDefault()`, le message restera alors affiché dans la log.
+```html
+<body>
+    <form>
+        <input type="text" placeholder="Votre nom">
+        <button type="submit">Envoyer</button>
+    </form>
+    <script src="index.js"></script>
+</body>
+```
+
+```js
+const form = document.querySelector("form")
+
+form.addEventListener("submit", envoyerFormulaire)
+
+function envoyerFormulaire(event){
+    event.preventDefault()
+    console.log("Formulaire envoyé")
+}
+```
+
 ----
 ----
 
