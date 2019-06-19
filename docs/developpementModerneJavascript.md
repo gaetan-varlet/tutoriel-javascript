@@ -511,7 +511,7 @@ console.log(louis.name) // affiche : bébé az
 
  Sur des gros projets, il faut organiser le code JavaScript en plusieurs fichiers. Pour charger les différents fichiers JavaScript, on peut les charger chacun un tag `<script src="script.js"></script>` dans la page html.
  
- ```js
+```js
  // script1.js
 const myLog = message => console.log(`** My Log ** : ${message}`)
 
@@ -541,7 +541,7 @@ myLog("Hello !")
 
  Dans le script 1, il faut exporter la fonction avec le mot clé `export` et dans le script 2, il faut l'importer. Dans le fichier html, on laisse qu'un seul script JavaScript, notre fichier point d'entrée script2.js et on ajoute le type module dans la balise script. Le résultat sera le même.
 
-  ```js
+```js
  // script1.js
 export const myLog = message => console.log(`** My Log ** : ${message}`)
 

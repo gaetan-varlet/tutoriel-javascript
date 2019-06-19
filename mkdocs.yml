@@ -1,0 +1,8 @@
+site_name: Tutoriel JS
+nav:
+- Les bases: lesBasesDeJavaScript.md
+- Bien comprendre: vraimentBienComprendreJavaScript.md
+- Dév moderne: developpementModerneJavascript.md
+- Fonctions utiles: objetsEtFonctionsUtilesJavascript.md
+- Dans le nav: javascriptDebarqueDansLeNavigateur.md
+- Les bibliothèques: frameworksJavascript.md

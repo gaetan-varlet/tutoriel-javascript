@@ -1,6 +1,7 @@
 # Vraiment bien comprendre JavaScript
 
 ----
+
 ----
 
 # Les variables
@@ -136,6 +137,7 @@ let b = 5
 - si on réassigne une valeur à la variable, utiliser le `let`
 
 ----
+
 ----
 
 # Les scopes
@@ -211,6 +213,7 @@ console.log(i)
 ```
 
 ----
+
 ----
 
 # Les fonctions
@@ -577,6 +580,7 @@ louis.presentArrow() // affiche Window
 ```
 
 ----
+
 ----
 
 # Les objets

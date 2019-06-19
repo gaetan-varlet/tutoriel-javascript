@@ -1,6 +1,7 @@
 # Les bases de JavaScript
 
 ----
+
 ----
 
 # Introduction
@@ -39,6 +40,7 @@ Les versions du JavaScript sont basées sur celles de l’ECMAScript. Ainsi il e
 - ES6, finalisé en décembre 2014
 
 ----
+
 ----
 
 # Déboguer votre code grâce à la console
@@ -111,6 +113,7 @@ Pour chaque point d’arrêt, on peut consulter la pile d’exécution (**call s
 Enfin il est possible de donner un nom à une fonction anonyme dans la pile d’exécution afin de mieux la repérer.
 
 ----
+
 ----
 
 # Premiers pas
@@ -227,6 +230,7 @@ Une page Web est lue par le navigateur de façon linéaire, c’est à dire d’
 Pour pallier ce problème, il est conseillé de placer les éléments `<script>` juste avant la fermeture de l’élément `<body>`.
 
 ----
+
 ----
 
 # Les variables
@@ -331,6 +335,7 @@ console.log(typeof text) // string
 ```
 
 ----
+
 ----
 
 # Les conditions
@@ -475,6 +480,7 @@ console.log(conditionTest1 || conditionTest2)
 L’opérateur OU en plus de sa fonction principale, permet de renvoyer la première valeur évaluée à true. Dans cet exemple, elle renvoie donc *Une chaîne de caractères*.
 
 ----
+
 ----
 
 # Les boucles
@@ -535,6 +541,7 @@ Les trois blocs de la boucle for ne sont pas exécutés en même temps :
 La boucle `for` est très utilisée en JavaScript, bien plus que la boucle `while`. Le fonctionnement de JavaScript fait que la boucle `for` est nécessaire dans la majorité des cas comme la manipulation des tableaux ainsi que des objets. Nous verrons aussi une variante de la boucle `for`, appelée `for in`.
 
 ----
+
 ----
 
 # Les fonctions
@@ -608,6 +615,7 @@ sayHello() // Affiche : « Bonjour ! »
 La variable *sayHello* est devenue une fonction.
 
 ----
+
 ----
 
 # Les objets et les tableaux

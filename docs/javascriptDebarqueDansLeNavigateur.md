@@ -57,7 +57,7 @@ Au début du JavaScript, le DOM n'était pas unifié, c'est-à-dire que deux nav
 
 Le DOM pose comme concept que la page Web est une hiérarchie d'éléments. On peut schématiser une page web comme ceci :
 
-![Schéma d'une page web simple](images/pageWebSimple.png)
+![Schéma d'une page web simple](img/pageWebSimple.png)
 
 Voici le code source correspondant :
 ```html
