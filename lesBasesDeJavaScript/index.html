@@ -141,10 +141,12 @@
 <hr />
 <h2 id="quest-que-le-javascript">Qu’est que le JavaScript ?</h2>
 <p>Le JavaScript est un langage de programmation de scripts orienté objet</p>
-<p>Un langage de programmation permet d’écrire du code source qui sera analysé par l’ordinateur. Il existe  trois manières d’utiliser du code source :
-- <strong>langage compilé :</strong> le code source est donné à un programme appelé compilateur qui va lire le code source et le convertir dans un langage que l’ordinateur sera capable d’interpréter : le langage binaire. Les langages comme le C ou le C++ sont des langages dits compilés
-- <strong>langage précompilé :</strong> le code source est partiellement compilé, dans un langage plus simple à lire par l’ordinateur mais ce n’est pas encore du binaire. Ce code intermédiaire devra être lu par une machine virtuelle qui exécutera ce code. Les langages comme Java ou C# sont dits précompilés
-- <strong>langage interprété :</strong> pas de compilation, le code source reste tel quel. Pour exécuter le code, on doit le fournir à un interpréteur qui lira le code et réalisera les actions. Pour obtenir des gains de performances, on peut le le compiler à la volée pendant son exécution, ce que font aujourd’hui la plupart des interpréteurs JavaScript</p>
+<p>Un langage de programmation permet d’écrire du code source qui sera analysé par l’ordinateur. Il existe  trois manières d’utiliser du code source :</p>
+<ul>
+<li><strong>langage compilé :</strong> le code source est donné à un programme appelé compilateur qui va lire le code source et le convertir dans un langage que l’ordinateur sera capable d’interpréter : le langage binaire. Les langages comme le C ou le C++ sont des langages dits compilés</li>
+<li><strong>langage précompilé :</strong> le code source est partiellement compilé, dans un langage plus simple à lire par l’ordinateur mais ce n’est pas encore du binaire. Ce code intermédiaire devra être lu par une machine virtuelle qui exécutera ce code. Les langages comme Java ou C# sont dits précompilés</li>
+<li><strong>langage interprété :</strong> pas de compilation, le code source reste tel quel. Pour exécuter le code, on doit le fournir à un interpréteur qui lira le code et réalisera les actions. Pour obtenir des gains de performances, on peut le le compiler à la volée pendant son exécution, ce que font aujourd’hui la plupart des interpréteurs JavaScript</li>
+</ul>
 <p>Les scripts sont majoritairement interprétés, ce qui est le cas de JavaScript qui est un langage interprété. Il y a un interpréteur JavaScript dans le navigateur Web, qui est différent selon le navigateur : Chakra dans Internet Explorer, SpiderMonkey dans Firefox, V8 dans Chrome.</p>
 <p>Le JavaScript est majoritairement utilisé sur les pages Web pour dynamiser les pages HTML, en ajoutant des interactions avec l’utilisateur, des animations, de l’aide à la navigation, par exemple : afficher ou masquer du texte, faire défiler des images, créer des infobulles…</p>
 <p>Les scripts JavaScript sont exécutés par le navigateur chez l’internaute (le client), contrairement aux langages serveur (comme le PHP) exécuté par le serveur web.
@@ -155,12 +157,14 @@ Le JavaScript peut aussi être utilisé pour réaliser des applications.</p>
 <hr />
 <h2 id="petit-historique-du-langage">Petit historique du langage</h2>
 <p>En 1995, Brendan Eich développe le LiveScript qui sera renommé en JavaScript en hommage au langage Java. Netscape décide d’envoyer sa version de JavaScript à l’ECMA international pour que le langage soit standardisé. L’ECMA standardise le langage soit le nom d’ECMAScript. L’ECMAScript est la référence de base, de là en découle des implémentations comme le JavaScript.</p>
-<p>Les versions du JavaScript sont basées sur celles de l’ECMAScript. Ainsi il existe :
-- ES1 et ES2 qui sont les prémices du langage JavaScript
-- ES3 sorti en décembre 1999
-- ES4 qui a été abandonné en raison de modifications trop importantes qui ne furent pas appréciées
-- ES5 sortie en décembre 2009, la version la plus répandue et la plus utilisée à ce jour
-- ES6, finalisé en décembre 2014</p>
+<p>Les versions du JavaScript sont basées sur celles de l’ECMAScript. Ainsi il existe :</p>
+<ul>
+<li>ES1 et ES2 qui sont les prémices du langage JavaScript</li>
+<li>ES3 sorti en décembre 1999</li>
+<li>ES4 qui a été abandonné en raison de modifications trop importantes qui ne furent pas appréciées</li>
+<li>ES5 sortie en décembre 2009, la version la plus répandue et la plus utilisée à ce jour</li>
+<li>ES6, finalisé en décembre 2014</li>
+</ul>
 <hr />
 <hr />
 <h1 id="deboguer-votre-code-grace-a-la-console">Déboguer votre code grâce à la console</h1>
@@ -168,8 +172,10 @@ Le JavaScript peut aussi être utilisé pour réaliser des applications.</p>
 <hr />
 <h2 id="en-quoi-consiste-le-debogage">En quoi consiste le débogage ?</h2>
 <h3 id="les-bugs">Les bugs</h3>
-<p>Ce sont des erreurs humaines laissées dans le code. Il existe deux types principaux de bugs :
-- ceux que l’interpréteur JavaScript saura signaler : fautes de syntaxe</p>
+<p>Ce sont des erreurs humaines laissées dans le code. Il existe deux types principaux de bugs :</p>
+<ul>
+<li>ceux que l’interpréteur JavaScript saura signaler : fautes de syntaxe</li>
+</ul>
 <pre><code>va myVar = 'test; // Le mot-clé « var » est mal orthographié et il manque une apostrophe
 </code></pre>
 
@@ -315,8 +321,8 @@ Voici un exemple avec un fichier hello.js qui se situe dans le même répertoire
 
 </code></pre>
 
-<p>Il vaut mieux privilégier un fichier externe plutôt que d’inclure le code directement dans la page, car le fichier externe est mis en cache par le navigateur et n’est donc pas rechargé à chaque chargement de la page, ce qui accélère l’affichage de la page.
-Une page Web est lue par le navigateur de façon linéaire, c’est à dire d’abord l’élément <code>&lt;head&gt;</code> puis les éléments <code>&lt;body&gt;</code> les uns à la suite des autres. Si on appelle un fichier JavaScript dès le début du chargement de la page, le navigateur va donc charger ce fichier et si ce dernier est volumineux, le chargement de la page s’en trouvera ralenti car le navigateur va charger le fichier avant de commencer à afficher le contenu de la page.
+<p>Il vaut mieux privilégier un fichier externe plutôt que d’inclure le code directement dans la page, car le fichier externe est mis en cache par le navigateur et n’est donc pas rechargé à chaque chargement de la page, ce qui accélère l’affichage de la page.<br />
+Une page Web est lue par le navigateur de façon linéaire, c’est à dire d’abord l’élément <code>&lt;head&gt;</code> puis les éléments <code>&lt;body&gt;</code> les uns à la suite des autres. Si on appelle un fichier JavaScript dès le début du chargement de la page, le navigateur va donc charger ce fichier et si ce dernier est volumineux, le chargement de la page s’en trouvera ralenti car le navigateur va charger le fichier avant de commencer à afficher le contenu de la page.<br />
 Pour pallier ce problème, il est conseillé de placer les éléments <code>&lt;script&gt;</code> juste avant la fermeture de l’élément <code>&lt;body&gt;</code>.</p>
 <hr />
 <hr />
@@ -576,10 +582,12 @@ console.log(iter) // affiche 5
 En JavaScript, il est déconseillé de déclarer des variables au sein d’une boucle car il n’est pas nécessaire de déclarer une variable à chaque passage dans la boucle.
 Il est conseillé de les déclarer dans le bloc d’initialisation, mais attention une fois la boucle exécutée, la variable existe toujours. Ce comportement est différent de celui de nombreux autres langages dans lesquels une variable déclarée dans une boucle est détruite une fois la boucle exécutée.</p>
 <p><strong>Priorité d’exécution</strong>
-Les trois blocs de la boucle for ne sont pas exécutés en même temps :
-- <em>initialisation :</em> juste avant que la boucle ne démarre
-- <em>condition :</em> avant chaque passage de boucle
-- <em>incrémentation :</em> après chaque passage de boucle. Cela veut dire que si on fait un break dans une boucle for, le passage dans la boucle lors du break ne sera pas comptabilisé.</p>
+Les trois blocs de la boucle for ne sont pas exécutés en même temps :</p>
+<ul>
+<li><em>initialisation :</em> juste avant que la boucle ne démarre</li>
+<li><em>condition :</em> avant chaque passage de boucle</li>
+<li><em>incrémentation :</em> après chaque passage de boucle. Cela veut dire que si on fait un break dans une boucle for, le passage dans la boucle lors du break ne sera pas comptabilisé.</li>
+</ul>
 <p>La boucle <code>for</code> est très utilisée en JavaScript, bien plus que la boucle <code>while</code>. Le fonctionnement de JavaScript fait que la boucle <code>for</code> est nécessaire dans la majorité des cas comme la manipulation des tableaux ainsi que des objets. Nous verrons aussi une variante de la boucle <code>for</code>, appelée <code>for in</code>.</p>
 <hr />
 <hr />
@@ -646,15 +654,23 @@ sayHello() // Affiche : « Bonjour ! »
 <hr />
 <h2 id="introduction-aux-objets">Introduction aux objets</h2>
 <p>JavaScript est un langage orienté objet, cela veut dire que le langage dispose d’objets, qui disposent d’une structure. JavaScript met à notre disposition des objets natifs : un nombre, une chaîne de caractères, un booléen. On dit que JavaScript n’est pas un langage typé car les variables contiennent toujours la même chose : un objet. Cet objet peut être de nature différente (nombre, booléen…). Il est également possible de créer nos propres objets, ce qui sera après.</p>
-<p>Les objets contiennent trois choses distinctes :
-- un constructeur
-  - code utilisé quand on utilise un nouvel objet
-  - permet d’effectuer des actions comme définir diverses variables
-  - réalisé automatiquement pour les objets natifs
-- des propriétés
-  - une propriété est une variable contenue dans l’objet
-- des méthodes
-  - il est possible de modifier l’objet grâce aux méthodes qui sont des fonctions contenues dans l’objet, qui permettent de réaliser des opérations sur le contenu de l’objet</p>
+<p>Les objets contiennent trois choses distinctes :</p>
+<ul>
+<li>un constructeur<ul>
+<li>code utilisé quand on utilise un nouvel objet</li>
+<li>permet d’effectuer des actions comme définir diverses variables</li>
+<li>réalisé automatiquement pour les objets natifs</li>
+</ul>
+</li>
+<li>des propriétés<ul>
+<li>une propriété est une variable contenue dans l’objet</li>
+</ul>
+</li>
+<li>des méthodes<ul>
+<li>il est possible de modifier l’objet grâce aux méthodes qui sont des fonctions contenues dans l’objet, qui permettent de réaliser des opérations sur le contenu de l’objet</li>
+</ul>
+</li>
+</ul>
 <pre><code class="js">var myString = 'Ceci est une chaîne de caractères' // On crée un objet String
 
 console.log(myString.length) // On affiche le nombre de caractères, au moyen de la propriété « length »
@@ -775,7 +791,7 @@ monChien.aboie(); // affiche : wouf wouf Rex
         </footer>
         <script>
             var base_url = "..",
-                shortcuts = {"next": 78, "previous": 80, "search": 83, "help": 191};
+                shortcuts = {"next": 78, "search": 83, "previous": 80, "help": 191};
         </script>
         <script src="../js/base.js" defer></script>
         <script src="../search/main.js" defer></script>
