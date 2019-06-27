@@ -17,7 +17,8 @@ console.log("Louis"); console.log(typeof "Louis") // string
 console.log({name: "Louis"}); console.log(typeof {name: "Louis"}) // object
 ```
 
-Différence entre **undefined**, **null** et **is not defined**
+Différence entre **undefined**, **null** et **is not defined** :
+
 - *undefined* : variable déclarée mais n'a pas reçu de valeur
 - *null* : variable définie par l'utilisateur
 - *is not defined* : variable non déclarée
@@ -31,7 +32,7 @@ console.log(c) // c is not defined
 
 ## Le hoisting (hissage)
 
-JavaScript passe le code en revu et recherche les déclarations de fonction et les hisse dans le haut de code, ce qui fait qu'on peut exécuter une fonction avant de la déclarer.
+JavaScript passe le code en revue et recherche les déclarations de fonction et les hisse dans le haut de code, ce qui fait qu'on peut exécuter une fonction avant de la déclarer.
 ```js
 addition(1,3)
 
@@ -105,7 +106,7 @@ console.log(c) // 7
 ```
 
  Une constante doit avoir une valeur dès sa déclaration et ne pas peut être modifiée. On ne peut pas faire :
- ```js
+```js
 const a; // ERREUR
 const b = 1;
 b=2; // ERREUR
@@ -147,7 +148,9 @@ let b = 5
 ## Contexte d'exécution
 
 Un contexte d'exécution est un contexte dans lequel un certain bout de code est exécuté. Cela concerne les infos sur les variables qu'il va définir, auquel il va pouvoir accéder... A chaque fois qu'une **fonction est exécutée**, un nouveau contexte d'exécution est créé. Pour le code qui n'est pas dans une fonction, il appartient au contexte d'exécution global.
+
 Un contexte d'exécution est composé de 3 choses :
+
 1. **l'objet des variables** : fonctions et variables qui sont définies dans ce bout de code
 2. **la chaîne des scopes** : variables auquel peut accéder ce bout de code
 3. **le this** : l'objet associé à ce bout de code
@@ -157,7 +160,9 @@ Un contexte d'exécution est composé de 3 choses :
 ## L'objet des variables
 
 L'objet des variables, ou *Variable Objet (VO)*, est créé et initialisé pendant la phase de création du contexte d'exécution.
+
 Il contient :
+
 - les arguments de la fonction
 - les déclarations de fonctions avec le hoisting
 - les déclarations de variables avec le hoisting (les variables déclarées avec *var*)
@@ -283,7 +288,7 @@ console.log(multiplyByFive) // function(anotherNumber){return closedVariable * a
 console.log(multiplyByFive(2)) // 10
 console.log(multiplyByThree(2)) // 6
 ```
-Dans cet exemple, mutilyByFive utilise la variable closedVariable lors de son exécution avec lesparamètre 2, alors que closedVariable fait parti du contexte d'exécution de multiplyBy(5) qui a disparu après l'exécution de la fonction, donc closedVariable devrait avoir disparu, mais il est toujours disponible dans multiplyByFive, c'est ce qu'on appelle une closure car la fonction a capturé une variable d'un scope parent. C'est la même chose pour multiplyByThree.
+Dans cet exemple, mutilyByFive utilise la variable closedVariable lors de son exécution avec le paramètre 2, alors que closedVariable fait parti du contexte d'exécution de multiplyBy(5) qui a disparu après l'exécution de la fonction, donc closedVariable devrait avoir disparu, mais il est toujours disponible dans multiplyByFive, c'est ce qu'on appelle une closure car la fonction a capturé une variable d'un scope parent. C'est la même chose pour multiplyByThree.
 
 ----
 
@@ -337,7 +342,7 @@ function myFunction(){
 })()
 ```
 
-Pour revenir à notre exemple précédent où lon veut rendre public `getPassword()` et rendre privé `myPassword` et `setPassword`, on peut utiliser les IIFEs et les closures pour résoudre ce problème.
+Pour revenir à notre exemple précédent où l'on veut rendre public `getPassword()` et rendre privé `myPassword` et `setPassword`, on peut utiliser les IIFEs et les closures pour résoudre ce problème.
 
 ```js
 const getPassword = (function(){

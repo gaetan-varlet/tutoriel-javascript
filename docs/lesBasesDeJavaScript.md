@@ -249,7 +249,8 @@ var myVariable;
 
 JavaScript est **sensible à la casse**, il faut faire attention aux majuscules et minuscules.  
 JavaScript est un langage **typé dynamiquement**, cela veut dire que la déclaration de variable se fait avec le mot clé **var** sans distinction du contenu.  
-Les trois types principaux en JavaScript
+Les trois types principaux en JavaScript :
+
 - le type numérique (**number**) pour les nombres entiers ou décimaux
 - les chaînes de caractères (**string**) : on peut l’assigner avec des guillemets (") ou des apostrophes ('). Pour échapper les apostrophes, il faut utiliser \\
 - les booléens (**boolean**) : prennent soit la valeur true ou false
@@ -347,6 +348,7 @@ console.log(typeof text) // string
 
 ## La base de toute condition : les booléens
 Les opérateurs de comparaison :
+
 - `==` égal à
 - `!=` différent de
 - `===` contenu et type égal à
@@ -361,7 +363,8 @@ var number1 = 2, number2 = "2"
 console.log(number1 == number2) // true
 console.log(number1 === number2) // false
 ```
-Les opérateurs logiques
+Les opérateurs logiques :
+
 - `&&` ET `valeur1&&valeur2`
 - `||` OU `valeur1||valeur2`
 - `!` NON `!valeur`
@@ -627,7 +630,7 @@ La variable *sayHello* est devenue une fonction.
 ----
 
 ## Introduction aux objets
-JavaScript est un langage orienté objet, cela veut dire que le langage dispose d’objets, qui disposent d’une structure. JavaScript met à notre disposition des objets natifs : un nombre, une chaîne de caractères, un booléen. On dit que JavaScript n’est pas un langage typé car les variables contiennent toujours la même chose : un objet. Cet objet peut être de nature différente (nombre, booléen…). Il est également possible de créer nos propres objets, ce qui sera après.
+JavaScript est un langage orienté objet, cela veut dire que le langage dispose d’objets, qui disposent d’une structure. JavaScript met à notre disposition des objets natifs : un nombre, une chaîne de caractères, un booléen. On dit que JavaScript n’est pas un langage typé car les variables contiennent toujours la même chose : un objet. Cet objet peut être de nature différente (nombre, booléen…). Il est également possible de créer nos propres objets, ce qui sera vu après.
 
 Les objets contiennent trois choses distinctes :
 
