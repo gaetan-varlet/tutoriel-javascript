@@ -336,10 +336,12 @@ Il faut commencer par la déclarer, c’est à dire lui réserver un espace de s
 
 <p>JavaScript est <strong>sensible à la casse</strong>, il faut faire attention aux majuscules et minuscules.<br />
 JavaScript est un langage <strong>typé dynamiquement</strong>, cela veut dire que la déclaration de variable se fait avec le mot clé <strong>var</strong> sans distinction du contenu.<br />
-Les trois types principaux en JavaScript
-- le type numérique (<strong>number</strong>) pour les nombres entiers ou décimaux
-- les chaînes de caractères (<strong>string</strong>) : on peut l’assigner avec des guillemets (") ou des apostrophes ('). Pour échapper les apostrophes, il faut utiliser \
-- les booléens (<strong>boolean</strong>) : prennent soit la valeur true ou false</p>
+Les trois types principaux en JavaScript :</p>
+<ul>
+<li>le type numérique (<strong>number</strong>) pour les nombres entiers ou décimaux</li>
+<li>les chaînes de caractères (<strong>string</strong>) : on peut l’assigner avec des guillemets (") ou des apostrophes ('). Pour échapper les apostrophes, il faut utiliser \</li>
+<li>les booléens (<strong>boolean</strong>) : prennent soit la valeur true ou false</li>
+</ul>
 <p>L’instruction <strong>typeof</strong> permet de tester l’existence d’une variable ou d’en vérifier son type.</p>
 <pre><code class="js">var myNumber = 2
 var maString = &quot;toto&quot;
@@ -418,24 +420,28 @@ console.log(typeof text) // string
 <h1 id="les-conditions">Les conditions</h1>
 <hr />
 <h2 id="la-base-de-toute-condition-les-booleens">La base de toute condition : les booléens</h2>
-<p>Les opérateurs de comparaison :
-- <code>==</code> égal à
-- <code>!=</code> différent de
-- <code>===</code> contenu et type égal à
-- <code>!==</code> contenu ou type différent de
-- <code>&gt;</code> supérieur à
-- <code>&gt;=</code> supérieur ou égal à
-- <code>&lt;</code> inférieur à
-- <code>&lt;=</code> inférieur ou égal à</p>
+<p>Les opérateurs de comparaison :</p>
+<ul>
+<li><code>==</code> égal à</li>
+<li><code>!=</code> différent de</li>
+<li><code>===</code> contenu et type égal à</li>
+<li><code>!==</code> contenu ou type différent de</li>
+<li><code>&gt;</code> supérieur à</li>
+<li><code>&gt;=</code> supérieur ou égal à</li>
+<li><code>&lt;</code> inférieur à</li>
+<li><code>&lt;=</code> inférieur ou égal à</li>
+</ul>
 <pre><code class="js">var number1 = 2, number2 = &quot;2&quot;
 console.log(number1 == number2) // true
 console.log(number1 === number2) // false
 </code></pre>
 
-<p>Les opérateurs logiques
-- <code>&amp;&amp;</code> ET <code>valeur1&amp;&amp;valeur2</code>
-- <code>||</code> OU <code>valeur1||valeur2</code>
-- <code>!</code> NON <code>!valeur</code></p>
+<p>Les opérateurs logiques :</p>
+<ul>
+<li><code>&amp;&amp;</code> ET <code>valeur1&amp;&amp;valeur2</code></li>
+<li><code>||</code> OU <code>valeur1||valeur2</code></li>
+<li><code>!</code> NON <code>!valeur</code></li>
+</ul>
 <p>L’opérateur ET vérifie que toutes les valeurs qui lui sont passées valent true. Si une seule renvoie false, alors la condition ne sera pas respectée.<br />
 L’opérateur OU renvoie true si une des valeurs qui lui est soumise contient true.<br />
 L’opérateur NON inverse la valeur qui lui est passée, ainsi true devient false.</p>
@@ -653,7 +659,7 @@ sayHello() // Affiche : « Bonjour ! »
 <h1 id="les-objets-et-les-tableaux">Les objets et les tableaux</h1>
 <hr />
 <h2 id="introduction-aux-objets">Introduction aux objets</h2>
-<p>JavaScript est un langage orienté objet, cela veut dire que le langage dispose d’objets, qui disposent d’une structure. JavaScript met à notre disposition des objets natifs : un nombre, une chaîne de caractères, un booléen. On dit que JavaScript n’est pas un langage typé car les variables contiennent toujours la même chose : un objet. Cet objet peut être de nature différente (nombre, booléen…). Il est également possible de créer nos propres objets, ce qui sera après.</p>
+<p>JavaScript est un langage orienté objet, cela veut dire que le langage dispose d’objets, qui disposent d’une structure. JavaScript met à notre disposition des objets natifs : un nombre, une chaîne de caractères, un booléen. On dit que JavaScript n’est pas un langage typé car les variables contiennent toujours la même chose : un objet. Cet objet peut être de nature différente (nombre, booléen…). Il est également possible de créer nos propres objets, ce qui sera vu après.</p>
 <p>Les objets contiennent trois choses distinctes :</p>
 <ul>
 <li>un constructeur<ul>
@@ -791,7 +797,7 @@ monChien.aboie(); // affiche : wouf wouf Rex
         </footer>
         <script>
             var base_url = "..",
-                shortcuts = {"next": 78, "search": 83, "previous": 80, "help": 191};
+                shortcuts = {"previous": 80, "next": 78, "help": 191, "search": 83};
         </script>
         <script src="../js/base.js" defer></script>
         <script src="../search/main.js" defer></script>
