@@ -519,6 +519,7 @@ multiply.apply(louis, [2, 3]) // affiche Window et 6 comme bind
 ## Les fonctions fléchées (Arrow Functions)
 
 Les fonctions fléchées ont 2 particularitées :
+
 - la syntaxe est plus rapide
 - elles vont fixer la valeur du this automatiquement
 
@@ -671,6 +672,7 @@ console.log(louis.hasOwnProperty("color")) // affiche false
 ## La chaîne des constructeurs
 
 Les objets ont accès aux méthodes déclarées dans la fonction constructeur, dans le prototype, et aux méthodes des prototypes parents, notamment d'*Object*. Si une méthode à le même nom dans la fonction constructeur et dans le prototype, c'est celle dans la fonction constructeur qui sera exécutée car il y a un ordre de préférence. C'est ce qu'on appelle la **chaîne des prototypes** :
+
 - la méthode est d'abord recherchée sur notre objet lui-même
 - si rien n'est trouvé, elle est cherchée sur le prototype de notre objet
 - si rien n'est encore trouvé, elle est cherchée sur le prototype de l'objet parent, par exemple *Object*
