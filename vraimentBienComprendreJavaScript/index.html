@@ -571,9 +571,11 @@ multiply.apply(louis, [2, 3]) // affiche Window et 6 comme bind
 
 <hr />
 <h2 id="les-fonctions-flechees-arrow-functions">Les fonctions fléchées (Arrow Functions)</h2>
-<p>Les fonctions fléchées ont 2 particularitées :
-- la syntaxe est plus rapide
-- elles vont fixer la valeur du this automatiquement</p>
+<p>Les fonctions fléchées ont 2 particularitées :</p>
+<ul>
+<li>la syntaxe est plus rapide</li>
+<li>elles vont fixer la valeur du this automatiquement</li>
+</ul>
 <p>La syntaxe :</p>
 <pre><code class="js">const myFunction = arg =&gt; arg * 5
 console.log(myFunction(3)) // affiche 15
@@ -696,10 +698,12 @@ console.log(louis.hasOwnProperty(&quot;color&quot;)) // affiche false
 
 <hr />
 <h2 id="la-chaine-des-constructeurs">La chaîne des constructeurs</h2>
-<p>Les objets ont accès aux méthodes déclarées dans la fonction constructeur, dans le prototype, et aux méthodes des prototypes parents, notamment d'<em>Object</em>. Si une méthode à le même nom dans la fonction constructeur et dans le prototype, c'est celle dans la fonction constructeur qui sera exécutée car il y a un ordre de préférence. C'est ce qu'on appelle la <strong>chaîne des prototypes</strong> :
-- la méthode est d'abord recherchée sur notre objet lui-même
-- si rien n'est trouvé, elle est cherchée sur le prototype de notre objet
-- si rien n'est encore trouvé, elle est cherchée sur le prototype de l'objet parent, par exemple <em>Object</em></p>
+<p>Les objets ont accès aux méthodes déclarées dans la fonction constructeur, dans le prototype, et aux méthodes des prototypes parents, notamment d'<em>Object</em>. Si une méthode à le même nom dans la fonction constructeur et dans le prototype, c'est celle dans la fonction constructeur qui sera exécutée car il y a un ordre de préférence. C'est ce qu'on appelle la <strong>chaîne des prototypes</strong> :</p>
+<ul>
+<li>la méthode est d'abord recherchée sur notre objet lui-même</li>
+<li>si rien n'est trouvé, elle est cherchée sur le prototype de notre objet</li>
+<li>si rien n'est encore trouvé, elle est cherchée sur le prototype de l'objet parent, par exemple <em>Object</em></li>
+</ul>
 <pre><code class="js">function Person(name, age){
     this.name = name
     this.age = age
@@ -757,7 +761,7 @@ louis.present() // affiche : Hello my name is Louis
         </footer>
         <script>
             var base_url = "..",
-                shortcuts = {"previous": 80, "next": 78, "help": 191, "search": 83};
+                shortcuts = {"previous": 80, "help": 191, "next": 78, "search": 83};
         </script>
         <script src="../js/base.js" defer></script>
         <script src="../search/main.js" defer></script>

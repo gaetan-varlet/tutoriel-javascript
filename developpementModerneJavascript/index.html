@@ -94,7 +94,6 @@
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
         <li class="main active"><a href="#developpement-moderne-javascript">Développement Moderne JavaScript</a></li>
-            <li><a href="#-">----</a></li>
         <li class="main "><a href="#nouveautes-es6">Nouveautés ES6</a></li>
             <li><a href="#rappels">Rappels</a></li>
             <li><a href="#les-parametres-par-defaut">Les paramètres par défaut</a></li>
@@ -104,29 +103,23 @@
             <li><a href="#les-template-literals-ou-template-string">Les Template Literals ou Template String</a></li>
             <li><a href="#destructuring-arrays">Destructuring Arrays</a></li>
             <li><a href="#destructuring-objects">Destructuring Objects</a></li>
-            <li><a href="#-_1">----</a></li>
         <li class="main "><a href="#les-classes-es6">Les classes (ES6)</a></li>
             <li><a href="#la-notion-de-classe">La notion de classe</a></li>
             <li><a href="#lheritage-inheritance">L'héritage (Inheritance)</a></li>
             <li><a href="#etendre-les-objets-integres-extend-built-in-objects">Etendre les objets intégrés (Extend Built-In Objects)</a></li>
             <li><a href="#methodes-statiques">Méthodes Statiques</a></li>
             <li><a href="#get-et-set">Get et Set</a></li>
-            <li><a href="#-_2">----</a></li>
         <li class="main "><a href="#les-modules-es6">Les modules (ES6)</a></li>
             <li><a href="#loperateur-dexponentiation-operateur-de-puissance">L'opérateur d'exponentiation (opérateur de puissance)</a></li>
-            <li><a href="#-_3">----</a></li>
         <li class="main "><a href="#developpement-moderne-javascript_1">Développement moderne JavaScript</a></li>
-            <li><a href="#-_4">----</a></li>
         <li class="main "><a href="#npm">Npm</a></li>
             <li><a href="#les-bases-de-npm">Les bases de Npm</a></li>
             <li><a href="#le-fichier-packagejson">Le fichier package.json</a></li>
-            <li><a href="#-_5">----</a></li>
         <li class="main "><a href="#webpack">Webpack</a></li>
             <li><a href="#quest-ce-que-webpack">Qu'est-ce que Webpack</a></li>
             <li><a href="#executer-webpack">Exécuter Webpack</a></li>
             <li><a href="#serveur-local-webpack">Serveur local Webpack</a></li>
             <li><a href="#architecture-des-fichiers">Architecture des fichiers</a></li>
-            <li><a href="#-_6">----</a></li>
         <li class="main "><a href="#babel">Babel</a></li>
             <li><a href="#quest-ce-que-babel">Qu'est-ce que Babel</a></li>
             <li><a href="#babel-loader">Babel loader</a></li>
@@ -136,7 +129,8 @@
                 <div class="col-md-9" role="main">
 
 <h1 id="developpement-moderne-javascript">Développement Moderne JavaScript</h1>
-<h2 id="-">----</h2>
+<hr />
+<hr />
 <h1 id="nouveautes-es6">Nouveautés ES6</h1>
 <hr />
 <h2 id="rappels">Rappels</h2>
@@ -419,7 +413,8 @@ console.log(age1) // affiche 0
 hello() // affiche  Hello
 </code></pre>
 
-<h2 id="-_1">----</h2>
+<hr />
+<hr />
 <h1 id="les-classes-es6">Les classes (ES6)</h1>
 <hr />
 <h2 id="la-notion-de-classe">La notion de classe</h2>
@@ -561,7 +556,8 @@ console.log(louis._name) // affiche : az
 console.log(louis.name) // affiche : bébé az
 </code></pre>
 
-<h2 id="-_2">----</h2>
+<hr />
+<hr />
 <h1 id="les-modules-es6">Les modules (ES6)</h1>
 <hr />
 <p>## Modules</p>
@@ -717,10 +713,12 @@ myVar **= 3 // équivaut à myVar = myVar ** 3
 console.log(myVar) // affiche 8
 </code></pre>
 
-<h2 id="-_3">----</h2>
+<hr />
+<hr />
 <h1 id="developpement-moderne-javascript_1">Développement moderne JavaScript</h1>
 <p>Tous les navigateurs ne supportent pas encore ces nouveautés. Il existe des outils qui permettent de coder en ES6 et ES7 et que le code soit supporté par tous les navigateurs.</p>
-<h2 id="-_4">----</h2>
+<hr />
+<hr />
 <h1 id="npm">Npm</h1>
 <hr />
 <h2 id="les-bases-de-npm">Les bases de Npm</h2>
@@ -763,7 +761,8 @@ export const myLog = message =&gt; console.log(`** My Log ** : ${message}`)
 - les dépendances classiques dont notre code a besoin, comme par exemple <em>jquery</em>. Elles sont rensiegnées donc <em>dependencies</em>
 - les dépendances de développement qui correspond aux outils de développement, par exemple <em>webpack</em> que l'on verra au prochain chapitre. Elles sont rensiegnées donc <em>devDependencies</em>. Pour cela, il faut utiliser la commande <code>--save-dev</code>, par exemple <code>npm install --save-dev webpack webpack-cli</code></p>
 <p>En installant <em>webpack</em>, il y a maintenant plein de dépendances dans <em>node_modules</em> car <em>webpack</em> a besoin d'autres dépendances qui ont été installé également.</p>
-<h2 id="-_5">----</h2>
+<hr />
+<hr />
 <h1 id="webpack">Webpack</h1>
 <hr />
 <h2 id="quest-ce-que-webpack">Qu'est-ce que Webpack</h2>
@@ -865,7 +864,8 @@ module.exports = {
 &lt;/html&gt;
 </code></pre>
 
-<h2 id="-_6">----</h2>
+<hr />
+<hr />
 <h1 id="babel">Babel</h1>
 <hr />
 <h2 id="quest-ce-que-babel">Qu'est-ce que Babel</h2>
@@ -920,7 +920,7 @@ myLog(&quot;Hello !&quot;)
         </footer>
         <script>
             var base_url = "..",
-                shortcuts = {"previous": 80, "next": 78, "help": 191, "search": 83};
+                shortcuts = {"previous": 80, "help": 191, "next": 78, "search": 83};
         </script>
         <script src="../js/base.js" defer></script>
         <script src="../search/main.js" defer></script>
