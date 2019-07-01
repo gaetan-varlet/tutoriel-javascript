@@ -1,6 +1,7 @@
 # Développement Moderne JavaScript
 
 ----
+
 ----
 
 # Nouveautés ES6
@@ -336,6 +337,7 @@ hello() // affiche  Hello
 ```
 
 ----
+
 ----
 
 # Les classes (ES6)
@@ -501,6 +503,7 @@ console.log(louis.name) // affiche : bébé az
 ```
 
 ----
+
 ----
 
 # Les modules (ES6)
@@ -628,6 +631,7 @@ external.myLog(external.myVariable)
 ```
 
  ----
+
  ----
 
  # Les nouveautés ES7
@@ -691,6 +695,7 @@ console.log(myVar) // affiche 8
 ```
 
 ----
+
 ----
 
 # Développement moderne JavaScript
@@ -698,6 +703,7 @@ console.log(myVar) // affiche 8
 Tous les navigateurs ne supportent pas encore ces nouveautés. Il existe des outils qui permettent de coder en ES6 et ES7 et que le code soit supporté par tous les navigateurs.
 
 ----
+
 ----
 
 # Npm
@@ -757,6 +763,7 @@ Il y a deux types de dépendances :
 En installant *webpack*, il y a maintenant plein de dépendances dans *node_modules* car *webpack* a besoin d'autres dépendances qui ont été installé également.
 
 ----
+
 ----
 
 # Webpack
@@ -877,6 +884,7 @@ module.exports = {
 ```
 
 ----
+
 ----
 
 # Babel
