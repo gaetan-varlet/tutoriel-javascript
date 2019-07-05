@@ -293,23 +293,25 @@ console.log(typeof objetString.valueOf());  // affiche &quot;string&quot;
 
 <p>Étant donné que JavaScript effectue automatiquement les conversions entre chaînes primitives et objets String, toute méthode de l'objet String peut être appelée sur une chaîne primitive.</p>
 <p>La propriété <code>length</code> retourne la longueur de la chaîne.</p>
-<p>Quelques méthodes utiles :
-- <code>charAt(index)</code> renvoie une nouvelle chaîne contenant le caractère à la position indiquée en argument
-- <code>concat(string2,...stringN)</code> combine le texte de plusieurs chaînes avec la chaîne appelante et renvoie la nouvelle chaîne ainsi formée
-- <code>endsWith(chaîneRecherchée)</code> renvoie un booléen indiquant si la chaine de caractères se termine par la chaine de caractères fournie en argument
-- <code>indexOf(valeurRecherchée)</code> renvoie l'indice de la première occurence de la valeur cherchée au sein de la chaîne courante. Elle renvoie -1 si la valeur cherchée n'est pas trouvée
-- <code>lastIndexOf(valeurRecherchée)</code> envoie l'indice, dans la chaîne courante, de la dernière occurence de la valeur donnée en argument. Si cette sous-chaîne n'est pas trouvée, la méthode renvoie -1
-- <code>replace()</code> rechercher une correspondance entre une expression régulière et une chaîne, et remplace la sous-chaîne correspondante par une nouvelle chaîne
-- <code>search(regexp)</code> renvoie l'indice de la première correspondance pour l'expression régulière au sein de la chaine de caractères, sinon, la méthode renvoie -1
-- <code>slice(indiceDebut[, indiceFin])</code> extrait une section d'une chaine de caractères et la retourne comme une nouvelle chaine de caractères
-- <code>split(séparateur)</code> permet de diviser une chaîne de caractères à partir d'un séparateur pour fournir un tableau de sous-chaînes
-- <code>startsWith(chaîneRecherchée)</code> renvoie un booléen indiquant si la chaine de caractères commence par la deuxième chaine de caractères fournie en argument
-- <code>substring(indiceA[, indiceB])</code> retourne une sous-chaîne de la chaîne courante, entre un indice de début et un indice de fin
-- <code>toLowerCase()</code> retourne la chaîne de caractères courante en minuscules
-- <code>toString()</code> renvoie une chaine de caractères représentant l'objet renseigné
-- <code>toUpperCase()</code> retourne la valeur de la chaîne courante, convertie en majuscules
-- <code>trim()</code> permet de retirer les blancs en début et fin de chaîne
-- <code>valueOf()</code> renvoie la valeur primitive de l'objet String</p>
+<p>Quelques méthodes utiles :</p>
+<ul>
+<li><code>charAt(index)</code> renvoie une nouvelle chaîne contenant le caractère à la position indiquée en argument</li>
+<li><code>concat(string2,...stringN)</code> combine le texte de plusieurs chaînes avec la chaîne appelante et renvoie la nouvelle chaîne ainsi formée</li>
+<li><code>endsWith(chaîneRecherchée)</code> renvoie un booléen indiquant si la chaine de caractères se termine par la chaine de caractères fournie en argument</li>
+<li><code>indexOf(valeurRecherchée)</code> renvoie l'indice de la première occurence de la valeur cherchée au sein de la chaîne courante. Elle renvoie -1 si la valeur cherchée n'est pas trouvée</li>
+<li><code>lastIndexOf(valeurRecherchée)</code> envoie l'indice, dans la chaîne courante, de la dernière occurence de la valeur donnée en argument. Si cette sous-chaîne n'est pas trouvée, la méthode renvoie -1</li>
+<li><code>replace()</code> rechercher une correspondance entre une expression régulière et une chaîne, et remplace la sous-chaîne correspondante par une nouvelle chaîne</li>
+<li><code>search(regexp)</code> renvoie l'indice de la première correspondance pour l'expression régulière au sein de la chaine de caractères, sinon, la méthode renvoie -1</li>
+<li><code>slice(indiceDebut[, indiceFin])</code> extrait une section d'une chaine de caractères et la retourne comme une nouvelle chaine de caractères</li>
+<li><code>split(séparateur)</code> permet de diviser une chaîne de caractères à partir d'un séparateur pour fournir un tableau de sous-chaînes</li>
+<li><code>startsWith(chaîneRecherchée)</code> renvoie un booléen indiquant si la chaine de caractères commence par la deuxième chaine de caractères fournie en argument</li>
+<li><code>substring(indiceA[, indiceB])</code> retourne une sous-chaîne de la chaîne courante, entre un indice de début et un indice de fin</li>
+<li><code>toLowerCase()</code> retourne la chaîne de caractères courante en minuscules</li>
+<li><code>toString()</code> renvoie une chaine de caractères représentant l'objet renseigné</li>
+<li><code>toUpperCase()</code> retourne la valeur de la chaîne courante, convertie en majuscules</li>
+<li><code>trim()</code> permet de retirer les blancs en début et fin de chaîne</li>
+<li><code>valueOf()</code> renvoie la valeur primitive de l'objet String</li>
+</ul>
 <p>Exemples :</p>
 <pre><code class="js">console.log(gaetan.length) // affiche 6
 console.log(gaetan.charAt(1)) // affiche a
@@ -494,7 +496,7 @@ console.log(JSON.stringify({ x: 5, y: 6 })) // expected output: &quot;{&quot;x&q
         </footer>
         <script>
             var base_url = "..",
-                shortcuts = {"previous": 80, "help": 191, "next": 78, "search": 83};
+                shortcuts = {"previous": 80, "next": 78, "search": 83, "help": 191};
         </script>
         <script src="../js/base.js" defer></script>
         <script src="../search/main.js" defer></script>

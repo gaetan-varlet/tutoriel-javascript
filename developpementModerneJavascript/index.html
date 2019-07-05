@@ -110,8 +110,12 @@
             <li><a href="#methodes-statiques">Méthodes Statiques</a></li>
             <li><a href="#get-et-set">Get et Set</a></li>
         <li class="main "><a href="#les-modules-es6">Les modules (ES6)</a></li>
+            <li><a href="#modules">Modules</a></li>
+            <li><a href="#import-et-export">Import et Export</a></li>
+        <li class="main "><a href="#les-nouveautes-es7">Les nouveautés ES7</a></li>
+            <li><a href="#arrayprototypeincludes">Array.prototype.includes</a></li>
             <li><a href="#loperateur-dexponentiation-operateur-de-puissance">L'opérateur d'exponentiation (opérateur de puissance)</a></li>
-        <li class="main "><a href="#developpement-moderne-javascript_1">Développement moderne JavaScript</a></li>
+        <li class="main "><a href="#les-outils-pour-le-developpement-moderne-javascript">Les outils pour le développement moderne JavaScript</a></li>
         <li class="main "><a href="#npm">Npm</a></li>
             <li><a href="#les-bases-de-npm">Les bases de Npm</a></li>
             <li><a href="#le-fichier-packagejson">Le fichier package.json</a></li>
@@ -134,12 +138,14 @@
 <h1 id="nouveautes-es6">Nouveautés ES6</h1>
 <hr />
 <h2 id="rappels">Rappels</h2>
-<p>Dans la partie précédente ont déjà été vu des nouveautés ES6 :
-- les nouveaux mots clés <code>let</code> et <code>var</code> pour déclarer une variable
-- les scopes de bloc
-- quand utiliser <code>var</code>, <code>let</code> et <code>const</code>
-- les fonctions fléchés
-- le concept de classe</p>
+<p>Dans la partie précédente ont déjà été vu des nouveautés ES6 :</p>
+<ul>
+<li>les nouveaux mots clés <code>let</code> et <code>var</code> pour déclarer une variable</li>
+<li>les scopes de bloc</li>
+<li>quand utiliser <code>var</code>, <code>let</code> et <code>const</code></li>
+<li>les fonctions fléchés</li>
+<li>le concept de classe</li>
+</ul>
 <hr />
 <h2 id="les-parametres-par-defaut">Les paramètres par défaut</h2>
 <p>On peut maintenant utiliser des paramètres par défaut dans les fonctions.</p>
@@ -421,11 +427,13 @@ hello() // affiche  Hello
 <p>Comme vu dans la partie précédente, pour construire un objet, au lieu de faire une fonction constructeur et ajouter des méthodes sur le prototype, on peut créer une classe.</p>
 <hr />
 <h2 id="lheritage-inheritance">L'héritage (Inheritance)</h2>
-<p>Si on veut définir une classe qui a les mêmes propriétés qu'une autre classe avec une propriété en plus, on peut hériter de cette classe plutôt que de la redéfinir de zéro, ce qui évitera une duplication de code.
-- le mot clé <code>extends</code> permet de dire de quelle clase on hérite
-- le mot clé <code>super</code> dans le constructeur permet d'exécuter le constructeur de la classe parent
-- il est aussi possible d'exécuter une méthode parent dans une méthode enfant avec <code>super</code> en faisant <code>super.nomMethodeParent()</code>
-- il est possible d'utiliser les méthodes parent sans les définir dans la classe enfant</p>
+<p>Si on veut définir une classe qui a les mêmes propriétés qu'une autre classe avec une propriété en plus, on peut hériter de cette classe plutôt que de la redéfinir de zéro, ce qui évitera une duplication de code.</p>
+<ul>
+<li>le mot clé <code>extends</code> permet de dire de quelle clase on hérite</li>
+<li>le mot clé <code>super</code> dans le constructeur permet d'exécuter le constructeur de la classe parent</li>
+<li>il est aussi possible d'exécuter une méthode parent dans une méthode enfant avec <code>super</code> en faisant <code>super.nomMethodeParent()</code></li>
+<li>il est possible d'utiliser les méthodes parent sans les définir dans la classe enfant</li>
+</ul>
 <pre><code class="js">class Person {
     constructor(name, age){
         this.name = name
@@ -560,7 +568,7 @@ console.log(louis.name) // affiche : bébé az
 <hr />
 <h1 id="les-modules-es6">Les modules (ES6)</h1>
 <hr />
-<p>## Modules</p>
+<h2 id="modules">Modules</h2>
 <p>Sur des gros projets, il faut organiser le code JavaScript en plusieurs fichiers. Pour charger les différents fichiers JavaScript, on peut les charger chacun un tag <code>&lt;script src="script.js"&gt;&lt;/script&gt;</code> dans la page html.</p>
 <pre><code class="js"> // script1.js
 const myLog = message =&gt; console.log(`** My Log ** : ${message}`)
@@ -610,20 +618,20 @@ myLog(&quot;Hello !&quot;)
 </code></pre>
 
 <hr />
-<p>## Import et Export</p>
+<h2 id="import-et-export">Import et Export</h2>
 <p>Avec les modules, l'import et l'export se fait par référence, c'est-à-dire qu'on ne crée pas une nouvelle variable mais on importe la variable de l'autre module.</p>
-<p>Pour exporter plusieurs choses d'un même module, on fait deux exports et on fait les deux imports sur une seule ligne
-  <code>``js
- // script1.js
-export const myLog = message =&gt; console.log(</code><strong> My Log </strong> : ${message}`)
-export let myVariable = "Coucou !"</p>
-<p>// script2.js
-import {myLog, myVariable} from "./script1.js"
-myLog(myVariable)</p>
-<pre><code>
-On peut aussi faire l'export à la fin du fichier au lieu de le faire au moment de la déclaration.
-  ```js
- // script1.js
+<p>Pour exporter plusieurs choses d'un même module, on fait deux exports et on fait les deux imports sur une seule ligne</p>
+<pre><code class="js"> // script1.js
+export const myLog = message =&gt; console.log(`** My Log ** : ${message}`)
+export let myVariable = &quot;Coucou !&quot;
+
+// script2.js
+import {myLog, myVariable} from &quot;./script1.js&quot;
+myLog(myVariable)
+</code></pre>
+
+<p>On peut aussi faire l'export à la fin du fichier au lieu de le faire au moment de la déclaration.</p>
+<pre><code class="js"> // script1.js
 const myLog = message =&gt; console.log(`** My Log ** : ${message}`)
 let myVariable = &quot;Coucou !&quot;
 export {myLog, myVariable}
@@ -666,9 +674,9 @@ external.myLog(external.myVariable)
 
 <hr />
 <hr />
-<p># Les nouveautés ES7</p>
+<h1 id="les-nouveautes-es7">Les nouveautés ES7</h1>
 <hr />
-<p>## Array.prototype.includes</p>
+<h2 id="arrayprototypeincludes">Array.prototype.includes</h2>
 <p>Lorsqu'on veut vérifier la présence d'un élément dans un tableau, il faut utiliser la méthode <code>indexOf()</code> qui renvoie la position de l'élément dans le tableau, ou -1 si l'élément est absent.</p>
 <pre><code class="js">const fruits = [&quot;pomme&quot;, &quot;banane&quot;, &quot;orange&quot;]
 
@@ -715,9 +723,8 @@ console.log(myVar) // affiche 8
 
 <hr />
 <hr />
-<h1 id="developpement-moderne-javascript_1">Développement moderne JavaScript</h1>
+<h1 id="les-outils-pour-le-developpement-moderne-javascript">Les outils pour le développement moderne JavaScript</h1>
 <p>Tous les navigateurs ne supportent pas encore ces nouveautés. Il existe des outils qui permettent de coder en ES6 et ES7 et que le code soit supporté par tous les navigateurs.</p>
-<hr />
 <hr />
 <h1 id="npm">Npm</h1>
 <hr />
@@ -805,7 +812,7 @@ export const myLog = message =&gt; console.log(`** My Log ** : ${message}`)
 
 <hr />
 <h2 id="executer-webpack">Exécuter Webpack</h2>
-<p>On va lancer l'exécutable de webpack. Dans le dossier <em>.bin</em> de node_modules, il y a tous les exécutables. Pour lancer webpack, on va exécuter la commande <code>node_modules/.bin/webpack</code>. Le fichier *bundle.js a été créé en enpaquetant nos fichiers javscript. On peut lancer notre page HTML et ça fonctionne comme avant san utiliser les modules.</p>
+<p>On va lancer l'exécutable de webpack. Dans le dossier <em>.bin</em> de node_modules, il y a tous les exécutables. Pour lancer webpack, on va exécuter la commande <code>node_modules/.bin/webpack</code>. Le fichier <em>bundle.js</em> a été créé en enpaquetant nos fichiers javscript. On peut lancer notre page HTML et ça fonctionne comme avant san utiliser les modules.</p>
 <p>Pour éviter de lancer la commande <code>node_modules/.bin/webpack</code> à chaque fois, on va créer une tâche dans le fichier <em>package.json</em> que l'on pourra exécuter à la place de cette commande. Pour excécuter la tâche, on lancera la commande <code>npm run build</code></p>
 <pre><code class="js">// package.json
   &quot;scripts&quot;: {
@@ -832,9 +839,11 @@ module.exports = {
 On va exécuter la commande <code>node_modules/.bin/webpack-dev-server</code> qui compile notre code et le met à disposition à l'adresse <strong>localhost:8080</strong>. En faisant des modifications dans le code et que l'on enregistre, la page est relancé automatiquement. On peut créer une tâche dans les scripts dans le fichier <em>package.json</em> : <code>"start": "webpack-dev-server --open"</code>. <code>--open</code> permet de lancer la page HTML dans le navigateur avec la commannde <code>npm run start</code>.</p>
 <hr />
 <h2 id="architecture-des-fichiers">Architecture des fichiers</h2>
-<p>Pour le moment, tous les fichiers sont mis à la racine du projet. On va réorganiser tout ça
-- un dossier <strong>src</strong> qui contient le code de développement, les fichiers sources JavaScript
-- un dossier <strong>dist</strong> qui contient le code de distribution que voit le public, le fichier index.html et le fichier bundle.js</p>
+<p>Pour le moment, tous les fichiers sont mis à la racine du projet. On va réorganiser tout ça</p>
+<ul>
+<li>un dossier <strong>src</strong> qui contient le code de développement, les fichiers sources JavaScript</li>
+<li>un dossier <strong>dist</strong> qui contient le code de distribution que voit le public, le fichier index.html et le fichier bundle.js</li>
+</ul>
 <p>Il faut mettre à jour le fichier de configuration de webpack pour que ça fonctionne bien</p>
 <pre><code class="js">// webpack.config.js
 const path = require(&quot;path&quot;) // permet de créer des chemins absolus à partir des chemins relatifs car webpack attend à certains endroits des chemins absolus
@@ -920,7 +929,7 @@ myLog(&quot;Hello !&quot;)
         </footer>
         <script>
             var base_url = "..",
-                shortcuts = {"previous": 80, "help": 191, "next": 78, "search": 83};
+                shortcuts = {"previous": 80, "next": 78, "search": 83, "help": 191};
         </script>
         <script src="../js/base.js" defer></script>
         <script src="../search/main.js" defer></script>

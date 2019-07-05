@@ -94,12 +94,10 @@
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
         <li class="main active"><a href="#javascript-debarque-dans-le-navigateur">JavaScript débarque dans le navigateur</a></li>
-            <li><a href="#-">----</a></li>
         <li class="main "><a href="#javascript-dans-le-navigateur">JavaScript dans le navigateur</a></li>
             <li><a href="#lobjet-window">L'objet Window</a></li>
             <li><a href="#lobjet-location">L'objet Location</a></li>
             <li><a href="#lobjet-document-le-dom">L'objet Document : le DOM</a></li>
-            <li><a href="#-_1">----</a></li>
         <li class="main "><a href="#javascript-et-le-dom">JavaScript et le DOM</a></li>
             <li><a href="#lheritage-des-proprietes-et-des-methodes">L'héritage des propriétés et des méthodes</a></li>
             <li><a href="#hierarchie-des-elements">Hiérarchie des éléments</a></li>
@@ -111,7 +109,6 @@
             <li><a href="#selectionner-avec-query-selector">Sélectionner avec Query Selector</a></li>
             <li><a href="#modifier-lordre-des-elements">Modifier l'ordre des éléments</a></li>
             <li><a href="#creer-des-elements">Créer des éléments</a></li>
-            <li><a href="#-_2">----</a></li>
         <li class="main "><a href="#les-evenements-javascript">Les événements Javascript</a></li>
             <li><a href="#quest-ce-quun-evenement">Qu'est-ce qu'un événement ?</a></li>
             <li><a href="#on-event-handler">On-Event Handler</a></li>
@@ -119,7 +116,6 @@
             <li><a href="#propagation-des-evenements">Propagation des événements</a></li>
             <li><a href="#proprietes-de-lobjet-event">Propriétés de l'objet Event</a></li>
             <li><a href="#methodes-de-lobjet-event">Méthodes de l'objet Event</a></li>
-            <li><a href="#-_3">----</a></li>
         <li class="main "><a href="#requetes-http-ajax">Requêtes HTTP - Ajax</a></li>
             <li><a href="#quest-ce-quune-requete-http">Qu'est-ce qu'une requête HTTP ?</a></li>
             <li><a href="#requetes-http-avec-xmlhttprequest">Requêtes HTTP avec XMLHttpRequest</a></li>
@@ -128,7 +124,8 @@
                 <div class="col-md-9" role="main">
 
 <h1 id="javascript-debarque-dans-le-navigateur">JavaScript débarque dans le navigateur</h1>
-<h2 id="-">----</h2>
+<hr />
+<hr />
 <h1 id="javascript-dans-le-navigateur">JavaScript dans le navigateur</h1>
 <hr />
 <h2 id="lobjet-window">L'objet Window</h2>
@@ -185,7 +182,8 @@ console.log(document.body) // affiche le body
 </code></pre>
 
 <p>L'élément <code>&lt;html&gt;</code> contient deux éléments, appelés <strong>enfants</strong> : <code>&lt;head&gt;</code> et <code>&lt;body&gt;</code>. Pour ces deux enfants, <code>&lt;html&gt;</code> est l'élément <strong>parent</strong>. Chaque élément est appelé <strong>noeud</strong> (<em>node</em> en anglais). <code>&lt;title&gt;</code> contient un élément enfant <code>#text</code> qui contient du texte. Le texte présent dans une page Web est vu par le DOM comme on noeud de type <code>#text</code>.</p>
-<h2 id="-_1">----</h2>
+<hr />
+<hr />
 <h1 id="javascript-et-le-dom">JavaScript et le DOM</h1>
 <hr />
 <h2 id="lheritage-des-proprietes-et-des-methodes">L'héritage des propriétés et des méthodes</h2>
@@ -249,9 +247,11 @@ document.getElementById('myDiv').innerHTML += ' et &lt;strong&gt;une portion mis
 
 <p>Il ne faut pas l'utiliser dans une boucle car <code>innerHTML</code> ralentit l'exécution du code. Il vaut mieux la concaténer dans une variable et ensuite ajouter le tout via <code>innerHTML</code>.</p>
 <h3 id="innertext-et-textcontent">innerText et textContent</h3>
-<p><code>innerText</code> pour IE et <code>textContent</code> pour les autres navigateurs sont des propriétés analogues à <code>innerHTML</code>, qui permettent de récupérer le contenu d'un élément <strong>sous forme de texte mais sans les balises</strong>, et permet aussi de modifier le contenu de l'élément.
-- <code>innerText</code> a été introduite dans IE, mais jamais standardisée et n'est pas suportée par tous les navigateurs
-- <code>textContent</code> est la version standardisée d'<code>innerText</code>. Elle est reconnue par tous les navigateurs à l'exception des versions antérieures à IE9.</p>
+<p><code>innerText</code> pour IE et <code>textContent</code> pour les autres navigateurs sont des propriétés analogues à <code>innerHTML</code>, qui permettent de récupérer le contenu d'un élément <strong>sous forme de texte mais sans les balises</strong>, et permet aussi de modifier le contenu de l'élément.</p>
+<ul>
+<li><code>innerText</code> a été introduite dans IE, mais jamais standardisée et n'est pas suportée par tous les navigateurs</li>
+<li><code>textContent</code> est la version standardisée d'<code>innerText</code>. Elle est reconnue par tous les navigateurs à l'exception des versions antérieures à IE9.</li>
+</ul>
 <pre><code class="js">console.log(document.body.children[0].children[0].textContent) // affiche Un peu de texte et un lien
 document.body.children[0].children[0].textContent = &quot;&lt;strong&gt;Nouveau Texte&lt;/strong&gt;&quot; // les balises ne sont pas interprétés par le navigateur mais écrites comme du texte affiché dans le navigateur
 console.log(document.body.children[0].children[0].textContent) // affiche &lt;strong&gt;Nouveau Texte&lt;/strong&gt;
@@ -409,14 +409,17 @@ planifierTache('7h40', 'Petit-déjeuner')
 planifierTache('8h00', 'Douche')
 </code></pre>
 
-<h2 id="-_2">----</h2>
+<hr />
+<hr />
 <h1 id="les-evenements-javascript">Les événements Javascript</h1>
 <hr />
 <h2 id="quest-ce-quun-evenement">Qu'est-ce qu'un événement ?</h2>
-<p>Les événements permettent de déclencher une fonction selon qu'une action s'est produite ou non, par exemple faire apparaître une fenêtre <code>alert()</code> au survol d'une zone d'un élément. Ils sont de différentes natures, par exemple :
-- cliquer sur un élément
-- appuyer sur une touche du clavier
-- lorsque le navigateur a fini de charger la page Web</p>
+<p>Les événements permettent de déclencher une fonction selon qu'une action s'est produite ou non, par exemple faire apparaître une fenêtre <code>alert()</code> au survol d'une zone d'un élément. Ils sont de différentes natures, par exemple :</p>
+<ul>
+<li>cliquer sur un élément</li>
+<li>appuyer sur une touche du clavier</li>
+<li>lorsque le navigateur a fini de charger la page Web</li>
+</ul>
 <p>Un événement est basé sur l'interface <code>Event</code>, avec par exemple les classes <code>MouseEvent</code>et <code>KeyboardEvent</code> pour les événements liés à la souris et au clavier.</p>
 <hr />
 <h2 id="on-event-handler">On-Event Handler</h2>
@@ -592,7 +595,8 @@ function envoyerFormulaire(event){
 }
 </code></pre>
 
-<h2 id="-_3">----</h2>
+<hr />
+<hr />
 <h1 id="requetes-http-ajax">Requêtes HTTP - Ajax</h1>
 <hr />
 <h2 id="quest-ce-quune-requete-http">Qu'est-ce qu'une requête HTTP ?</h2>
@@ -649,9 +653,11 @@ req.open(method, url)
 req.send(data)
 </code></pre>
 
-<p>La méthode <code>open()</code> prend en argument la méthode HTTP puis l'url à appeler. Il y a ensuite des arguments optionels : <code>XMLHttpRequest.open(method, url, async, user, password)</code>
-- <code>async</code> : à <em>true</em> par défaut. On peut le mettre à <em>false</em> pour faire des requêtes synchrones, ce qui est déconseillé
-- <code>user</code> et <code>password</code> sont <em>null</em> par défaut et servent à l'authentification</p></div>
+<p>La méthode <code>open()</code> prend en argument la méthode HTTP puis l'url à appeler. Il y a ensuite des arguments optionels : <code>XMLHttpRequest.open(method, url, async, user, password)</code></p>
+<ul>
+<li><code>async</code> : à <em>true</em> par défaut. On peut le mettre à <em>false</em> pour faire des requêtes synchrones, ce qui est déconseillé</li>
+<li><code>user</code> et <code>password</code> sont <em>null</em> par défaut et servent à l'authentification</li>
+</ul></div>
         </div>
 
         <footer class="col-md-12">
@@ -660,7 +666,7 @@ req.send(data)
         </footer>
         <script>
             var base_url = "..",
-                shortcuts = {"previous": 80, "help": 191, "next": 78, "search": 83};
+                shortcuts = {"previous": 80, "next": 78, "search": 83, "help": 191};
         </script>
         <script src="../js/base.js" defer></script>
         <script src="../search/main.js" defer></script>
