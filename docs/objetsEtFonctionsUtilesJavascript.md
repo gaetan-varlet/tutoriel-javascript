@@ -224,6 +224,7 @@ console.log(typeof objetString.valueOf());  // affiche "string"
 La propriété `length` retourne la longueur de la chaîne.
 
 Quelques méthodes utiles :
+
 - `charAt(index)` renvoie une nouvelle chaîne contenant le caractère à la position indiquée en argument
 - `concat(string2,...stringN)` combine le texte de plusieurs chaînes avec la chaîne appelante et renvoie la nouvelle chaîne ainsi formée
 - `endsWith(chaîneRecherchée)` renvoie un booléen indiquant si la chaine de caractères se termine par la chaine de caractères fournie en argument

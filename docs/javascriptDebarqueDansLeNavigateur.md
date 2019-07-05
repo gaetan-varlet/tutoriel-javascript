@@ -1,6 +1,7 @@
 # JavaScript débarque dans le navigateur
 
 ----
+
 ----
 
 # JavaScript dans le navigateur
@@ -79,6 +80,7 @@ Voici le code source correspondant :
 L'élément `<html>` contient deux éléments, appelés **enfants** : `<head>` et `<body>`. Pour ces deux enfants, `<html>` est l'élément **parent**. Chaque élément est appelé **noeud** (*node* en anglais). `<title>` contient un élément enfant `#text` qui contient du texte. Le texte présent dans une page Web est vu par le DOM comme on noeud de type `#text`.
 
 ----
+
 ----
 
 # JavaScript et le DOM
@@ -161,6 +163,7 @@ Il ne faut pas l'utiliser dans une boucle car `innerHTML` ralentit l'exécution 
 ### innerText et textContent
 
 `innerText` pour IE et `textContent` pour les autres navigateurs sont des propriétés analogues à `innerHTML`, qui permettent de récupérer le contenu d'un élément **sous forme de texte mais sans les balises**, et permet aussi de modifier le contenu de l'élément.
+
 - `innerText` a été introduite dans IE, mais jamais standardisée et n'est pas suportée par tous les navigateurs
 - `textContent` est la version standardisée d'`innerText`. Elle est reconnue par tous les navigateurs à l'exception des versions antérieures à IE9.
 
@@ -358,6 +361,7 @@ planifierTache('8h00', 'Douche')
 ```
 
 ----
+
 ----
 
 # Les événements Javascript
@@ -367,6 +371,7 @@ planifierTache('8h00', 'Douche')
 ## Qu'est-ce qu'un événement ?
 
 Les événements permettent de déclencher une fonction selon qu'une action s'est produite ou non, par exemple faire apparaître une fenêtre `alert()` au survol d'une zone d'un élément. Ils sont de différentes natures, par exemple :
+
 - cliquer sur un élément
 - appuyer sur une touche du clavier
 - lorsque le navigateur a fini de charger la page Web
@@ -581,6 +586,7 @@ function envoyerFormulaire(event){
 ```
 
 ----
+
 ----
 
 # Requêtes HTTP - Ajax
@@ -649,5 +655,6 @@ req.send(data)
 ```
 
 La méthode `open()` prend en argument la méthode HTTP puis l'url à appeler. Il y a ensuite des arguments optionels : `XMLHttpRequest.open(method, url, async, user, password)`
+
 - `async` : à *true* par défaut. On peut le mettre à *false* pour faire des requêtes synchrones, ce qui est déconseillé
 - `user` et `password` sont *null* par défaut et servent à l'authentification

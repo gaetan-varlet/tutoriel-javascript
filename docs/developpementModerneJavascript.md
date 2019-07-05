@@ -11,6 +11,7 @@
 ## Rappels
 
 Dans la partie précédente ont déjà été vu des nouveautés ES6 :
+
 - les nouveaux mots clés `let` et `var` pour déclarer une variable
 - les scopes de bloc
 - quand utiliser `var`, `let` et `const`
@@ -353,6 +354,7 @@ Comme vu dans la partie précédente, pour construire un objet, au lieu de faire
 ## L'héritage (Inheritance)
 
 Si on veut définir une classe qui a les mêmes propriétés qu'une autre classe avec une propriété en plus, on peut hériter de cette classe plutôt que de la redéfinir de zéro, ce qui évitera une duplication de code.
+
 - le mot clé `extends` permet de dire de quelle clase on hérite
 - le mot clé `super` dans le constructeur permet d'exécuter le constructeur de la classe parent
 - il est aussi possible d'exécuter une méthode parent dans une méthode enfant avec `super` en faisant `super.nomMethodeParent()`
@@ -510,7 +512,7 @@ console.log(louis.name) // affiche : bébé az
  
  ----
 
- ## Modules
+## Modules
 
  Sur des gros projets, il faut organiser le code JavaScript en plusieurs fichiers. Pour charger les différents fichiers JavaScript, on peut les charger chacun un tag `<script src="script.js"></script>` dans la page html.
  
@@ -568,12 +570,12 @@ myLog("Hello !")
 
 ----
 
- ## Import et Export
+## Import et Export
 
  Avec les modules, l'import et l'export se fait par référence, c'est-à-dire qu'on ne crée pas une nouvelle variable mais on importe la variable de l'autre module.
 
 Pour exporter plusieurs choses d'un même module, on fait deux exports et on fait les deux imports sur une seule ligne
-  ```js
+```js
  // script1.js
 export const myLog = message => console.log(`** My Log ** : ${message}`)
 export let myVariable = "Coucou !"
@@ -584,7 +586,7 @@ myLog(myVariable)
 ```
 
 On peut aussi faire l'export à la fin du fichier au lieu de le faire au moment de la déclaration.
-  ```js
+```js
  // script1.js
 const myLog = message => console.log(`** My Log ** : ${message}`)
 let myVariable = "Coucou !"
@@ -634,11 +636,11 @@ external.myLog(external.myVariable)
 
  ----
 
- # Les nouveautés ES7
+# Les nouveautés ES7
 
  ----
 
- ## Array.prototype.includes
+## Array.prototype.includes
 
 Lorsqu'on veut vérifier la présence d'un élément dans un tableau, il faut utiliser la méthode `indexOf()` qui renvoie la position de l'élément dans le tableau, ou -1 si l'élément est absent.
 
@@ -698,11 +700,9 @@ console.log(myVar) // affiche 8
 
 ----
 
-# Développement moderne JavaScript
+# Les outils pour le développement moderne JavaScript
 
 Tous les navigateurs ne supportent pas encore ces nouveautés. Il existe des outils qui permettent de coder en ES6 et ES7 et que le code soit supporté par tous les navigateurs.
-
-----
 
 ----
 
@@ -815,7 +815,7 @@ export const myLog = message => console.log(`** My Log ** : ${message}`)
 
 ## Exécuter Webpack
 
-On va lancer l'exécutable de webpack. Dans le dossier *.bin* de node_modules, il y a tous les exécutables. Pour lancer webpack, on va exécuter la commande `node_modules/.bin/webpack`. Le fichier *bundle.js a été créé en enpaquetant nos fichiers javscript. On peut lancer notre page HTML et ça fonctionne comme avant san utiliser les modules.
+On va lancer l'exécutable de webpack. Dans le dossier *.bin* de node_modules, il y a tous les exécutables. Pour lancer webpack, on va exécuter la commande `node_modules/.bin/webpack`. Le fichier *bundle.js* a été créé en enpaquetant nos fichiers javscript. On peut lancer notre page HTML et ça fonctionne comme avant san utiliser les modules.
 
 Pour éviter de lancer la commande `node_modules/.bin/webpack` à chaque fois, on va créer une tâche dans le fichier *package.json* que l'on pourra exécuter à la place de cette commande. Pour excécuter la tâche, on lancera la commande `npm run build`
 ```js
@@ -850,6 +850,7 @@ On va exécuter la commande `node_modules/.bin/webpack-dev-server` qui compile n
 ## Architecture des fichiers
 
 Pour le moment, tous les fichiers sont mis à la racine du projet. On va réorganiser tout ça
+
 - un dossier **src** qui contient le code de développement, les fichiers sources JavaScript
 - un dossier **dist** qui contient le code de distribution que voit le public, le fichier index.html et le fichier bundle.js
 
