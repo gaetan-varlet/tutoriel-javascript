@@ -730,7 +730,7 @@ console.log(myVar) // affiche 8
 <hr />
 <h2 id="les-bases-de-npm">Les bases de Npm</h2>
 <p>Npm pour <em>Node Package Manager</em> va nous permettre de gérer nos paquets JavaScript. Pour l'utiliser, il faut télécharger <strong>Node.js</strong>
-Pour vérifier qu'il est bien installé et vérifier la version, tpaer la commande <code>node -v</code> puis <code>npm -v</code>.</p>
+Pour vérifier qu'il est bien installé et vérifier la version, taper la commande <code>node -v</code> puis <code>npm -v</code>.</p>
 <p>Jusqu'à présent, pour utiliser une bibliothèque externe comme JQuery, il faut télécharger la bibliothèque et l'ajouter dans le fichier HTML.</p>
 <p>Avec Npm, il est possible de télécharger la bibliohèque très facilement, en faisant <code>npm install jquery</code>. Un dossier <em>node_modules</em> est créé avec un sous-dossier <em>jquery</em>. Il faut ensuite l'ajouter au fichier HTML en pointant dans le sous-dossier <em>dist</em> (pour distribution) et on peut utiliser <em>jquery</em> dans le projet.</p>
 <pre><code class="html">&lt;!DOCTYPE html&gt;
@@ -751,8 +751,8 @@ import {myLog} from &quot;./external.js&quot;
 myLog(&quot;Hello !&quot;)
 
 jQuery(document).ready(function(){
-    console.log(&quot;jQuery est prêt !&quot;);
-  });
+    console.log(&quot;jQuery est prêt !&quot;)
+  })
 
 // external.js
 export const myLog = message =&gt; console.log(`** My Log ** : ${message}`)
@@ -764,10 +764,12 @@ export const myLog = message =&gt; console.log(`** My Log ** : ${message}`)
 <p>Généralement on a beaucoup de dépendances, ce qui deviendrait lourd à gérer avec les commandes vues ici. Avec le fichier <strong>package.json</strong>, on va pouvoir noter toutes les dépendances ainsi que leur version. Cela permettra aussi de reproduire le projet sur un autre poste sans y inclure toutes les dépendances mais uniquement ce fichier. En lançant la commande <code>npm install</code>, toutes les dépendances inscrites dans le fichier <em>package.json</em> seront installées dans la version spécifié.</p>
 <p>Ce fichier est un fichier de configuration, il sert également à d'autres choses. Pour le créer, il faut exécuter la commande <code>npm init</code>.</p>
 <p>Lorsqu'on installe ou désinstalle une dépendance, elle n'est pas renseignée dans le fichier <em>package.json</em>. Pour que ce soit le cas il faut ajouter <code>--save</code>, par exemple <code>npm install jquery --save</code> et jquery sera inscrit dans les dépendances avec son numéro de version.</p>
-<p>Il y a deux types de dépendances :
-- les dépendances classiques dont notre code a besoin, comme par exemple <em>jquery</em>. Elles sont rensiegnées donc <em>dependencies</em>
-- les dépendances de développement qui correspond aux outils de développement, par exemple <em>webpack</em> que l'on verra au prochain chapitre. Elles sont rensiegnées donc <em>devDependencies</em>. Pour cela, il faut utiliser la commande <code>--save-dev</code>, par exemple <code>npm install --save-dev webpack webpack-cli</code></p>
-<p>En installant <em>webpack</em>, il y a maintenant plein de dépendances dans <em>node_modules</em> car <em>webpack</em> a besoin d'autres dépendances qui ont été installé également.</p>
+<p>Il y a deux types de dépendances :</p>
+<ul>
+<li>les dépendances classiques dont notre code a besoin, comme par exemple <em>jquery</em>. Elles sont renseignées dans <em>dependencies</em></li>
+<li>les dépendances de développement qui correspond aux outils de développement, par exemple <em>webpack</em> que l'on verra au prochain chapitre. Elles sont renseignées dans <em>devDependencies</em>. Pour cela, il faut utiliser la commande <code>--save-dev</code>, par exemple <code>npm install --save-dev webpack webpack-cli</code></li>
+</ul>
+<p>En installant <em>webpack</em>, il y a maintenant plein de dépendances dans <em>node_modules</em> car <em>webpack</em> a besoin d'autres dépendances qui ont également été installé.</p>
 <hr />
 <hr />
 <h1 id="webpack">Webpack</h1>
@@ -812,18 +814,17 @@ export const myLog = message =&gt; console.log(`** My Log ** : ${message}`)
 
 <hr />
 <h2 id="executer-webpack">Exécuter Webpack</h2>
-<p>On va lancer l'exécutable de webpack. Dans le dossier <em>.bin</em> de node_modules, il y a tous les exécutables. Pour lancer webpack, on va exécuter la commande <code>node_modules/.bin/webpack</code>. Le fichier <em>bundle.js</em> a été créé en enpaquetant nos fichiers javscript. On peut lancer notre page HTML et ça fonctionne comme avant san utiliser les modules.</p>
-<p>Pour éviter de lancer la commande <code>node_modules/.bin/webpack</code> à chaque fois, on va créer une tâche dans le fichier <em>package.json</em> que l'on pourra exécuter à la place de cette commande. Pour excécuter la tâche, on lancera la commande <code>npm run build</code></p>
+<p>On va lancer l'exécutable de webpack. Dans le dossier <em>.bin</em> de node_modules, il y a tous les exécutables. Pour lancer webpack, on va exécuter la commande <code>node_modules/.bin/webpack</code>. Le fichier <em>bundle.js</em> a été créé en enpaquetant nos fichiers javascript. On peut lancer notre page HTML et ça fonctionne comme avant sans utiliser les modules.</p>
+<p>Pour éviter de lancer la commande <code>node_modules/.bin/webpack</code> à chaque fois, on va créer une tâche dans le fichier <em>package.json</em> que l'on pourra exécuter à la place de cette commande. Pour exécuter la tâche, on lancera la commande <code>npm run build</code></p>
 <pre><code class="js">// package.json
   &quot;scripts&quot;: {
     &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,
     &quot;build&quot;: &quot;webpack&quot; // ajout de la tâche build qui crée notre fichier bundle.js
   }
-  ```
+</code></pre>
 
-  On peut faire mieux en disant à webpack d'observer notre code et de recompiler le code pour recréer *bundle.js* quand il observe des modifications sans relancer la commande de build. Pour cela, on va ajouter une propriété dans le fichier de configuration de webpack. Lorsqu'on fait une modification et que l'on sauvegarde, il n'y a plus qu'à rafraîchir la page HTML pour voir le changement.
-  ```js
-  // webpack.config.js
+<p>On peut faire mieux en disant à webpack d'observer notre code et de recompiler le code pour recréer <em>bundle.js</em> quand il observe des modifications sans relancer la commande de build. Pour cela, on va ajouter une propriété dans le fichier de configuration de webpack. Lorsqu'on fait une modification et que l'on sauvegarde, il n'y a plus qu'à rafraîchir la page HTML pour voir le changement.</p>
+<pre><code class="js">  // webpack.config.js
 module.exports = {
     watch: true, // ajout de cette proriété pour que webpack observe notre code et recompile lorsqu'il y a des changements
     entry: &quot;./script.js&quot;,
@@ -929,7 +930,7 @@ myLog(&quot;Hello !&quot;)
         </footer>
         <script>
             var base_url = "..",
-                shortcuts = {"previous": 80, "next": 78, "search": 83, "help": 191};
+                shortcuts = {"search": 83, "next": 78, "help": 191, "previous": 80};
         </script>
         <script src="../js/base.js" defer></script>
         <script src="../search/main.js" defer></script>
