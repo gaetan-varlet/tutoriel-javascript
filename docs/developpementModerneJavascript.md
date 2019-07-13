@@ -713,7 +713,7 @@ Tous les navigateurs ne supportent pas encore ces nouveautés. Il existe des out
 ## Les bases de Npm
 
 Npm pour *Node Package Manager* va nous permettre de gérer nos paquets JavaScript. Pour l'utiliser, il faut télécharger **Node.js**
-Pour vérifier qu'il est bien installé et vérifier la version, tpaer la commande `node -v` puis `npm -v`.
+Pour vérifier qu'il est bien installé et vérifier la version, taper la commande `node -v` puis `npm -v`.
 
 Jusqu'à présent, pour utiliser une bibliothèque externe comme JQuery, il faut télécharger la bibliothèque et l'ajouter dans le fichier HTML.
 
@@ -737,8 +737,8 @@ import {myLog} from "./external.js"
 myLog("Hello !")
 
 jQuery(document).ready(function(){
-    console.log("jQuery est prêt !");
-  });
+    console.log("jQuery est prêt !")
+  })
 
 // external.js
 export const myLog = message => console.log(`** My Log ** : ${message}`)
@@ -757,10 +757,11 @@ Ce fichier est un fichier de configuration, il sert également à d'autres chose
 Lorsqu'on installe ou désinstalle une dépendance, elle n'est pas renseignée dans le fichier *package.json*. Pour que ce soit le cas il faut ajouter `--save`, par exemple `npm install jquery --save` et jquery sera inscrit dans les dépendances avec son numéro de version.
 
 Il y a deux types de dépendances :
-- les dépendances classiques dont notre code a besoin, comme par exemple *jquery*. Elles sont rensiegnées donc *dependencies*
-- les dépendances de développement qui correspond aux outils de développement, par exemple *webpack* que l'on verra au prochain chapitre. Elles sont rensiegnées donc *devDependencies*. Pour cela, il faut utiliser la commande `--save-dev`, par exemple `npm install --save-dev webpack webpack-cli`
 
-En installant *webpack*, il y a maintenant plein de dépendances dans *node_modules* car *webpack* a besoin d'autres dépendances qui ont été installé également.
+- les dépendances classiques dont notre code a besoin, comme par exemple *jquery*. Elles sont renseignées dans *dependencies*
+- les dépendances de développement qui correspond aux outils de développement, par exemple *webpack* que l'on verra au prochain chapitre. Elles sont renseignées dans *devDependencies*. Pour cela, il faut utiliser la commande `--save-dev`, par exemple `npm install --save-dev webpack webpack-cli`
+
+En installant *webpack*, il y a maintenant plein de dépendances dans *node_modules* car *webpack* a besoin d'autres dépendances qui ont également été installé.
 
 ----
 
@@ -815,19 +816,19 @@ export const myLog = message => console.log(`** My Log ** : ${message}`)
 
 ## Exécuter Webpack
 
-On va lancer l'exécutable de webpack. Dans le dossier *.bin* de node_modules, il y a tous les exécutables. Pour lancer webpack, on va exécuter la commande `node_modules/.bin/webpack`. Le fichier *bundle.js* a été créé en enpaquetant nos fichiers javscript. On peut lancer notre page HTML et ça fonctionne comme avant san utiliser les modules.
+On va lancer l'exécutable de webpack. Dans le dossier *.bin* de node_modules, il y a tous les exécutables. Pour lancer webpack, on va exécuter la commande `node_modules/.bin/webpack`. Le fichier *bundle.js* a été créé en enpaquetant nos fichiers javascript. On peut lancer notre page HTML et ça fonctionne comme avant sans utiliser les modules.
 
-Pour éviter de lancer la commande `node_modules/.bin/webpack` à chaque fois, on va créer une tâche dans le fichier *package.json* que l'on pourra exécuter à la place de cette commande. Pour excécuter la tâche, on lancera la commande `npm run build`
+Pour éviter de lancer la commande `node_modules/.bin/webpack` à chaque fois, on va créer une tâche dans le fichier *package.json* que l'on pourra exécuter à la place de cette commande. Pour exécuter la tâche, on lancera la commande `npm run build`
 ```js
 // package.json
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack" // ajout de la tâche build qui crée notre fichier bundle.js
   }
-  ```
+```
 
-  On peut faire mieux en disant à webpack d'observer notre code et de recompiler le code pour recréer *bundle.js* quand il observe des modifications sans relancer la commande de build. Pour cela, on va ajouter une propriété dans le fichier de configuration de webpack. Lorsqu'on fait une modification et que l'on sauvegarde, il n'y a plus qu'à rafraîchir la page HTML pour voir le changement.
-  ```js
+On peut faire mieux en disant à webpack d'observer notre code et de recompiler le code pour recréer *bundle.js* quand il observe des modifications sans relancer la commande de build. Pour cela, on va ajouter une propriété dans le fichier de configuration de webpack. Lorsqu'on fait une modification et que l'on sauvegarde, il n'y a plus qu'à rafraîchir la page HTML pour voir le changement.
+```js
   // webpack.config.js
 module.exports = {
     watch: true, // ajout de cette proriété pour que webpack observe notre code et recompile lorsqu'il y a des changements
