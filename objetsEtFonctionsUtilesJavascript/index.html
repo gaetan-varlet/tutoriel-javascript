@@ -238,7 +238,7 @@ console.log(&quot;abc&quot;.replace(monTemplate, &quot;ZZZ&quot;)) // affiche ZZ
 console.log(&quot;Bonjourabjeabm'appelleabGaëtan&quot;.split(monTemplate)) // affiche  [&quot;Bonjour&quot;, &quot;je&quot;, &quot;m'appelle&quot;, &quot;Gaëtan&quot;]
 </code></pre>
 
-<p>Le motif d'une expression régulière est composé de <strong>motifs simples</strong> comme <code>/abc/</code> ou de caractères spéciaux comme <code>/ab*c/</code>. Les motifs simples doivent avoir une correspondance directe, on doit observer exactement les caractères 'des' ensemble et dans cet ordre précis. Lorsque le motif à trouver est plus complexe qu'une simple égalité, le motif devra contenir des caractères spéciaux. (voir <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_r%C3%A9guli%C3%A8res">la documentation en ligne</a> pour plus de détail).</p>
+<p>Le motif d'une expression régulière est composé de <strong>motifs simples</strong> comme <code>/abc/</code> ou de caractères spéciaux comme <code>/ab*c/</code>. Les motifs simples doivent avoir une correspondance directe, on doit observer exactement les caractères 'abc' ensemble et dans cet ordre précis. Lorsque le motif à trouver est plus complexe qu'une simple égalité, le motif devra contenir des caractères spéciaux. (voir <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_r%C3%A9guli%C3%A8res">la documentation en ligne</a> pour plus de détail).</p>
 <p>Les expressions régulières sont souvent utilisés dans les formulaires pour vérifier la validité des données saisies par l'utilisateur.</p>
 <hr />
 <h2 id="settimeout-et-setinterval">setTimeout et setInterval</h2>
@@ -313,7 +313,8 @@ console.log(typeof objetString.valueOf());  // affiche &quot;string&quot;
 <li><code>valueOf()</code> renvoie la valeur primitive de l'objet String</li>
 </ul>
 <p>Exemples :</p>
-<pre><code class="js">console.log(gaetan.length) // affiche 6
+<pre><code class="js">const gaetan = &quot;Gaëtan&quot;
+console.log(gaetan.length) // affiche 6
 console.log(gaetan.charAt(1)) // affiche a
 console.log(gaetan[1]) // affiche a
 console.log(gaetan.concat(&quot; et Louis&quot;)) // affiche Gaëtan et Louis
@@ -379,8 +380,8 @@ enleves = mesPoissons.splice(2, 1, &quot;trompette&quot;)
 
 <ul>
 <li><code>join(séparateur)</code> réunit tous les éléments d'un tableau dans une chaine de caractères et renvoie cette nouvelle chaîne de caractères</li>
-<li><code>lastIndexOf(élémentRecherché)</code> permet de renvoyer le dernier indice pour lequel une valeur donnée est présente dans un tableau. Si la valeur recherchée n'est pas présente, le résultat sera -1
-<code>slice()</code> renvoie un objet tableau contenant une copie d'une portion du tableau d'origine. La portion est définie par un indice de début et un indice de fin exclu optionnel</li>
+<li><code>lastIndexOf(élémentRecherché)</code> permet de renvoyer le dernier indice pour lequel une valeur donnée est présente dans un tableau. Si la valeur recherchée n'est pas présente, le résultat sera -1</li>
+<li><code>slice()</code> renvoie un objet tableau contenant une copie d'une portion du tableau d'origine. La portion est définie par un indice de début et un indice de fin exclu optionnel</li>
 </ul>
 <pre><code class="js">var animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
 console.log(animals.slice()); // expected output: Array ['ant', 'bison', 'camel', 'duck', 'elephant']
@@ -482,11 +483,21 @@ const paragraphesArray = Array.from(paragraphes)
 <p>L’objet JSON contient des méthodes pour interpréter du JSON (JavaScript Object Notation) et convertir des valeurs en JSON.</p>
 <p>La méthode <code>JSON.parse()</code> parse une chaîne de caractères JSON et construit la valeur JavaScript ou l'objet décrit par cette chaîne.<br />
 La méthode <code>JSON.stringify()</code> convertit une valeur JavaScript en chaîne JSON.</p>
-<pre><code class="js">var json = '{&quot;result&quot;:true, &quot;count&quot;:42}'
-obj = JSON.parse(json)
-console.log(obj.count) // expected output: 42
+<pre><code class="js">const jsonString = '{&quot;result&quot;:true, &quot;count&quot;:42}'
+const obj = JSON.parse(jsonString)
+console.log(typeof jsonString) // string
+console.log(jsonString) // {&quot;result&quot;:true, &quot;count&quot;:42}
+console.log(typeof obj) // object
+console.log(obj) // {result: true, count: 42}
+console.log(obj.count) // 42
 
-console.log(JSON.stringify({ x: 5, y: 6 })) // expected output: &quot;{&quot;x&quot;:5,&quot;y&quot;:6}&quot;
+
+const objet = { x: 5, y: 6 }
+const chaine = JSON.stringify(objet)
+console.log(typeof objet) // object
+console.log(objet) // {x: 5, y: 6}
+console.log(typeof chaine) // string
+console.log(chaine) // {&quot;x&quot;:5,&quot;y&quot;:6}
 </code></pre></div>
         </div>
 
