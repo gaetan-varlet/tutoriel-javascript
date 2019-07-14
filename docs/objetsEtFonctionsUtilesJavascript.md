@@ -340,6 +340,19 @@ console.log(array1.every(isBelowThreshold));
 // expected output: true
 ```
 
+La méthode `some()` teste si au moins un élément du tableau passe le test implémenté par la fonction fournie.
+```js
+var array = [1, 2, 3, 4, 5];
+
+var even = function(element) {
+  // checks whether an element is even
+  return element % 2 === 0;
+};
+
+console.log(array.some(even));
+// expected output: true
+```
+
 La méthode `forEach()` permet d'exécuter une fonction donnée sur chaque élément du tableau.  
 La méthode `map()` crée un nouveau tableau avec les résultats de l'appel d'une fonction fournie sur chaque élément du tableau appelant.  
 La méthode `filter()` crée et retourne un nouveau tableau contenant tous les éléments du tableau d'origine qui remplissent une condition déterminée par la fonction callback.
@@ -363,30 +376,6 @@ const myArray3 = myArray.filter(element => {
 console.log(myArray3) // [3, 4, 5]
 ```
 
-La méthode `every()` permet de tester si tous les éléments d'un tableau vérifient une condition donnée par une fonction en argument.
-```js
-function isBelowThreshold(currentValue) {
-  return currentValue < 40;
-}
-
-var array1 = [1, 30, 39, 29, 10, 13];
-
-console.log(array1.every(isBelowThreshold));
-// expected output: true
-```
-
-La méthode some() teste si au moins un élément du tableau passe le test implémenté par la fonction fournie.
-```js
-var array = [1, 2, 3, 4, 5];
-
-var even = function(element) {
-  // checks whether an element is even
-  return element % 2 === 0;
-};
-
-console.log(array.some(even));
-// expected output: true
-```
 
 La méthode `reduce()` applique une fonction qui est un « accumulateur » et qui traite chaque valeur d'une liste (de la gauche vers la droite) afin de la réduire à une seule valeur.
 ```js
