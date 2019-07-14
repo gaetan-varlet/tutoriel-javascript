@@ -151,7 +151,7 @@ console.log("abc".replace(monTemplate, "ZZZ")) // affiche ZZZc
 console.log("Bonjourabjeabm'appelleabGaëtan".split(monTemplate)) // affiche  ["Bonjour", "je", "m'appelle", "Gaëtan"]
 ```
 
-Le motif d'une expression régulière est composé de **motifs simples** comme `/abc/` ou de caractères spéciaux comme `/ab*c/`. Les motifs simples doivent avoir une correspondance directe, on doit observer exactement les caractères 'des' ensemble et dans cet ordre précis. Lorsque le motif à trouver est plus complexe qu'une simple égalité, le motif devra contenir des caractères spéciaux. (voir [la documentation en ligne](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_r%C3%A9guli%C3%A8res) pour plus de détail).
+Le motif d'une expression régulière est composé de **motifs simples** comme `/abc/` ou de caractères spéciaux comme `/ab*c/`. Les motifs simples doivent avoir une correspondance directe, on doit observer exactement les caractères 'abc' ensemble et dans cet ordre précis. Lorsque le motif à trouver est plus complexe qu'une simple égalité, le motif devra contenir des caractères spéciaux. (voir [la documentation en ligne](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_r%C3%A9guli%C3%A8res) pour plus de détail).
 
 Les expressions régulières sont souvent utilisés dans les formulaires pour vérifier la validité des données saisies par l'utilisateur.
 
@@ -244,6 +244,7 @@ Quelques méthodes utiles :
 
 Exemples :
 ```js
+const gaetan = "Gaëtan"
 console.log(gaetan.length) // affiche 6
 console.log(gaetan.charAt(1)) // affiche a
 console.log(gaetan[1]) // affiche a
@@ -312,7 +313,7 @@ enleves = mesPoissons.splice(2, 1, "trompette")
 ```
 - `join(séparateur)` réunit tous les éléments d'un tableau dans une chaine de caractères et renvoie cette nouvelle chaîne de caractères
 - `lastIndexOf(élémentRecherché)` permet de renvoyer le dernier indice pour lequel une valeur donnée est présente dans un tableau. Si la valeur recherchée n'est pas présente, le résultat sera -1
-`slice()` renvoie un objet tableau contenant une copie d'une portion du tableau d'origine. La portion est définie par un indice de début et un indice de fin exclu optionnel
+- `slice()` renvoie un objet tableau contenant une copie d'une portion du tableau d'origine. La portion est définie par un indice de début et un indice de fin exclu optionnel
 ```js
 var animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
 console.log(animals.slice()); // expected output: Array ['ant', 'bison', 'camel', 'duck', 'elephant']
@@ -427,9 +428,19 @@ La méthode `JSON.parse()` parse une chaîne de caractères JSON et construit la
 La méthode `JSON.stringify()` convertit une valeur JavaScript en chaîne JSON.
 
 ```js
-var json = '{"result":true, "count":42}'
-obj = JSON.parse(json)
-console.log(obj.count) // expected output: 42
+const jsonString = '{"result":true, "count":42}'
+const obj = JSON.parse(jsonString)
+console.log(typeof jsonString) // string
+console.log(jsonString) // {"result":true, "count":42}
+console.log(typeof obj) // object
+console.log(obj) // {result: true, count: 42}
+console.log(obj.count) // 42
 
-console.log(JSON.stringify({ x: 5, y: 6 })) // expected output: "{"x":5,"y":6}"
+
+const objet = { x: 5, y: 6 }
+const chaine = JSON.stringify(objet)
+console.log(typeof objet) // object
+console.log(objet) // {x: 5, y: 6}
+console.log(typeof chaine) // string
+console.log(chaine) // {"x":5,"y":6}
 ```
