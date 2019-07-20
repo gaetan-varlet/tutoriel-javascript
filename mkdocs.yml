@@ -1,9 +1,11 @@
 site_name: Tutoriel JS
 nav:
 - Accueil: index.md
-- Les bases: lesBasesDeJavaScript.md
-- Bien comprendre: vraimentBienComprendreJavaScript.md
-- Dév moderne: developpementModerneJavascript.md
-- Fonctions utiles: objetsEtFonctionsUtilesJavascript.md
-- Dans le nav: javascriptDebarqueDansLeNavigateur.md
-- Les bib: frameworksJavascript.md
+- Chapitres:
+  - Les bases: lesBasesDeJavaScript.md
+  - Bien comprendre: vraimentBienComprendreJavaScript.md
+  - Dév moderne: developpementModerneJavascript.md
+  - Async: asynchrone.md
+  - Fonctions utiles: objetsEtFonctionsUtilesJavascript.md
+  - Dans le nav: javascriptDebarqueDansLeNavigateur.md
+  - Les bib: frameworksJavascript.md
