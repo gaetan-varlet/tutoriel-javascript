@@ -49,23 +49,38 @@
                             <li >
                                 <a href="..">Accueil</a>
                             </li>
-                            <li >
-                                <a href="../lesBasesDeJavaScript/">Les bases</a>
-                            </li>
-                            <li >
-                                <a href="../vraimentBienComprendreJavaScript/">Bien comprendre</a>
-                            </li>
-                            <li >
-                                <a href="../developpementModerneJavascript/">Dév moderne</a>
-                            </li>
-                            <li class="active">
-                                <a href="./">Fonctions utiles</a>
-                            </li>
-                            <li >
-                                <a href="../javascriptDebarqueDansLeNavigateur/">Dans le nav</a>
-                            </li>
-                            <li >
-                                <a href="../frameworksJavascript/">Les bib</a>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Chapitres <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../lesBasesDeJavaScript/">Les bases</a>
+</li>
+                                    
+<li >
+    <a href="../vraimentBienComprendreJavaScript/">Bien comprendre</a>
+</li>
+                                    
+<li >
+    <a href="../developpementModerneJavascript/">Dév moderne</a>
+</li>
+                                    
+<li >
+    <a href="../asynchrone/">Async</a>
+</li>
+                                    
+<li class="active">
+    <a href="./">Fonctions utiles</a>
+</li>
+                                    
+<li >
+    <a href="../javascriptDebarqueDansLeNavigateur/">Dans le nav</a>
+</li>
+                                    
+<li >
+    <a href="../frameworksJavascript/">Les bib</a>
+</li>
+                                </ul>
                             </li>
                         </ul>
 
@@ -76,7 +91,7 @@
                             </a>
                         </li>
                             <li >
-                                <a rel="next" href="../developpementModerneJavascript/">
+                                <a rel="next" href="../asynchrone/">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -408,6 +423,18 @@ console.log(array1.every(isBelowThreshold));
 // expected output: true
 </code></pre>
 
+<p>La méthode <code>some()</code> teste si au moins un élément du tableau passe le test implémenté par la fonction fournie.</p>
+<pre><code class="js">var array = [1, 2, 3, 4, 5];
+
+var even = function(element) {
+  // checks whether an element is even
+  return element % 2 === 0;
+};
+
+console.log(array.some(even));
+// expected output: true
+</code></pre>
+
 <p>La méthode <code>forEach()</code> permet d'exécuter une fonction donnée sur chaque élément du tableau.<br />
 La méthode <code>map()</code> crée un nouveau tableau avec les résultats de l'appel d'une fonction fournie sur chaque élément du tableau appelant.<br />
 La méthode <code>filter()</code> crée et retourne un nouveau tableau contenant tous les éléments du tableau d'origine qui remplissent une condition déterminée par la fonction callback.</p>
@@ -427,29 +454,6 @@ const myArray3 = myArray.filter(element =&gt; {
     return element &gt;= 3
 })
 console.log(myArray3) // [3, 4, 5]
-</code></pre>
-
-<p>La méthode <code>every()</code> permet de tester si tous les éléments d'un tableau vérifient une condition donnée par une fonction en argument.</p>
-<pre><code class="js">function isBelowThreshold(currentValue) {
-  return currentValue &lt; 40;
-}
-
-var array1 = [1, 30, 39, 29, 10, 13];
-
-console.log(array1.every(isBelowThreshold));
-// expected output: true
-</code></pre>
-
-<p>La méthode some() teste si au moins un élément du tableau passe le test implémenté par la fonction fournie.</p>
-<pre><code class="js">var array = [1, 2, 3, 4, 5];
-
-var even = function(element) {
-  // checks whether an element is even
-  return element % 2 === 0;
-};
-
-console.log(array.some(even));
-// expected output: true
 </code></pre>
 
 <p>La méthode <code>reduce()</code> applique une fonction qui est un « accumulateur » et qui traite chaque valeur d'une liste (de la gauche vers la droite) afin de la réduire à une seule valeur.</p>

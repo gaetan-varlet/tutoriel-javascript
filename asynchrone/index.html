@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Les bib - Tutoriel JS</title>
+        <title>Async - Tutoriel JS</title>
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -65,8 +65,8 @@
     <a href="../developpementModerneJavascript/">Dév moderne</a>
 </li>
                                     
-<li >
-    <a href="../asynchrone/">Async</a>
+<li class="active">
+    <a href="./">Async</a>
 </li>
                                     
 <li >
@@ -77,8 +77,8 @@
     <a href="../javascriptDebarqueDansLeNavigateur/">Dans le nav</a>
 </li>
                                     
-<li class="active">
-    <a href="./">Les bib</a>
+<li >
+    <a href="../frameworksJavascript/">Les bib</a>
 </li>
                                 </ul>
                             </li>
@@ -91,12 +91,12 @@
                             </a>
                         </li>
                             <li >
-                                <a rel="next" href="../javascriptDebarqueDansLeNavigateur/">
+                                <a rel="next" href="../developpementModerneJavascript/">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
-                            <li class="disabled">
-                                <a rel="prev" >
+                            <li >
+                                <a rel="prev" href="../objetsEtFonctionsUtilesJavascript/">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -108,41 +108,171 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#les-bibliotheques-et-frameworks-javascript">Les bibliothèques et frameworks JavaScript</a></li>
-            <li><a href="#quest-ce-quun-framework-et-quelle-est-la-difference-entre-une-bibliotheque-et-un-framework">Qu'est-ce qu'un framework et quelle est la différence entre une bibliothèque et un framework ?</a></li>
-            <li><a href="#decouverte-de-react">Découverte de React</a></li>
-            <li><a href="#decouverte-dangular">Découverte d'Angular</a></li>
-            <li><a href="#decouverte-de-vuejs">Découverte de Vue.js</a></li>
-            <li><a href="#angular-react-ou-vuejs">Angular, React ou Vue.js</a></li>
-            <li><a href="#decouverte-de-nodejs">Découverte de Node.js</a></li>
-            <li><a href="#decouverte-dexpress">Découverte d'Express</a></li>
-            <li><a href="#decouverte-de-mongodb">Découverte de MongoDB</a></li>
-            <li><a href="#decouverte-de-mean-et-de-meteor">Découverte de MEAN et de Meteor (?)</a></li>
+        <li class="main active"><a href="#lasynchrone-en-javascript">L'asynchrone en Javascript</a></li>
+            <li><a href="#javascript-est-synchrone-et-mono-thread">JavaScript est synchrone et mono-thread</a></li>
+            <li><a href="#recuperer-le-resultat-dune-methode-asynchrone">Récupérer le résultat d'une méthode asynchrone</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="les-bibliotheques-et-frameworks-javascript">Les bibliothèques et frameworks JavaScript</h1>
-<hr />
-<h2 id="quest-ce-quun-framework-et-quelle-est-la-difference-entre-une-bibliotheque-et-un-framework">Qu'est-ce qu'un framework et quelle est la différence entre une bibliothèque et un framework ?</h2>
-<p>Un framework est une structure pour développer, c'est un cadre de travail qui va structurer le travail du développeur. Les frameworks font gagner du temps en prenant en charge les besoins récurents comme l'architecture du projet, ce qui permet de se focaliser sur le métier du projet.</p>
-<p>Une bibliothèque et un framework ont tous les deux pour but de faciliter le développement. Pour les différencier, on peut résumer en disant que notre code utilise une bibliothèque pour fonctionner alors qu'un framework utilise notre code pour fonctionner et créer l'ensemble de notre code. En général, une bibliothèque est un ensemble de fonctions et d'objets que notre code va utiliser en important la bibliothèque, par exemple jQuery.</p>
-<hr />
-<h2 id="decouverte-de-react">Découverte de React</h2>
-<hr />
-<h2 id="decouverte-dangular">Découverte d'Angular</h2>
-<hr />
-<h2 id="decouverte-de-vuejs">Découverte de Vue.js</h2>
-<hr />
-<h2 id="angular-react-ou-vuejs">Angular, React ou Vue.js</h2>
-<hr />
-<h2 id="decouverte-de-nodejs">Découverte de Node.js</h2>
-<hr />
-<h2 id="decouverte-dexpress">Découverte d'Express</h2>
-<hr />
-<h2 id="decouverte-de-mongodb">Découverte de MongoDB</h2>
-<hr />
-<h2 id="decouverte-de-mean-et-de-meteor">Découverte de MEAN et de Meteor (?)</h2></div>
+<h1 id="lasynchrone-en-javascript">L'asynchrone en Javascript</h1>
+<h2 id="javascript-est-synchrone-et-mono-thread">JavaScript est synchrone et mono-thread</h2>
+<p>En JavaScript, il y a un seul fil d'exécution, chaque ligne est exécutée l'une après l'autre en attendant la fin de l'exécution de la ligne précédente.</p>
+<pre><code class="js">function main() {
+    console.log('avant')
+    const res = sumSync(2, 5)
+    console.log(res)
+    console.log('après')
+}
+</code></pre>
+
+<pre><code>avant
+7
+après
+</code></pre>
+
+<p>Il est possible d'exécuter du code de manière <strong>asynchrone</strong> sans bloquer l'exécution de la suite du programme. La fonction asynchrone est placée dans une file d'attente qui va exécuter toutes les fonctions qu'elle contient. On parle d'<strong>event loop</strong>. Une fois le traitement terminé, on revient dessus pour exploiter les résultats.</p>
+<pre><code class="js">const myFunction = () =&gt; {
+    console.log('Exécuté dans 1 seconde')
+}
+setTimeout(myFunction, 1000)
+console.log('Exécuté en premier immédiatement')
+</code></pre>
+
+<pre><code>Exécuté en premier immédiatement
+Exécuté dans 1 seconde
+</code></pre>
+
+<h2 id="recuperer-le-resultat-dune-methode-asynchrone">Récupérer le résultat d'une méthode asynchrone</h2>
+<h3 id="les-callbacks">Les callbacks</h3>
+<p>C'est la méthode la plus ancienne.
+Un callback est une fonction que l'on passe en paramètre d'une fonction asynchrone, qui une fois qu'elle a fini sa tâche va appeler la fonction callback en lui passant le résultat</p>
+<pre><code class="js">const myFunction = (a, b) =&gt; a + b
+const callback = () =&gt; console.log('exécution asynchrone : ', myFunction(4, 5))
+setTimeout(callback, 1000)
+console.log('exécution synchrone : ', myFunction(2, 3))
+</code></pre>
+
+<pre><code>exécution synchrone :  5
+exécution asynchrone :  9
+</code></pre>
+
+<p>Exemple sur une fonction synchrone qui logue la somme une fois le calcul effectué, mais le principe est le même sur une fonction asynchrone :</p>
+<pre><code class="js">function addition(nombre1, nombre2, callback) {
+    const somme = nombre1 + nombre2
+    callback(somme)
+}
+
+addition(1, 2, function(res) {
+    console.log(res)
+})
+</code></pre>
+
+<p>Il est possible d'imbriquer les callbacks mais cela devient difficile à lire.</p>
+<p>Pour gérer les erreurs, on peut utiliser 2 paramètres, le 2e est les données, le 1er est l'erreur qui est null ou undefined s'il n'y a pas d'erreur</p>
+<pre><code class="js">const fs = require('fs')
+fs.readFile('./math.js', function(err, data) {
+    if (err) {
+        console.log('erreur !')
+        throw err
+    }
+    console.log('résultat ok !')
+    console.log(data)
+})
+console.log('coucou')
+</code></pre>
+
+<pre><code>coucou
+résultat ok !
+&lt;Buffer 65 78 70 6f 72 74 20 64 65 66 61 75 6c 74 20 66 75 6e 63 74 69 6f 6e 20 73 75 6d 28 61 2c 20 62 29 20 7b 0a 20 20 20 20 72 65 74 75 72 6e 20 61 20 2b ... &gt;
+</code></pre>
+
+<h3 id="promises">Promises</h3>
+<p>Les <strong>promises</strong>, promesses en français, sont une autre façon de gérer du code asynchrone arrivées avec l'ES6 (ES2015). Une fonction exécutant du code asynchrone va immédiatement nous retourner une <em>promesse</em> (un objet <strong>Promise</strong>) qu'un résultat nous sera renvoyé prochainement. Une promesse peut être <strong>resolve</strong> avec un résultat,  <strong>reject</strong> avec une erreur, ou <strong>pending</strong> si elle est en attente de résultat.</p>
+<p>On peut utiliser sa fonction <strong>then()</strong> pour exécuter du code dès que la promesse est résolue ou sa fonction <strong>catch()</strong> dès qu'une erreur est survenue.</p>
+<pre><code class="js">// définition de la promesse
+var promise = new Promise(function (resolve, reject) {
+    // Ici je fais mon traitement, mes appels http…
+
+    if (/* tout a fonctionné */) {
+        resolve(&quot;Tout est OK!&quot;)
+    }
+    else {
+        reject(Error(&quot;Hmm c'est embêtant…&quot;))
+    }
+})
+// utilisation de la promesse
+promise.then(
+    function (result) {
+        console.log(result) // &quot;Tout est OK!&quot;
+    }, function (err) {
+        console.log(err) // Error: &quot;Hmm c'est embêtant…&quot;
+    }
+)
+</code></pre>
+
+<pre><code class="js">// écriture équivalente
+promise
+    .then(function(result) {
+        console.log(result) // &quot;Tout est OK!&quot;
+    })
+    .catch(function(error) {
+        console.log(error)
+    })
+</code></pre>
+
+<p>Il est possible de chaîner les promesses en enchaînant les <em>.then()</em> et les <em>.catch()</em></p>
+<h3 id="async-await">Async / await</h3>
+<p><strong>async</strong> et <strong>await</strong> sont 2 nouveaux mots clés sortis avec l'ES7 (ES2016) qui permettent de gérer l'asynchrone de manière plus simple.
+Une fonction asynchrone doit avoir le mot clé async, et lorsqu'on l'appel et qu'on veut attendre son résultat, il faut écrire await devant l'appel de la fonction</p>
+<pre><code class="js">async function asyncFunction1(a, b) {
+    return a + b
+}
+const asyncFunction2 = async (a, b) =&gt; a + b
+
+async function asyncFunction3() {
+    const a = await asyncFunction1(1, 2)
+    const b = await asyncFunction2(3, 4)
+    console.log('affichage dans la fonction : ', a + b)
+    return a + b
+}
+console.log(&quot;affichage à l'appel la fonction : &quot;, asyncFunction3()) // Promise { &lt;pending&gt; }
+</code></pre>
+
+<pre><code>affichage à l'appel la fonction :  Promise { &lt;pending&gt; }
+affichage dans la fonction :  10
+</code></pre>
+
+<p>async et await utilisent les promesses, il est donc possible de les combiner. Pour gérer les erreurs, il faut utiliser un bloc <code>try {} catch (e) {}</code>.</p>
+<pre><code class="js">const promise = new Promise(function(resolve, reject) {
+    // Ici je fais mon traitement, mes appels http…
+    if (Math.random() &gt; 0.5) {
+        resolve('Tout est OK!')
+    } else {
+        reject(Error(&quot;Hmm c'est embêtant…&quot;))
+    }
+})
+
+async function myAsyncFunction() {
+    try {
+        // Ici &quot;myPromise &quot; est résolue
+        const res = await promise
+        return `résultat : ${res}`
+    } catch (err) {
+        // Ici &quot;myPromise &quot; est rejetée
+        return `résultat : ${err}`
+    }
+}
+
+async function main() {
+    const res = await myAsyncFunction()
+    console.log(res)
+    // retourne une deux 2 lignes suivantes aléatoirement :
+    // résultat : Tout est OK!
+    // résultat : Error: Hmm c'est embêtant…
+}
+main()
+</code></pre></div>
         </div>
 
         <footer class="col-md-12">
