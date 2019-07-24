@@ -18,7 +18,6 @@ avant
 après
 ```
 
-
 Il est possible d'exécuter du code de manière **asynchrone** sans bloquer l'exécution de la suite du programme. La fonction asynchrone est placée dans une file d'attente qui va exécuter toutes les fonctions qu'elle contient. On parle d'**event loop**. Une fois le traitement terminé, on revient dessus pour exploiter les résultats.
 
 ```js

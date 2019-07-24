@@ -18,9 +18,9 @@ console.log(innerWidth)
 ```
 
 - `alert()` n'est pas une fonction mais une méthode de l'objet window. `window.alert('Hello World')` est équivalent à `alert('Hello World')`
-- en revanche isNan() ou parseInt ne dépendent pas d'un objet, ce sont des fonctions globales. Il n'y en a pas beaucoup
-- lorsqu'on déclare une variable dans le contexte global du script, cette variable devient une propriété de l'objet window
-toute variable non déclarée (utilisée sans écrire le mot-clé var) devient une propriété de window, quelque soit l'endroit où on se situe. Ecrire text = 'toto' revient donc à écrire window.text = 'toto'. Il est conseillé de toujours déclarer une variable avec var. Pour déclarer une variable globale dans une fonction, on pourra spécifier explicitement l'objet window
+- en revanche `isNan()` ou `parseInt()` ne dépendent pas d'un objet, ce sont des fonctions globales. Il n'y en a pas beaucoup
+- lorsqu'on déclare une variable dans le contexte global du script, cette variable devient une propriété de l'objet window.  
+Toute variable non déclarée (utilisée sans écrire le mot-clé *var*) devient une propriété de window, quelque soit l'endroit où on se situe. Ecrire `text = 'toto'` revient donc à écrire `window.text = 'toto'`. Il est conseillé de toujours déclarer une variable avec var. Pour déclarer une variable globale dans une fonction, on pourra spécifier explicitement l'objet window
 
 ----
 
@@ -50,9 +50,9 @@ console.log(document.body) // affiche le body
 
 ### Petit historique
 
-Le DOM est une interface de programmation pour les documents XML et HTML, qui permet via le JavaScript d'accéder au code XML et/ou HTML d'un document. On peut modifier, ajouter, déplacer, supprimer des éléments HTML (une paire de balises HTML)
+Le DOM est une interface de programmation pour les documents XML et HTML, qui permet via le JavaScript d'accéder au code XML et/ou HTML d'un document. On peut modifier, ajouter, déplacer, supprimer des éléments HTML (une paire de balises HTML).
 
-Au début du JavaScript, le DOM n'était pas unifié, c'est-à-dire que deux navigateurs possédaient un DOM différent, donc la manière d'accéder à un élément HTML différait d'un navigateur à l'autre. Il fallait donc coder différemment en fonction du navigateur. Le W3C a publié une nouvelle spécification DOM-1, pour DOM Level 1 qui définit le DOM et comment sont schématisés les documents HTML et XML, sous forme d'un arbre, ou d'une hiérarchie. L'élément <html> contient 2 éléments enfants : <head> et <body>, etc... Ensuite, la spécification DOM-2 a été publié avec l'introduction de la méthode getElementById() qui permet de récupérer un élément en connaissant son ID.
+Au début du JavaScript, le DOM n'était pas unifié, c'est-à-dire que deux navigateurs possédaient un DOM différent, donc la manière d'accéder à un élément HTML différait d'un navigateur à l'autre. Il fallait donc coder différemment en fonction du navigateur. Le W3C a publié une nouvelle spécification DOM-1, pour DOM Level 1 qui définit le DOM et comment sont schématisés les documents HTML et XML, sous forme d'un arbre, ou d'une hiérarchie. L'élément `<html>` contient 2 éléments enfants : `<head>` et `<body>`, etc... Ensuite, la spécification DOM-2 a été publié avec l'introduction de la méthode getElementById() qui permet de récupérer un élément en connaissant son ID.
 
 ### La structure DOM
 
@@ -89,8 +89,8 @@ L'élément `<html>` contient deux éléments, appelés **enfants** : `<head>` e
 
 ## L'héritage des propriétés et des méthodes
 
-Les éléments HTML sont vus par JavaScript comme des objets possédant des propriétés et des méthodes. Tous ne possèdent pas les mêmes propriétés et méthodes. Certaines sont communes car tous les éléments HTML sont d'un même type : Node.
-Une <div> est un objet HTTMLDivElement, sous-objet HTMLElement, lui-même sous-objet d'Element, lui-même sous-objet de Node. Les méthodes et propriétés de Node peuvent être utilisées depuis ses sous-objets grâce à l'héritage.
+Les éléments HTML sont vus par JavaScript comme des objets possédant des propriétés et des méthodes. Tous ne possèdent pas les mêmes propriétés et méthodes. Certaines sont communes car tous les éléments HTML sont d'un même type : Node.  
+Une `<div>` est un objet `HTMLDivElement`, sous-objet d'`HTMLElement`, lui-même sous-objet d'`Element`, lui-même sous-objet de `Node`. Les méthodes et propriétés de Node peuvent être utilisées depuis ses sous-objets grâce à l'héritage.
 
 ----
 
@@ -197,7 +197,7 @@ document.body.children[0].style.backgroundColor = "red" // mais le fond de la di
 </body>
 ```
 
-`classList` permet d'avoir la liste des classes CSS que possède un élément. Les méthodes `add()` et `remove()` permettent d'ajouter et d'enlever des classes CSS. `toggle()` permet d'enlever la classe si elle présente et de l'ajouter si elle n'y est pas.
+`classList` permet d'avoir la liste des classes CSS que possède un élément. Les méthodes `add()` et `remove()` permettent d'ajouter et d'enlever des classes CSS. `toggle()` permet d'enlever la classe si elle présente et de l'ajouter si elle n'y est pas. On peut aussi utiliser `className` pour appliquer une classe CSS à un élément.
 
 ```js
 console.log(document.body.children[0].classList) // affiche ["super"]
@@ -209,9 +209,9 @@ document.body.children[0].classList.toggle("toto")
 console.log(document.body.children[0].classList) // affiche ["super", "toto"]
 document.body.children[0].classList.toggle("toto")
 console.log(document.body.children[0].classList) // affiche ["super"]
-```
 
-On peut aussi utiliser `className` pour appliquer une classe CSS à un élément : `document.getElementById('p1').className = 'bleu'`
+document.getElementById('p1').className = 'bleu'
+```
 
 ----
 
@@ -270,7 +270,10 @@ console.log(document.querySelectorAll("p")) // affiche une NodeList de deux él�
 
 ## Modifier l'ordre des éléments
 
-La méthode `insertBefore()` permet d'insérer un élément HTML avant un autre élément. Si l'élément existe déjà, il est d'abord supprimé avant d'être replacé. La méthode `appendChild()` permet d'ajouter un élément à un autre élément en tant qu'enfant. La méthode `replaceChild()` permet de remplacer un élément enfant par un autre. La méthode `removeChild()` permet de supprimer un élément, `remove()` le permet aussi de manière plus simple mais n'est pas supporté par les anciennes versions des navigateurs.
+- la méthode `insertBefore()` permet d'insérer un élément HTML avant un autre élément. Si l'élément existe déjà, il est d'abord supprimé avant d'être replacé
+- la méthode `appendChild()` permet d'ajouter un élément à un autre élément en tant qu'enfant
+- la méthode `replaceChild()` permet de remplacer un élément enfant par un autre
+- la méthode `removeChild()` permet de supprimer un élément, `remove()` le permet aussi de manière plus simple mais n'est pas supporté par les anciennes versions des navigateurs
 
 ```html
 <link rel="stylesheet" href="style.css">
@@ -319,7 +322,7 @@ bleu.remove() // permet aussi de supprimer l'élément bleu mais n'est pas suppo
 
 ## Créer des éléments
 
-Pour créer un élément, on va utiliser la méthode `createElement()` que l'on va ensuite insérer dans le DOM avec la méthode `appendChild()`
+Pour créer un élément, on va utiliser la méthode `createElement()` que l'on va ensuite insérer dans le DOM avec la méthode `appendChild()`.
 
 ```css
 /* creation d'une classe CSS jaune que l'on va appliquer sur un élément que l'on va créer en JS */
@@ -340,7 +343,7 @@ jaune.textContent = "Jaune" // ajout du texte Jaune dans la div
 document.body.appendChild(jaune) // insertion de l'élément jaune en tant qu'enfant du body
 ```
 
-Exemple de création d'une fonction qui crée des éléments que l'on va appeler plusieurs fois pour remplir une liste
+Exemple de création d'une fonction qui crée des éléments que l'on va appeler plusieurs fois pour remplir une liste :
 
 ```html
 <body>
@@ -456,7 +459,7 @@ rouge.onclick = function(){
 
 Un **Event Listener**, ou **écouteur d'événement** en français, est une autre façon d'interagir avec les événements.
 
-Il faut utiliser la méthode `addEventListener()` qui prend en argument le nom de l'événementet la fonction a exécuter :
+Il faut utiliser la méthode `addEventListener()` qui prend en argument le nom de l'événement et la fonction a exécuter :
 ```js
 rouge.addEventListener("click", function(event){
     console.log("clic sur la div rouge !")
@@ -470,7 +473,7 @@ function afficherMessage(){
 rouge.addEventListener("click", afficherMessage)
 ```
 
-On peut ajouter plusieurs event listener sur le même événement et sur le même élément, ils seront tous exécutés. On peut aussi déclarer une fonction en externe et l'appeler dans le listener **sans l'exécuter**, juste en marquant son nom. La fonction anonyme en argument n'était pas éexécutée non plus, le listeneur le fait quand l'événement a lieu.
+On peut ajouter plusieurs event listener sur le même événement et sur le même élément, ils seront tous exécutés. On peut aussi déclarer une fonction en externe et l'appeler dans le listener **sans l'exécuter**, juste en marquant son nom. La fonction anonyme en argument n'était pas exécutée non plus, le listeneur le fait quand l'événement a lieu.
 
 On peut aussi supprimer un event listener avec `removeEventListener()`. Dans l'exemple suivant, quand on clique sur vert, on enlève le deuxième event listener de rouge, et quand on clique ensuite sur rouge, il n'y a plus que le premier qui s'exécute :
 ```js
@@ -521,13 +524,14 @@ function parentFonction(){
 }
 ```
 
-Dans cet exemple, il y a une div bleu enfant contenu dans une div rouge rouge. Lorsqu'on clique sur la div parent, `clic sur le parent` s'écrit dans la log, et lorsqu'on clique sur la div enfant, `clic sur l'enfant` puis `clic sur le parent` s'affichent car l'enfant est contenu dans le parent.
+Dans cet exemple, il y a une div bleu enfant contenu dans une div rouge. Lorsqu'on clique sur la div parent, `click sur le parent` s'écrit dans la log, et lorsqu'on clique sur la div enfant, `clic sur l'enfant` puis `clic sur le parent` s'affichent car l'enfant est contenu dans le parent.
 
-Les événements sont faits de deix phases :
+Les événements sont faits de deux phases :
+
 - phase de **capture** : part des parents et va vers les enfants
 - phase de **bouillonnement** (**event bubbling**) : part de l'enfant et va vers les parents
 
-Par défaut, addEventListener s'exécute pendant la phase de bouillenement (les événements débutent par les enfants et remontent vers les parents). Pour qu'elle s'exécute pendant la phase de capture, il faut ajouter un troième argument `true` à la méthode `addEventListener`. Dans l"exemple suivant, lorsqu'on clique sur la div enfant, `clic sur parent` s'affiche donc avant `clic sur enfant` :
+Par défaut, addEventListener s'exécute pendant la phase de bouillenement (les événements débutent par les enfants et remontent vers les parents). Pour qu'elle s'exécute pendant la phase de capture, il faut ajouter un troisième argument `true` à la méthode `addEventListener`. Dans l"exemple suivant, lorsqu'on clique sur la div enfant, `clic sur parent` s'affiche donc avant `clic sur enfant` :
 ```js
 parent.addEventListener("click", parentFonction, true)
 enfant.addEventListener("click", enfantFonction, true)
@@ -597,7 +601,7 @@ function envoyerFormulaire(event){
 
 Ajax est un raccourci pour **Asynchronous JavaScript and XML** (XML et JavaScript asynchrones).
 
-Ajax permet d'échanger avec le serveur via des requêtes HTTP sans rafraîchir toute la page mais uniquement certains élément de la page. Ces requêtes fonctionnent de manière asynchrones, c'est-à-dire que l'on traitera la réponse quand elle arrive sans attendre qu'elle arrive, ce qui permet de continuer à exécuter la suite du code.
+Ajax permet d'échanger avec le serveur via des requêtes HTTP sans rafraîchir toute la page mais uniquement certains éléments de la page. Ces requêtes fonctionnent de manière asynchrones, c'est-à-dire que l'on traitera la réponse quand elle arrive sans attendre qu'elle arrive, ce qui permet de continuer à exécuter la suite du code.
 
 ## Requêtes HTTP avec XMLHttpRequest
 
