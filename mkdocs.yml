@@ -3,9 +3,9 @@ nav:
 - Accueil: index.md
 - Chapitres:
   - Les bases: lesBasesDeJavaScript.md
-  - Bien comprendre: vraimentBienComprendreJavaScript.md
-  - Dév moderne: developpementModerneJavascript.md
-  - Async: asynchrone.md
-  - Fonctions utiles: objetsEtFonctionsUtilesJavascript.md
-  - Dans le nav: javascriptDebarqueDansLeNavigateur.md
-  - Les bib: frameworksJavascript.md
+  - Vraiment bien comprendre JavaScript: vraimentBienComprendreJavaScript.md
+  - Développement moderne: developpementModerneJavascript.md
+  - L'asynchrone: asynchrone.md
+  - Objets et Fonctions utiles: objetsEtFonctionsUtilesJavascript.md
+  - Dans le navigateur: javascriptDebarqueDansLeNavigateur.md
+  - Les bibliothèques et frameworks: frameworksJavascript.md
